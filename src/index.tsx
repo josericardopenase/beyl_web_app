@@ -3,10 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import ThemeProvider from './Store/Themes/ThemeProvider';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+
+    {/* Global state provider using react context and reducer */}
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
+
   </React.StrictMode>,
   document.getElementById('root')
 );
