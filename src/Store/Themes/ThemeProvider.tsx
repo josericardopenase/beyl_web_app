@@ -4,7 +4,7 @@ import ThemeContext from './ThemeContext'
 
 interface Props{
     children : any;
-}
+};
 
 const ThemeProvider = ({children} : Props) => {
 
@@ -33,4 +33,4 @@ const ThemeProvider = ({children} : Props) => {
     )
 }
 
-export default ThemeProvider
+export default ThemeProvider;

@@ -1,24 +1,26 @@
-export interface Theme{
-    primary: String,
-    secondary: String,
-    textPrimary: String,
-    textSecondary: String,
-}
+export interface ITheme{
+    primary: string,
+    secondary: string,
+    textPrimary: string,
+    textSecondary: string,
+};
 
 
+const beylColor = '#FFC600';
 
-const darkTheme : Theme = {
+const darkTheme : ITheme = {
     primary: '#1E2025',
     secondary: '#272B2F',
     textPrimary: "white",
     textSecondary: '#BBBBBB',
-}
+};
 
-const lightTheme : Theme = {
-    primary: 'white',
-    secondary: '#F5F5F5',
+const lightTheme : ITheme = {
+    primary: '#f5f5f5',
+    secondary: 'white',
     textPrimary: "black",
     textSecondary: '#808080',
-}
 
-export default {lightTheme, darkTheme}
+};
+
+export default {lightTheme, darkTheme, beylColor};

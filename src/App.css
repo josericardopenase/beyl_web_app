@@ -1,5 +1,8 @@
+
+
 .App {
   text-align: center;
+
 }
 
 .App-logo {
@@ -35,4 +38,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#sidebar
+.sidebar-icon::hover{
+  border-radius: 20px !important;
 }
