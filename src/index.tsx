@@ -6,13 +6,15 @@ import * as serviceWorker from './serviceWorker';
 import ThemeProvider from './Store/Themes/ThemeProvider';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 ReactDOM.render(
   <React.StrictMode>
 
     {/* Global state provider using react context and reducer */}
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
+      <ThemeProvider>
+
+          <App />
+      </ThemeProvider>
 
   </React.StrictMode>,
   document.getElementById('root')
@@ -22,3 +24,5 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+

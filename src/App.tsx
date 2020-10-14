@@ -10,8 +10,10 @@ import { Icon } from './Components/General/Constants/Icons/Icon';
 import { BeylIcon } from './Components/General/Constants/Icons/BeylIcon';
 import { Sidebar } from './Components/General/Constants/Sidebar/Sidebar';
 import { ContainerPadding } from './Components/General/Containers/ContainerPadding';
-import { Home } from './Components/Pages/Home/Home';
+
 import { Header } from './Components/General/Constants/Header/Header';
+import {  BrowserRouter, Router } from 'react-router-dom';
+import { Home } from './Components/Pages/Home/Dashboard/Home';
 
 function App() {
   
@@ -23,7 +25,7 @@ function App() {
 
   return (
 
-    <div>
+    <BrowserRouter>
 
         <Sidebar
 
@@ -54,7 +56,6 @@ function App() {
         <ContainerPadding>
 
             <Header></Header>
-
             <Home></Home>
 
             <div onClick={() => theme.toggle()} style={{backgroundColor: 'white'} as React.CSSProperties}>
@@ -66,8 +67,7 @@ function App() {
         </ContainerPadding>
         
 
-    </div>
-
+      </BrowserRouter>
   );
 }
 

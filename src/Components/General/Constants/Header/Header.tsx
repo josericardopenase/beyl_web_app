@@ -11,7 +11,7 @@ export const Header = () => {
             position: "fixed",
             top: 0,
             right: 0,
-            zIndex: 1000
+            zIndex: 1000,
 
         } as React.CSSProperties,
 
@@ -20,19 +20,23 @@ export const Header = () => {
 
 
     return (
-        <div style={styles.container}>
-            
-            <ContainerHeader>
 
-                <NotificationCenter/>
+        
+            <div style={styles.container}>
+            
+
+                <ContainerHeader>
+
+                    <NotificationCenter badge={true}/>
+                    
+                    <ProfileInfo/>
                 
-                <ProfileInfo/>
-            
-            
-            </ContainerHeader>
+                </ContainerHeader>
+
+            </div>
 
 
-        </div>
+
     )
 }
 

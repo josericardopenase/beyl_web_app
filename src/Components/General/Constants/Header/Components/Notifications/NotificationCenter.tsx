@@ -1,18 +1,24 @@
-import React from 'react'
-import { FaBell, FaFonticonsFi } from 'react-icons/fa'
-import { Icon } from '../../../Icons/Icon'
+import React, { useState } from 'react'
+import { NotificationIcon } from './Components/NotificationIcon'
+import { NotificationPopUp } from './Components/NotificationPopUp'
+
 
 
 interface notification{
-
+    badge ?: boolean
 }
 
-export const NotificationCenter = () => {
+export const NotificationCenter = ({badge} : notification) => {
+
+    const [open, setOpen] = useState(false)
+
     return (
-        <div style={{marginRight: 15, marginLeft: 5}}>
-            <Icon>
-                <FaBell></FaBell>
-            </Icon>
+        <div style={{position: "relative"}} onClick={() => setOpen(!open)}>
+
+            <NotificationIcon badge={true}></NotificationIcon>
+
+            { open ? <NotificationPopUp></NotificationPopUp> : null}
+
         </div>
     )
 }

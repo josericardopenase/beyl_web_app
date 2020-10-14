@@ -40,7 +40,3 @@
   }
 }
 
-#sidebar
-.sidebar-icon::hover{
-  border-radius: 20px !important;
-}

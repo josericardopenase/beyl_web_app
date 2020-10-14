@@ -10,7 +10,7 @@ export default function ContainerBox({children} : PropsInterfaces.IOnlyChildren)
     const style : React.CSSProperties = {
         backgroundColor: themes.colors.secondary,
         padding: 10,
-        borderRadius: "10px",
+        borderRadius: "20px",
         wordBreak: "break-all",
         
     }

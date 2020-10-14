@@ -11,14 +11,13 @@ export const ContainerHeader = ({children} : PropsInterfaces.IOnlyChildren) => {
         padding: 10,
         borderRadius: 10, 
         margin: 20, 
-        overflow: "hidden",
-        backgroundColor: themes.colors.primary,
+        backgroundColor: themes.colors.secondary,
         boxShadow: "0px 0px 28px 17px rgba(0,0,0,0.10)"
         } as React.CSSProperties,
 
 
 
-    }
+    };
 
     return (
         <div style={styles.container} className="d-flex align-items-center">

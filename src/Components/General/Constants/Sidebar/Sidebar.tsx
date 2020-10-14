@@ -1,4 +1,5 @@
 import React, { Children, useContext } from 'react'
+import { useLocation } from 'react-router-dom';
 import ThemeContext from '../../../../Store/Themes/ThemeContext'
 import { BeylIcon } from '../Icons/BeylIcon';
 import { Icon } from '../Icons/Icon';
@@ -6,7 +7,11 @@ import { SidebarIcon } from './SidebarIcon';
 
 export const Sidebar = ({construction} : any) => {
 
+    //get current theme
     const theme = useContext(ThemeContext);
+
+    //get current location of the window
+    const location = useLocation();
 
     const style = {
         base: {
@@ -44,7 +49,7 @@ export const Sidebar = ({construction} : any) => {
 
                 <div>
                 {
-                    construction.map((obj: any) : any => <SidebarIcon key={obj.url} obj={obj} activate={window.location.pathname === obj.url}></SidebarIcon>)
+                    construction.map((obj: any) : any => <SidebarIcon key={obj.url} obj={obj} activate={location.pathname === obj.url}></SidebarIcon>)
                 }
                 </div>
 

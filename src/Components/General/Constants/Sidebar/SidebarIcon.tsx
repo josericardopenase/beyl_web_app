@@ -2,7 +2,9 @@ import React, { Children, useContext, useState } from 'react'
 import ThemeContext from '../../../../Store/Themes/ThemeContext'
 import Themes from '../../Styles/Themes'
 import { Icon } from '../Icons/Icon'
-
+import {
+    Link
+  } from "react-router-dom";
 
 export const SidebarIcon = ({obj, activate} : any) => {
 
@@ -25,15 +27,16 @@ export const SidebarIcon = ({obj, activate} : any) => {
 
 
     return (
-        <div style={style} className="sidebar-icon" onMouseEnter={() => setInactiveBorderRadius('20px')} onMouseLeave={()=> setInactiveBorderRadius('50%')}>
-            <Icon size = "23px" color= {activate ? 'white' : undefined}>
+        <Link to= {obj.url}>
+            <div style={style} className="sidebar-icon" onMouseEnter={() => setInactiveBorderRadius('20px')} onMouseLeave={()=> setInactiveBorderRadius('50%')}>
+                <Icon size = "23px" color= {activate ? 'white' : undefined}>
 
-                {
-                    obj.icon
-                }
+                    {
+                        obj.icon
+                    }
 
-            </Icon>
-        </div>
-        
+                </Icon>
+            </div>
+        </Link>
     )
 }
