@@ -15,7 +15,7 @@ export const Sidebar = ({construction} : any) => {
 
     const style = {
         base: {
-            height: "100vh", 
+            height: "100%", 
             width: "70px", 
             backgroundColor: theme.colors.secondary,
             textAlign : "center",
@@ -28,7 +28,7 @@ export const Sidebar = ({construction} : any) => {
             padding: 5,
             display: "flex",
             flexDirection: "column",
-            height: "100vh",
+            height: "100%",
             justifyContent: "space-between"
 
 

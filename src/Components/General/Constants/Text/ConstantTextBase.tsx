@@ -3,8 +3,15 @@ import ThemeContext from '../../../../Store/Themes/ThemeContext'
 import Themes from '../../Styles/Themes';
 import TextInterfaces from './Interfaces/TextInterfaces';
 
+interface props{
+    children: any,
+    color ?: string,
+    style ?: React.CSSProperties,
+    className ?: string
+}
 
-export const ConstantTextBase = ({children, color, style} : TextInterfaces.IChildrenColorStyle ) => {
+
+export const ConstantTextBase = ({children, color, style, className} : props ) => {
 
     const theme = useContext(ThemeContext);
 
@@ -13,7 +20,7 @@ export const ConstantTextBase = ({children, color, style} : TextInterfaces.IChil
      } as React.CSSProperties
 
     return (
-        <div style={{...Base , ...style}}>
+        <div style={{...Base , ...style}} className={className}>
             {
                 children
             }

@@ -44,7 +44,7 @@ export const NewsSingle = ({stars, title, excerpt, date, author, image} : props)
                     
                     </Col>
 
-                    <Col style={{wordBreak: "break-word"}}>
+                    <Col style={{wordBreak: "break-word"}} className="mt-3 mt-sm-0">
 
                         <Title2 style={{marginBottom: 10}}><Bolder>{title}</Bolder></Title2>
 

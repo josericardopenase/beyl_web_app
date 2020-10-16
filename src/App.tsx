@@ -14,6 +14,8 @@ import { ContainerPadding } from './Components/General/Containers/ContainerPaddi
 import { Header } from './Components/General/Constants/Header/Header';
 import {  BrowserRouter, Router } from 'react-router-dom';
 import { Home } from './Components/Pages/Home/Dashboard/Home';
+import { ContainerSidebar } from './Components/General/Containers/ContainerSidebar';
+import { Routes } from './Routers/Routes';
 
 function App() {
   
@@ -25,46 +27,12 @@ function App() {
 
   return (
 
-    <BrowserRouter>
-
-        <Sidebar
-
-            construction = {[
-
-              {
-                url: '/',
-                icon: <FaHome/>,
-                name: 'home'
-              },
-              {
-                url: '/clients',
-                icon: <FaFire/>,
-                name: 'fire'
-              },
-              {
-                url: '/chats',
-                icon: <FaComment/>,
-                name: 'chats'
-              },
+      <BrowserRouter>
 
 
-            ]}
+      
+        <Routes/>
 
-
-        />
-
-        <ContainerPadding>
-
-            <Header></Header>
-            <Home></Home>
-
-            <div onClick={() => theme.toggle()} style={{backgroundColor: 'white'} as React.CSSProperties}>
-
-              cambiar tema
-              
-            </div>
-
-        </ContainerPadding>
         
 
       </BrowserRouter>

@@ -8,6 +8,7 @@ import { News } from './News/News'
 
 
 export const Home = () => {
+
     return (
         
         <ContainerMarginTop>        

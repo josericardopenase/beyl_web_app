@@ -22,3 +22,12 @@ code {
   transform: scale(1.02);
   transition: all 0.1s linear;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 20px;
+}
