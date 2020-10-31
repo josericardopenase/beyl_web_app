@@ -14,7 +14,7 @@ export const SidebarPrincipal = () => {
             name: 'home'
         },
         {
-            url: '/clients',
+            url: '/training',
             icon: <FaFire/>,
             name: 'fire'
         },

@@ -9,6 +9,7 @@ import { SidebarPrincipal } from '../Components/General/Constants/Sidebar/Sideba
 import { ContainerSidebar } from '../Components/General/Containers/ContainerSidebar'
 import { Home } from '../Components/Pages/Home/Dashboard/Home'
 import { RoutesHome } from './PageRouters.tsx/RoutesHome'
+import RoutesTraining from './PageRouters.tsx/RoutesTraining'
 
 export const Routes = () => {
 
@@ -29,7 +30,7 @@ export const Routes = () => {
                     <Switch className="m-0 p-0">
 
                         <Route path="/" component={RoutesHome}></Route>
-
+                        <Route path="/training" component={RoutesTraining}></Route>
                     </Switch>
 
                 </ContainerSidebar>

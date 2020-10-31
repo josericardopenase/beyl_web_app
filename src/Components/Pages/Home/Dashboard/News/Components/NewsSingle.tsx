@@ -1,5 +1,6 @@
 import React from 'react'
 import { Col, Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { Stars } from '../../../../../General/Constants/GeneralPropose/Stars'
 import { Bolder } from '../../../../../General/Constants/Text/Bolder'
 import { Paragraph } from '../../../../../General/Constants/Text/Paragraph'
@@ -34,28 +35,32 @@ export const NewsSingle = ({stars, title, excerpt, date, author, image} : props)
     
     
     return (
-        <Col sm ={12} md={6} lg={6} xl={4}  className="mt-3 mt-md-3 mt-lg-3">
-            <ContainerBox>
-                <Row>
 
-                    <Col sm = {5}>
-                    
-                        <img src={image} style={styles.image}></img>
-                    
-                    </Col>
+            <Col sm ={12} md={6} lg={6} xl={4}  className="mt-3 mt-md-3 mt-lg-3">
+                <Link to="/article/1">
+                    <ContainerBox>
+                        <Row>
 
-                    <Col style={{wordBreak: "break-word"}} className="mt-3 mt-sm-0">
+                            <Col sm = {5}>
+                            
+                                <img src={image} style={styles.image}></img>
+                            
+                            </Col>
 
-                        <Title2 style={{marginBottom: 10}}><Bolder>{title}</Bolder></Title2>
+                            <Col style={{wordBreak: "break-word"}} className="mt-3 mt-sm-0">
 
-                        <Paragraph color="secondary">{excerpt}</Paragraph>
-                        
-                        <Stars number = {stars}></Stars>
-                    </Col>
+                                <Title2 style={{marginBottom: 10}}><Bolder>{title}</Bolder></Title2>
+
+                                <Paragraph color="secondary">{excerpt}</Paragraph>
+                                
+                                <Stars number = {stars}></Stars>
+                            </Col>
 
 
-                </Row>
-            </ContainerBox>
-        </Col>
+                        </Row>
+                    </ContainerBox>
+                </Link>
+            </Col>
+    
     )
 }

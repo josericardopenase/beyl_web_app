@@ -10,12 +10,6 @@ export const RoutesHome = (props: any) => {
 
     const url = props.match.url == "/" ? "" : props.match.url
 
-    const routes = [{
-        name: "principal",
-        path: "",
-        component: <Home/>
-    }]
-
     return (
         <ContainerPadding>
             
