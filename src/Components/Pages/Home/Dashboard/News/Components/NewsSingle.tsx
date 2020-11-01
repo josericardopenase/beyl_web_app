@@ -37,7 +37,7 @@ export const NewsSingle = ({stars, title, excerpt, date, author, image} : props)
     return (
 
             <Col sm ={12} md={6} lg={6} xl={4}  className="mt-3 mt-md-3 mt-lg-3">
-                <Link to="/article/1">
+                <Link to="home/article/1">
                     <ContainerBox>
                         <Row>
 

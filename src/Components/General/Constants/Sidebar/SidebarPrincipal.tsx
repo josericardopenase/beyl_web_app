@@ -9,7 +9,7 @@ export const SidebarPrincipal = () => {
         construction = {[
 
         {
-            url: '/',
+            url: '/home',
             icon: <FaHome/>,
             name: 'home'
         },

@@ -8,18 +8,17 @@ import { Home } from '../../Components/Pages/Home/Dashboard/Home'
 
 export const RoutesHome = (props: any) => {
 
-    const url = props.match.url == "/" ? "" : props.match.url
+    const url = props.match.url == "/" ? "" : props.match.url;
 
     return (
         <ContainerPadding>
             
-            <Switch className="m-0 p-0">
+
 
                 <Route path={`${url}/`} component={Home} exact></Route>
                 <Route path={`${url}/article/:id`} component={Article} exact></Route>
 
 
-            </Switch>
 
         </ContainerPadding>
     )
