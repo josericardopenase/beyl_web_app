@@ -17,7 +17,7 @@ namespace TextInterfaces{
         children: any,
         style ?: React.CSSProperties,
         fontWeight ?: FontWeight,
-        color ?: Colors
+        color ?: string
     };
 
 }

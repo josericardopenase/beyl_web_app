@@ -15,7 +15,7 @@ const ThemeProvider = ({children} : Props) => {
     const toggleTheme = () => {
 
         console.log("change")
-        if(theme == Themes.darkTheme){
+        if(theme === Themes.darkTheme){
             setTheme(Themes.lightTheme);
         }else{
             setTheme(Themes.darkTheme);

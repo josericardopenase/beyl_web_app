@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ThemeProvider from './Store/Themes/ThemeProvider';
@@ -16,12 +16,12 @@ import {  BrowserRouter, Router } from 'react-router-dom';
 import { Home } from './Components/Pages/Home/Dashboard/Home';
 import { ContainerSidebar } from './Components/General/Containers/ContainerSidebar';
 import { Routes } from './Routers/Routes';
+import { useDispatch } from 'react-redux';
+import { loadAthletes } from './Store/athleltes';
 
 function App() {
   
   const theme = useContext(ThemeContext)
-  
-
   //set body backgroundColor to the theme primary color
   document.body.style.backgroundColor = theme.colors.primary.toString();
 

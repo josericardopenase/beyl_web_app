@@ -16,8 +16,9 @@ export const ConstantTextBase = ({children, color, style, className} : props ) =
     const theme = useContext(ThemeContext);
 
     const Base = {
-        color: color == 'primary' || color === undefined ? theme.colors.textPrimary : theme.colors.textSecondary
-     } as React.CSSProperties
+        color:  color == 'primary' || color === undefined ? theme.colors.textPrimary : color == "secondary" ? theme.colors.textSecondary  : color,
+        flexWrap: "wrap",
+     } as React.CSSProperties 
 
     return (
         <div style={{...Base , ...style}} className={className}>

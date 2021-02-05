@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import useVisible from '../../../../../../CustomHooks/useVisible'
 import { NotificationIcon } from './Components/NotificationIcon'
 import { NotificationPopUp } from './Components/NotificationPopUp'
 
@@ -10,14 +11,15 @@ interface notification{
 
 export const NotificationCenter = ({badge} : notification) => {
 
-    const [open, setOpen] = useState(false)
+    const {ref, isVisible, setIsVisible} = useVisible(false);
+
 
     return (
-        <div style={{position: "relative"}} onClick={() => setOpen(!open)}>
+        <div style={{position: "relative"}} onClick={() => setIsVisible(true)}>
 
             <NotificationIcon badge={true}></NotificationIcon>
 
-            { open ? <NotificationPopUp></NotificationPopUp> : null}
+            { isVisible == true ? <NotificationPopUp Ref = {ref}></NotificationPopUp> : null}
 
         </div>
     )

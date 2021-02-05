@@ -8,6 +8,7 @@ import { Sidebar } from '../Components/General/Constants/Sidebar/Sidebar'
 import { SidebarPrincipal } from '../Components/General/Constants/Sidebar/SidebarPrincipal'
 import { ContainerSidebar } from '../Components/General/Containers/ContainerSidebar'
 import { Home } from '../Components/Pages/Home/Dashboard/Home'
+import RoutesChat from './PageRouters.tsx/RoutesChat'
 import { RoutesHome } from './PageRouters.tsx/RoutesHome'
 import RoutesTraining from './PageRouters.tsx/RoutesTraining'
 
@@ -31,7 +32,8 @@ export const Routes = () => {
 
                         <Route path="/home" component={RoutesHome}></Route>
                         <Route path="/training" component={RoutesTraining}></Route>
-                        
+                        <Route path="/chats" component={RoutesChat}></Route>
+
                         <Route exact path="/">
                             <Redirect to="/home" />
                         </Route>

@@ -5,7 +5,7 @@ import Themes from '../../../../../Styles/Themes';
 import { Title3 } from '../../../../Text/Title3';
 import { NotificationPopUpSingle } from './NotoficationPopUpComponents/NotificationPopUpSingle';
 
-export const NotificationPopUp = () => {
+export const NotificationPopUp = ({Ref} : any) => {
 
     const theme = useContext(ThemeContext);
 
@@ -30,7 +30,7 @@ export const NotificationPopUp = () => {
     return (
 
         /* Container para realizar posicionamiento */
-        <div style={styles.position}>
+        <div ref={Ref} style={styles.position}>
 
            {/*  Container para realizar la colocación de los elementos */}
             <div style={styles.container}>

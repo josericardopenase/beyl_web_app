@@ -49,7 +49,7 @@ export const Sidebar = ({construction} : any) => {
 
                 <div>
                 {
-                    construction.map((obj: any) : any => <SidebarIcon key={obj.url} obj={obj} activate={location.pathname === obj.url}></SidebarIcon>)
+                    construction.map((obj: any) : any => <SidebarIcon key={obj.url} obj={obj} activate={location.pathname.includes(obj.url)}></SidebarIcon>)
                 }
                 </div>
 

@@ -1,30 +1,56 @@
-import React from 'react'
-import { Redirect, Route } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Redirect, Route, useRouteMatch } from 'react-router-dom'
+import apiAthletes from '../../../Api/apiAthletes'
+import useApiCallback from '../../../CustomHooks/useApiCallback'
 import { Bolder } from '../../General/Constants/Text/Bolder'
 import { Title1 } from '../../General/Constants/Text/Title1'
 import { Title3 } from '../../General/Constants/Text/Title3'
 import { Article } from '../Home/Article/Article'
-import { TrainingHeader } from './Components/Components/Header/TrainingHeader'
+import { TrainingHeader } from './Components/Header/TrainingHeader'
+import { Diet } from './Pages/Diet'
+import { General } from './Pages/General'
+import { Rutine } from './Pages/Rutine'
+import * as types from '../../../Types/Types'
+import { useDispatch, useSelector } from 'react-redux'
+import { url } from 'inspector'
+import { setSelectedAthlete } from '../../../Store/athleltes'
 
 
 export default function Training(props : any) {
 
-    const url = props.match.url == "/" ? "" : props.match.url;
+    const urlParams = useRouteMatch<any>();
+    const id = urlParams.params.id;
 
-    console.log(props.match)
+    const dispatch = useDispatch()
+    const loading = useSelector((state : any) => state.athletes.loading)
+    const storelook = useSelector((state : any) => state.athletes.list.filter((user : any) => user.id == id))
+    const user = storelook[0]
+
+    useEffect(() => {
+        if(user !== undefined){
+            dispatch(setSelectedAthlete(user))
+        }
+    }, [id])
+
+    if(loading)
+        return (<div> hello </div>)
+
 
     return (
-        <div className="p-3">
-            <Title1><Bolder> Jose Ricardo Pena Seco </Bolder></Title1>
-            <Title3>Plan premiun</Title3>
+        <div className="pl-4 pt-4">
 
-            <TrainingHeader></TrainingHeader>
+            <Title1><Bolder>{user?.user.first_name + " " + user?.user.last_name}</Bolder></Title1>
 
-            <Route  path={`${url}/general`} component={Article} exact></Route>
-            <Route  path={`${url}`} component={Article} exact>
-                <Redirect to={`${url}/general`}/>
-            </Route>
+            <TrainingHeader actualPath = {urlParams.url}></TrainingHeader>
 
+            <div className="pt-3"> 
+                <Route  path={`${urlParams.path}/general`} component={General} ></Route>
+                <Route  path={`${urlParams.path}/rutina`} component={Rutine} ></Route>
+                <Route  path={`${urlParams.path}/dieta`} component={Diet} ></Route>
+            <Route path={`${urlParams.url}`}  component={Article}>
+                <Redirect to={`${urlParams.url}/general`}/>
+            </Route> 
+            </div>
 
         </div>
     )

@@ -5,13 +5,14 @@ import { NotificationBadge } from './NotificationIconComponents/NotificationBadg
 
 interface props{
     
-    badge ?: boolean
+    badge ?: boolean,
+    onClick ?: () => any
 
 }
 
-export const NotificationIcon = ({badge} : props) => {
+export const NotificationIcon = ({badge, onClick} : props) => {
     return (
-        <div style={{marginRight: 15, marginLeft: 5, position: "relative"}}>
+        <div style={{marginRight: 15, marginLeft: 5, position: "relative"}} onClick ={onClick}>
                 
             <Icon>
                 <FaBell></FaBell>

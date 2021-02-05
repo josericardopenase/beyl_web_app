@@ -14,7 +14,7 @@ export const RoutesHome = (props: any) => {
         <ContainerPadding>
             
 
-
+            
                 <Route path={`${url}/`} component={Home} exact></Route>
                 <Route path={`${url}/article/:id`} component={Article} exact></Route>
 

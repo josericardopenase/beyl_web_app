@@ -1,18 +1,21 @@
 import React, { useContext } from 'react'
 import ThemeContext from '../../../Store/Themes/ThemeContext'
-import PropsInterfaces from '../Interfaces/PropsInterface';
 
+interface IProps{
+    children: any,
+    color ?: string
+}
 
-export default function ContainerBox({children} : PropsInterfaces.IOnlyChildren) {
+export default function ContainerBox({children, color} : IProps) {
 
     const themes = useContext(ThemeContext);
 
     const style : React.CSSProperties = {
-        backgroundColor: themes.colors.secondary,
+        backgroundColor: color === "primary" || color === "secondary" || color === undefined ?  color === "primary" ? themes.colors.primary : themes.colors.secondary : color,
         padding: 10,
         borderRadius: "20px",
-        wordBreak: "break-all",
-        
+        wordBreak: "break-word",
+
     }
 
     return (

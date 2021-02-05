@@ -13,7 +13,7 @@ export const Icon = ({children, size, color} : props) => {
     const theme = useContext(ThemeContext)
 
     return (
-        <IconContext.Provider  value={{style: {fontSize: size ? size : 19, color: color == null ?  theme.colors.textSecondary : color, display: "flex", flex:"column", justifyContent: "center", textAlign: "center"}}}>
+        <IconContext.Provider  value={{style: {fontSize: size ? size : 19, color: !color ?  theme.colors.textSecondary : color, display: "flex", flex:"column", justifyContent: "center", textAlign: "center"}}}>
             <div>
                 {
                     children

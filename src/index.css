@@ -25,9 +25,15 @@ code {
 
 ::-webkit-scrollbar {
   width: 5px;
+  background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #888;
   border-radius: 20px;
+}
+
+.modal-content{
+  background: transparent !important;
+  border: 0
 }

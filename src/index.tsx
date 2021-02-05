@@ -5,18 +5,22 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import ThemeProvider from './Store/Themes/ThemeProvider';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Provider } from 'react-redux';
+import { store } from './Store/store';
 
 
 ReactDOM.render(
   <React.StrictMode>
 
     {/* Global state provider using react context and reducer */}
+    
+    <Provider store={store}>
       <ThemeProvider>
 
           <App />
           
       </ThemeProvider>
-
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
