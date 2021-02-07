@@ -18,6 +18,7 @@ import { useDispatch } from 'react-redux';
 import { postRutineExcersise } from '../../../../../Store/Rutines/rutineExcersise';
 import * as Yup from 'yup'
 import TitleError from '../../../../General/Constants/Text/TitleError';
+import RutineExcersiseSearch from '../Common/SearchComponents/RutineExcersiseSearch';
 
 const validationSchema = Yup.object().shape({
     excersise: Yup.array().required().min(1),
@@ -49,7 +50,10 @@ export default function AddExcersise(props: any) {
                     [
                     <div>
                     
-                        <SearchSelector name={"excersise"}></SearchSelector>
+                        <SearchSelector multiple={true} name={"excersise"}  
+                        element={(obj : any) => <RutineExcersiseSearch obj ={obj}></RutineExcersiseSearch>}
+                        apiFunction = {apiTraining.getExcersise}
+                        ></SearchSelector>
                         { errors.excersise ? <TitleError>{errors.excersise}</TitleError> : null }
                     </div>
                     

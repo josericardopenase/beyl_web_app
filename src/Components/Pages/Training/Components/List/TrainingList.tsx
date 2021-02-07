@@ -14,8 +14,8 @@ import { useDispatch } from 'react-redux';
 import { patchRutineGroup, deleteRutineGroup } from '../../../../../Store/Rutines/rutineGroups'
 import { Icon } from '../../../../General/Constants/Icons/Icon';
 import RemoveIcon from '../../../../General/Constants/Icons/RemoveIcon';
-import { removeDietGroup } from '../../../../../Store/Diets/dietGroups';
 import { Bolder } from '../../../../General/Constants/Text/Bolder';
+import { deleteDietGroup, patchDietGroup } from '../../../../../Store/Diets/dietGroups';
 
 interface props {
     name: string,
@@ -25,10 +25,11 @@ interface props {
     nameAdd : string,
     changeName ?: any,
     popUp : (showModal : any, toggleModal : any, id : number) => any,
-    onDragEnd ?: any
+    onDragEnd ?: any,
+    rutine: boolean
 }
 
-export const TrainingList = ({name, children, id, order, popUp, nameAdd, onDragEnd} : props) => {
+export const TrainingList = ({name, children, id, order, popUp, nameAdd, onDragEnd, rutine} : props) => {
 
 
     const theme = useContext(ThemeContext);
@@ -49,7 +50,12 @@ export const TrainingList = ({name, children, id, order, popUp, nameAdd, onDragE
     const dispatch = useDispatch();
 
     function modifyName(newName : string){
-        dispatch(patchRutineGroup({id : id, name : newName}))
+        if(rutine){
+
+            dispatch(patchRutineGroup({id : id, name : newName}))
+        }else{
+            dispatch(patchDietGroup({id : id, name : newName}))
+        }
     }
 
 
@@ -63,7 +69,7 @@ export const TrainingList = ({name, children, id, order, popUp, nameAdd, onDragE
                     <div className="w-100 d-flex justify-content-between">
 
                         <Bolder><TitleInput onChange={modifyName}>{name}</TitleInput></Bolder>
-                        <RemoveIcon onClick={() => dispatch(deleteRutineGroup(id))}></RemoveIcon>
+                        <RemoveIcon onClick={() => rutine ? dispatch(deleteRutineGroup(id)) : dispatch(deleteDietGroup(id))}></RemoveIcon>
 
                     </div>
 

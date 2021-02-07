@@ -3,6 +3,7 @@ import { FaEdit, FaTrashAlt } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import { Link, useLocation, useRouteMatch } from 'react-router-dom'
 import useVisible from '../../../../../CustomHooks/useVisible'
+import { deleteDietDay, patchDietDay } from '../../../../../Store/Diets/dietDays'
 import { patchDay, deleteDay } from '../../../../../Store/Rutines/rutineDays'
 import ThemeContext from '../../../../../Store/Themes/ThemeContext'
 import * as types from '../../../../../Types/Types'
@@ -16,10 +17,11 @@ import Themes from '../../../../General/Styles/Themes'
 
 interface IProps {
     day: types.Day,
-    index : number
+    index : number,
+    rutine : boolean
 }
 
-export const Day = ({ day, index } : IProps) => {
+export const Day = ({ day, index, rutine} : IProps) => {
 
     const [text, setText] = useState(day.name);
 
@@ -48,16 +50,24 @@ export const Day = ({ day, index } : IProps) => {
 
     function changeName(){
         if(day.name != text && text.length > 0){
-            dispatch(patchDay({name : text, id : day.id}))
+            if(rutine){
+                dispatch(patchDay({name : text, id : day.id}))
+            }else{
+                dispatch(patchDietDay({name : text, id : day.id}))
+            }
         }
     }
 
     function deleteCurrentDay(){
-        dispatch(deleteDay(day.id))
+        if(rutine){
+            dispatch(deleteDay(day.id))
+        }else{
+            dispatch(deleteDietDay(day.id))
+        }
     }
 
     return (
-        <DraggingComponent id = {day.id} index = {index}>
+        <DraggingComponent id = {day.id} index = {day.order}>
                 <div className="mr-3">
                     <ContainerBox color={active ? Themes.beylColor : themes.colors.secondary}>
                         <div className="pl-2 pr-2 d-flex align-items-center"> 

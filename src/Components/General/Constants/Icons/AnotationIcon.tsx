@@ -27,7 +27,8 @@ export default function AnotationIcon({obj, modifyMethod} : IProps) {
         
         console.log(text);
 
-        modifyMethod(text);
+        if(text !== obj.anotation)
+          modifyMethod(text);
 
         setIsVisible(false);
 
@@ -36,10 +37,11 @@ export default function AnotationIcon({obj, modifyMethod} : IProps) {
     return (
 
         <OverlayTrigger trigger="click" placement="right" show={isVisible} overlay={
-            <Popover id="popover-positionet-right" style={{borderRadius: 10, backgroundColor: themes.colors.secondary, outline: 0, border: 0}}>
+          <Popover id="popover-positionet-right" style={{borderRadius: 10, backgroundColor: themes.colors.secondary, outline: 0, border: 0}}
+        >
                 <div className="p-3" ref={ref}>
                     <Title3><Bolder>Anotacion</Bolder></Title3>
-                    <TextArea value={text} onChange={(a : any) => setText(a.target.value)} style={{backgroundColor: themes.colors.primary, border : 0, borderRadius: 10, width: "15rem", height: "6rem", color : themes.colors.textPrimary, outline: 0, padding: "0.5rem", fontSize: 16}}>
+                    <TextArea placeholder={"Escribe tus indicaciones para realizar el ejercicio..."} value={text} onChange={(a : any) => setText(a.target.value)} style={{backgroundColor: themes.colors.primary, border : 0, borderRadius: 10, width: "15rem", height: "6rem", color : themes.colors.textPrimary, outline: 0, padding: "0.5rem", fontSize: 16}}>
 
                     </TextArea>
                     <Button1 style={{marginTop: 5, color : "white"}} onClick={modify}>

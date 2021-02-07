@@ -1,17 +1,48 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector, useStore } from 'react-redux'
+import { getFoodOfGroup, reorderFood } from '../../../../../Store/Diets/dietFoods'
+import { getExcersiseOfGroup, reorderExcersise } from '../../../../../Store/Rutines/rutineExcersise'
+import { reorderGroup } from '../../../../../Store/Rutines/rutineGroups'
+import { Group } from '../../../../../Types/Types'
+import { DietFood } from '../../Pages/Diet/Components/DietFood'
+import { RutineExcercise } from '../../Pages/Rutine/Components/RutineExcercise'
+import AddExcersise from '../Modal/AddExcersise'
 import AddFood from '../Modal/AddFood'
 import { TrainingList } from './TrainingList'
 
 interface props {
-    children : any
+    obj : Group,
+    index : number
 }
 
-export default function DietList({children} : props) {
+export default function DietList({obj , index} : props) {
+
+
+    const dispatch = useDispatch();
+    const loading =useSelector((state : any) => state.training.diet.food.loading);
+    const dietGroup = useSelector((state : any) => state.training.diet.food.list.filter((x : any) => x.group === obj.id));
+    const store = useStore()
+
+    useEffect(() => {
+       dispatch(getFoodOfGroup(obj.id)) 
+    }, [])
+
+    if(loading){
+        return <div>loading</div>
+    }
+
     return (
-        <TrainingList nameAdd={"Agrega alimento o receta"} id={1} order={1} name="Desayuno" popUp = {(modalShow, setModalShow) => <AddFood show={modalShow} onHide={() => setModalShow()} ></AddFood>}>
-        {
-            children
-        }            
+        <TrainingList rutine={false} onDragEnd={(action : any) => {
+/*                 console.log(action.draggableId, store.getState().training.rutine.excersise.list[action.destination.index].order) */
+                dispatch(reorderFood(parseInt(action.draggableId), action.destination.index))
+        }} nameAdd = {"Agrega nuevo alimento"} id={obj.id} order={obj.order} name={obj.name} popUp = 
+        {(modalShow, setModalShow, id) => <AddFood show={modalShow} id = {id} onHide={() => setModalShow()} ></AddFood>}
+        >
+            {
+
+                dietGroup.map((x : any, index : number) => <DietFood obj={x} index={x.order}></DietFood>)
+
+            }
         </TrainingList>
     )
 }

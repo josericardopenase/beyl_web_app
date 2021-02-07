@@ -35,5 +35,14 @@ code {
 
 .modal-content{
   background: transparent !important;
-  border: 0
+  border: 0;
 }
+
+.arrow{
+  display : none !important;
+}
+
+.tooltip.top .tooltip-arrow{
+  display: none !important;
+}
+

@@ -1,7 +1,7 @@
 import { current } from '@reduxjs/toolkit'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector, useStore } from 'react-redux'
-import { Route, useRouteMatch } from 'react-router-dom'
+import { Redirect, Route, useRouteMatch } from 'react-router-dom'
 import apiTraining from '../../../../Api/apiTraining'
 import useApiCallback from '../../../../CustomHooks/useApiCallback'
 import { getRutine } from '../../../../Store/Rutines/rutine'
@@ -15,8 +15,8 @@ import { RutineDay } from './Rutine/RutineDay'
 
 export const Rutine = (props: any) => {
 
-    const urlParams = useRouteMatch();
 
+    const urlParams = useRouteMatch();
     const dispatch = useDispatch();
     const store = useStore()
     const loading : any = useSelector((state : any ) => state.training.rutine.rutines.loading)
@@ -30,9 +30,12 @@ export const Rutine = (props: any) => {
     }, [])
 
 
-    if(loading)
-        return <div>loading</div>
+    useEffect(() => {
+        console.log("hello ")
+    }, [store.getState().athletes.selectedAthlete])
 
+    if(loading || !rutine)
+        return <div>loading</div>
     return (
         <div>
             <DayList rutine = {true} days={rutine.rutine_days}></DayList> 

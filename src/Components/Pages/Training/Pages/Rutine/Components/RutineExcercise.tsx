@@ -75,6 +75,7 @@ export const RutineExcercise = ({obj, index} : any) => {
                     </div>
                 </Col>
             </Row>
+
             :
 
 
@@ -89,7 +90,11 @@ export const RutineExcercise = ({obj, index} : any) => {
 
                             <RemoveIcon onClick={() => dispatch(deleteRutineExcersise(obj.id))}></RemoveIcon>
                             <div className="mt-3">
-                                <AnotationIcon obj={obj}></AnotationIcon>
+                              <AnotationIcon obj={obj} modifyMethod = {
+                                  (text: string) => {
+                                      dispatch(patchRutineExcersise({id : obj.id, anotation : text}))
+                                  }
+                              }></AnotationIcon>
                             </div>
                         </div>
                     </div>

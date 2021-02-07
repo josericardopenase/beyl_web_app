@@ -29,7 +29,7 @@ export default function RutineList({obj , index} : props) {
     }
 
     return (
-        <TrainingList onDragEnd={(action : any) => {
+        <TrainingList rutine={true} onDragEnd={(action : any) => {
 /*                 console.log(action.draggableId, store.getState().training.rutine.excersise.list[action.destination.index].order) */
                 dispatch(reorderExcersise(parseInt(action.draggableId), action.destination.index))
         }} nameAdd = {"Agrega ejercicio"} id={obj.id} order={index} name={obj.name} popUp = {(modalShow, setModalShow, id) => <AddExcersise show={modalShow} id = {id} onHide={() => setModalShow()} ></AddExcersise>}>
