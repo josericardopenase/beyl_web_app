@@ -16,25 +16,46 @@ import {  BrowserRouter, Router } from 'react-router-dom';
 import { Home } from './Components/Pages/Home/Dashboard/Home';
 import { ContainerSidebar } from './Components/General/Containers/ContainerSidebar';
 import { Routes } from './Routers/Routes';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loadAthletes } from './Store/athleltes';
+import { getLocalToken, getProfile, setToken } from './Store/authentication';
+import LoginRoutes from './Routers/LoginRoutes';
 
 function App() {
   
   const theme = useContext(ThemeContext)
+
   //set body backgroundColor to the theme primary color
   document.body.style.backgroundColor = theme.colors.primary.toString();
+
+  const isLogged = useSelector(( state : any) => state.auth.isLoggedIn)
+  const dispatch = useDispatch()
+
+
+  useEffect(() => {
+    const token = getLocalToken()
+
+    console.log(token)
+
+    if(token) {
+      dispatch(setToken({token : token}))
+      dispatch(getProfile())
+    }
+
+  })
 
   return (
 
       <BrowserRouter>
 
-
-      
+      {
+        isLogged ? 
         <Routes/>
+        :
+        <LoginRoutes></LoginRoutes>
 
-        
-
+      }
+      
       </BrowserRouter>
   );
 }

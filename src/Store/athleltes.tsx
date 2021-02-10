@@ -12,6 +12,7 @@ const athletes = createSlice({
         selectedAthlete : undefined
 
     },
+
     reducers : {
         addAthlete: (state : any, action : any) => {
             //add Athlete
@@ -39,6 +40,15 @@ const athletes = createSlice({
 export const loadAthletes = callBegan({
     url : '/my_athletes/',
     onSuccess : 'athletes/athletesReceived',
+    onError : callFailed.type,
+    onBegin : 'athletes/athleteRequest'
+})
+
+export const deleteAthlete = (id : number) => callBegan({
+    url : '/my_athletes/' + id + '/',
+    onSuccess : 'athletes/removeAthlete',
+    payload: {id : id},
+    method: "delete",
     onError : callFailed.type,
     onBegin : 'athletes/athleteRequest'
 })

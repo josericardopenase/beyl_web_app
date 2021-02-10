@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import ThemeContext from '../../../../Store/Themes/ThemeContext'
 import ChatClip from './InsideChat/ChatClip'
@@ -8,9 +8,11 @@ import ChatSend from './InsideChat/ChatSend'
 
 
 
-export default function ChatWrite() {
+export default function ChatWrite({sendMessage} : any) {
     
     const theme = useContext(ThemeContext);
+    const [text, setText] = useState("");
+
 
     const styles : React.CSSProperties = {
         padding: "10px", backgroundColor: theme.colors.secondary,
@@ -31,10 +33,11 @@ export default function ChatWrite() {
                             <ChatClip></ChatClip>
                         </div>
 
-                        <ChatInput></ChatInput>
+                        <ChatInput onChange={setText}></ChatInput>
 
-                        <ChatSend></ChatSend>
-
+                        <div onClick={() => sendMessage(text)}>
+                            <ChatSend></ChatSend>
+                        </div>
                     </div>
 
 

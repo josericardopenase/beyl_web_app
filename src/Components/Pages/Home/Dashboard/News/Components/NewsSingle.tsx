@@ -8,6 +8,7 @@ import { Title2 } from '../../../../../General/Constants/Text/Title2'
 import ContainerBox from '../../../../../General/Containers/ContainerBox'
 
 interface props {
+    id: any,
     stars: number,
     title: string,
     excerpt: string,
@@ -16,7 +17,7 @@ interface props {
     image: string
 }
 
-export const NewsSingle = ({stars, title, excerpt, date, author, image} : props) => {
+export const NewsSingle = ({id, stars, title, excerpt, date, author, image} : props) => {
     
     
     const styles = {
@@ -36,10 +37,10 @@ export const NewsSingle = ({stars, title, excerpt, date, author, image} : props)
     
     return (
 
-            <Col sm ={12} md={6} lg={6} xl={4}  className="mt-3 mt-md-3 mt-lg-3">
-                <Link to="home/article/1">
+            <Col sm ={12} md={6} lg={6} xl={4}  className="mt-3 mt-md-3 mt-lg-3 p-2">
+                <Link to={`home/article/${id}`}>
                     <ContainerBox>
-                        <Row>
+                        <Row className="align-items-center">
 
                             <Col sm = {5}>
                             
@@ -47,7 +48,7 @@ export const NewsSingle = ({stars, title, excerpt, date, author, image} : props)
                             
                             </Col>
 
-                            <Col style={{wordBreak: "break-word"}} className="mt-3 mt-sm-0">
+                            <Col style={{wordBreak: "break-word"}} className="mt-3 mt-sm-0 align-items-center">
 
                                 <Title2 style={{marginBottom: 10}}><Bolder>{title}</Bolder></Title2>
 

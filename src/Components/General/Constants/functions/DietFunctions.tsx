@@ -30,7 +30,9 @@ export function MetabolismoBasal(peso : number, altura : number, edad : number, 
 
 export function getAmountExcersise(excersise : string){
 
-    switch(excersise){
+    const exc = excersise.toLocaleUpperCase()
+
+    switch(exc){
         case 'NE':
             return "Ningún o muy poco ejercicio"
             break;

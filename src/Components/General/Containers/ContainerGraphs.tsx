@@ -16,7 +16,7 @@ export const ContainerGraphs = ({title, children, col} : props) => {
     const themes = useThemes()
 
     return (
-        <Col sm={col} style={{marginTop: 0, padding: "1.5rem", backgroundColor : themes.colors.secondary, width: "100%", borderRadius: 30, alignSelf: "stretch", border: "10px solid" + themes.colors.primary}} className="align-items-stretch p-4 ">
+        <Col md={col} style={{marginTop: 0, padding: "1.5rem", backgroundColor : themes.colors.secondary, width: "100%", borderRadius: 30, alignSelf: "stretch", border: "10px solid" + themes.colors.primary}} className="align-items-stretch p-4 ">
 
             <Title3 style={{marginBottom: 20}}><Bolder>{title}</Bolder></Title3>
 

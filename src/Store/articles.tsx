@@ -1,4 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import { callBegan, callFailed } from './apiActions';
 
 interface articles{
     title   : string,
@@ -12,22 +13,23 @@ interface articles{
 const articles = createSlice({
     name : "articles",
     initialState : {
-        loading : false,
-        list: [{
-            title: "me cago en tupu",
-            texto: "esto es un texto del articulo",
-            image: "https://www.bicicarm.es/wp-content/uploads/2019/03/shutterstock_169282331FILEminimizer.jpg",
-            author : "Jose Peña Seco",
-            created : "29-11-2001"
-        }]
+        loading : true,
+        list: []
     },
     reducers : {
-        refreshArticles: (state : any, action : PayloadAction<articles>) => {
-            state.list = action.payload;
+        refreshArticles: (state : any, action : any) => {
+            state.loading = false
+            state.list = action.payload.results;
         },
     }
 });
 
+export const getArticles = () => callBegan( {
+    url : '/articles/?page_size=3',
+    onSuccess : 'articles/refreshArticles',
+    onError : callFailed.type,
+    onBegin : 'generalHistoryRequest/generalHistoryRequest'
+})
 
 export const name = articles.name
 export const {refreshArticles} = articles.actions

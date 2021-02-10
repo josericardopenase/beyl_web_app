@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaComment, FaFire, FaHome } from 'react-icons/fa'
+import { FaComment, FaFire, FaHome, FaCog } from 'react-icons/fa'
 import { Sidebar } from './Sidebar'
 
 export const SidebarPrincipal = () => {
@@ -19,8 +19,8 @@ export const SidebarPrincipal = () => {
             name: 'fire'
         },
         {
-            url: '/chats',
-            icon: <FaComment/>,
+            url: '/config',
+            icon: <FaCog/>,
             name: 'chats'
         },
 

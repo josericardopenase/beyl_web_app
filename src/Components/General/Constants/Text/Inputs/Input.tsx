@@ -25,7 +25,7 @@ export default function Input(props : any) {
         
 
             props.icon ? (
-            <div style={{paddingLeft: 9, borderRadius: 5, ...props.style, display: "flex", alignItems: "center"}}>
+            <div style={{paddingLeft: 9, borderRadius: 5, display: "flex", alignItems: "center", ...style}}>
                 {
 
                     props.icon ?
@@ -35,7 +35,7 @@ export default function Input(props : any) {
                     : 
                     null
                 }
-            <input {...props} ref = { props.customref }  style={{...style, ...props.style}}></input> 
+                <input {...props} ref = { props.customref }  style={{...style, ...props.style}}></input> 
             </div>
 
             )

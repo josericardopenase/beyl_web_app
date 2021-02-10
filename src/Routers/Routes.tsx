@@ -9,6 +9,7 @@ import { SidebarPrincipal } from '../Components/General/Constants/Sidebar/Sideba
 import { ContainerSidebar } from '../Components/General/Containers/ContainerSidebar'
 import { Home } from '../Components/Pages/Home/Dashboard/Home'
 import RoutesChat from './PageRouters.tsx/RoutesChat'
+import RoutesConfig from './PageRouters.tsx/RoutesConfig'
 import { RoutesHome } from './PageRouters.tsx/RoutesHome'
 import RoutesTraining from './PageRouters.tsx/RoutesTraining'
 
@@ -32,9 +33,9 @@ export const Routes = () => {
 
                         <Route path="/home" component={RoutesHome}></Route>
                         <Route path="/training" component={RoutesTraining}></Route>
-                        <Route path="/chats" component={RoutesChat}></Route>
+                        <Route path="/config" component={RoutesConfig}></Route>
 
-                        <Route exact path="/">
+                        <Route path="/">
                             <Redirect to="/home" />
                         </Route>
 

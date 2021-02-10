@@ -46,3 +46,12 @@ code {
   display: none !important;
 }
 
+.rich-text img{
+  border-radius: 20px;
+  justify-content: center;
+  text-align: center;
+  width: 100% !important; 
+  height: auto !important;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

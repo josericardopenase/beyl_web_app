@@ -20,7 +20,7 @@ const api = ({dispatch} : any)=> (next :any) => async (action : any) => {
 
         try {
 
-            const response = await axios.request({ baseURL : 'http://127.0.0.1:8000/v1', url, method, data, headers : {'Authorization' : "Token 827a9e27f9f29b1f1c1c9f61a49fac631bc9a0f0" } })
+            const response = await axios.request({ baseURL : 'http://192.168.0.14:9000/v1', url, method, data, headers : {'Authorization' : "Token 827a9e27f9f29b1f1c1c9f61a49fac631bc9a0f0" } })
             
             const requestPayload = payload ? payload : response.data;
 
