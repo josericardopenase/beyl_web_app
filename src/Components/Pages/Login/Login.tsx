@@ -11,7 +11,7 @@ import ButtonMain from '../../General/Constants/Button/ButtonMain'
 import { FaEnvelope, FaLock, FaMailBulk } from 'react-icons/fa'
 import TitleError from '../../General/Constants/Text/TitleError'
 import * as Yup from 'yup'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import loginImage from '../../../MediaFiles/loginImage.png' 
 import {authLogin} from '../../../Store/authentication'
 
@@ -34,6 +34,7 @@ export default function Login() {
 } as React.CSSProperties
 
     const dispatch = useDispatch()
+    const apiErrors  = useSelector((state : any) => state.auth.errors)
     
     const performLogin = ({email, password} : any) => {
         dispatch(authLogin(email, password))
@@ -62,6 +63,7 @@ export default function Login() {
                                             Log in
                                             
                                         </ButtonMain>
+                                        { apiErrors ? <TitleError>{apiErrors.non_field_errors}</TitleError> : null}
                                     </>
                                 )
                             }

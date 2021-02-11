@@ -65,7 +65,6 @@ export default function RoutesConfig(props : any) {
                 <div className="mt-4">
                     <ConfigMenu to={url + '/perfil'} name="Perfil"></ConfigMenu>
                     <ConfigMenu  to={url + '/clientes'} name="Gestión de clientes"></ConfigMenu>
-                    <ConfigMenu to={url + '/account'} name="Configuración"></ConfigMenu>
 
                     <div className="mt-4 d-flex pl-3"  onClick={() => {
                         dispatch(logOut({}))

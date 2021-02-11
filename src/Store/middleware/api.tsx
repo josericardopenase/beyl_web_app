@@ -3,7 +3,7 @@ import { request } from 'https'
 import { callFailed , callSuccess, callBegan} from '../apiActions'
 
 
-const api = ({dispatch} : any)=> (next :any) => async (action : any) => {
+const api = ({dispatch, getState} : any)=> (next :any) => async (action : any) => {
     if(action.type !== callBegan.type) {
 
         next(action)
@@ -18,9 +18,12 @@ const api = ({dispatch} : any)=> (next :any) => async (action : any) => {
             else
                 dispatch({ type : onBegin});
 
+
         try {
 
-            const response = await axios.request({ baseURL : 'http://192.168.0.14:9000/v1', url, method, data, headers : {'Authorization' : "Token 827a9e27f9f29b1f1c1c9f61a49fac631bc9a0f0" } })
+            const token = getState().auth.token
+        
+            const response = await axios.request({ baseURL : 'http://192.168.0.14:9000/v1', url, method, data, headers : token ? {'Authorization' : `Token ${token}` } : null })
             
             const requestPayload = payload ? payload : response.data;
 
@@ -32,6 +35,10 @@ const api = ({dispatch} : any)=> (next :any) => async (action : any) => {
                 dispatch(callSuccess(response.data));
 
         } catch(error) {
+
+            if(onError){
+                dispatch({type: onError, payload: error.response.data})
+            }
 
             dispatch(callFailed(error));
 

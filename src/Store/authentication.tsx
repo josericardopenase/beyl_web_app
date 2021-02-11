@@ -10,6 +10,7 @@ const authentication = createSlice({
         user: null,
         token: null, 
         isLoggedIn : false,
+        errors: null,
     },
 
     reducers : {
@@ -27,8 +28,12 @@ const authentication = createSlice({
             state.token = null 
         },
         startRequest : (state : any, action : any) => {
+            state.errors = null
             state.loading = true
         },
+        setErrors : (state : any, action: any) => {
+            state.errors = action.payload
+        }
     }
 });
 
@@ -41,7 +46,7 @@ export const authLogin = (email : string, password : string) => callBegan({
         password : password
     },
     method: 'post',
-    onError : callFailed.type,
+    onError : 'auth/setErrors',
     onBegin : 'auth/startRequest'
 })
 

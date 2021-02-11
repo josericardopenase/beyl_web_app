@@ -8,6 +8,7 @@ import { getAllCode, getNewCode } from '../../../Store/trainerCode'
 import { Icon } from '../../General/Constants/Icons/Icon'
 import ProfilePicIcon from '../../General/Constants/Icons/ProfilePicIcon'
 import { Bolder } from '../../General/Constants/Text/Bolder'
+import { Title1 } from '../../General/Constants/Text/Title1'
 import { Title2 } from '../../General/Constants/Text/Title2'
 import { Title3 } from '../../General/Constants/Text/Title3'
 import { Title4 } from '../../General/Constants/Text/Title4'
@@ -111,19 +112,37 @@ export default function Clients() {
     const dispatch = useDispatch()
 
     const athletes = useSelector((state : any) => state.athletes.list)
+    const user_count = useSelector((state : any) => state.auth.user)
 
     useEffect(() => {
         dispatch(loadAthletes)
     }, [])
 
+    if(!user_count){
+        return <div></div>
+    }
+
 
     return (
         <ContainerMarginTop>
             <div className="pl-3 pr-3">
+
                 <Title2><Bolder>Gestiona tus clientes</Bolder></Title2>   
 
-                <TrainerCode></TrainerCode>
+                <div className="d-flex align-items-end justify-content-between">
+                    <div>
+                        <TrainerCode></TrainerCode>
+                    </div>
 
+                    <div className="d-flex flex-column align-items-center pr-5 pl-5">
+                        <div className="d-flex align-items-end mt-3">
+                            <Title1>{athletes.length}/</Title1>
+                            <Title1 color={Themes.beylColor}>{user_count.plan.user_count}</Title1>
+                        </div>
+                        <Title3 style={{marginTop: 10, marginBottom: 10}}>Clientes actuales</Title3>
+                    </div>
+
+                </div>
 
                 <div className="mt-4">
                     <Title3>Tus clientes:</Title3>
