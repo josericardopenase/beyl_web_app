@@ -35,9 +35,9 @@ export const Routes = () => {
                         <Route path="/training" component={RoutesTraining}></Route>
                         <Route path="/config" component={RoutesConfig}></Route>
 
-                        <Route path="/">
+{/*                         <Route path="/">
                             <Redirect to="/home" />
-                        </Route>
+                        </Route> */}
 
                     </Switch>
 

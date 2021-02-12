@@ -37,7 +37,7 @@ export const NewsSingle = ({id, stars, title, excerpt, date, author, image} : pr
     
     return (
 
-            <Col sm ={12} md={6} lg={6} xl={4}  className="mt-3 mt-md-3 mt-lg-3 p-2">
+            <Col sm ={12} md={6} lg={6} xl={4}  className="mt-3 mt-md-3 mt-lg-3 p-2 bigger-hover">
                 <Link to={`home/article/${id}`}>
                     <ContainerBox>
                         <Row className="align-items-center">

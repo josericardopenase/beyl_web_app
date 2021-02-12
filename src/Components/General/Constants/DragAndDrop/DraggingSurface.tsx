@@ -1,6 +1,7 @@
 import React from 'react'
 import { Droppable, DragDropContext } from 'react-beautiful-dnd'
 import useReorderingFunction from '../../../../CustomHooks/useReorderingFunction'
+import useThemes from '../../../../CustomHooks/useThemes';
 
 enum direction {
     "vertical",
@@ -20,6 +21,7 @@ export default function DraggingSurface({children, onDragEnd, style, className, 
 
 
     const reordering = useReorderingFunction();
+    const themes = useThemes()
 
 
     return (
@@ -36,7 +38,7 @@ export default function DraggingSurface({children, onDragEnd, style, className, 
             } 
         >
 
-            <Droppable droppableId="droppable" direction={direction ? direction : "vertical"}>
+            <Droppable droppableId="droppable" direction={direction ? direction : "vertical"} >
             {
                 (provided) => (
 

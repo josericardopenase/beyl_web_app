@@ -44,3 +44,32 @@
   }
 }
 
+.transform-right-hover{
+
+  cursor: pointer;
+  transform: translateX(0);
+  transition: 0.2s all ease;
+  transform-origin: center !important;
+}
+
+.transform-right-hover:hover{
+
+  cursor: pointer;
+  transform: translateX(10px);
+  transition: 0.2s all ease;
+  transform-origin: center !important;
+}
+.bigger-hover{
+
+  cursor: pointer;
+  transform: scale(1);
+  transition: 0.2s all ease;
+  transform-origin: center !important;
+}
+.bigger-hover:hover{
+
+  cursor: pointer;
+  transform: scale(1.02);
+  transition: 0.2s all ease;
+
+}

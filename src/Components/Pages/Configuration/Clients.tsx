@@ -125,9 +125,9 @@ export default function Clients() {
 
     return (
         <ContainerMarginTop>
-            <div className="pl-3 pr-3">
+            <div className="p-4 pt-5">
 
-                <Title2><Bolder>Gestiona tus clientes</Bolder></Title2>   
+                <Title1><Bolder>Gestiona tus clientes</Bolder></Title1>   
 
                 <div className="d-flex align-items-end justify-content-between">
                     <div>

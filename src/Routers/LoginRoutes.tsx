@@ -14,9 +14,9 @@ export default function LoginRoutes() {
 {/*             <Route path="/register" component={RoutesTraining}></Route>
             <Route path="/recoverPassword" component={RoutesConfig}></Route> */}
 
-            <Route path="/">
+{/*             <Route path="/">
                 <Redirect to="/login" />
-            </Route>
+            </Route> */}
 
         </Switch>
     )

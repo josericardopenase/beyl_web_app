@@ -46,6 +46,10 @@ code {
   display: none !important;
 }
 
+a{
+  text-decoration: none !important;
+}
+
 .rich-text img{
   border-radius: 20px;
   justify-content: center;
