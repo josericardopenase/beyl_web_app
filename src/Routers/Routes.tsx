@@ -33,11 +33,11 @@ export const Routes = () => {
 
                         <Route path="/home" component={RoutesHome}></Route>
                         <Route path="/training" component={RoutesTraining}></Route>
-                        <Route path="/config" component={RoutesConfig}></Route>
 
-{/*                         <Route path="/">
+                        <Route path="/config" component={RoutesConfig}></Route>
+{/*                          <Route path="/">
                             <Redirect to="/home" />
-                        </Route> */}
+                        </Route>  */}
 
                     </Switch>
 

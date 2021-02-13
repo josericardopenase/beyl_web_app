@@ -5,7 +5,7 @@ import { BeylIcon } from '../Icons/BeylIcon';
 import { Icon } from '../Icons/Icon';
 import { SidebarIcon } from './SidebarIcon';
 
-export const SidebarSelector = ({children} : any) => {
+export const SidebarSelector = ({children, backgroundColor} : any) => {
 
     //get current theme
     const theme = useContext(ThemeContext);
@@ -17,9 +17,9 @@ export const SidebarSelector = ({children} : any) => {
         base: {
             height: "100%", 
             width: "330px", 
-            backgroundColor: theme.colors.primary,
+            backgroundColor: backgroundColor ? backgroundColor :  theme.colors.primary,
             position: "fixed",
-            borderRight: `1px solid ${theme.colors.secondary}`,
+            borderRight: `1px solid ${backgroundColor ? backgroundColor : theme.colors.secondary}`,
             overflowY: "auto"
 
         } as React.CSSProperties,

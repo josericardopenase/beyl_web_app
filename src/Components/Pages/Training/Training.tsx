@@ -47,7 +47,7 @@ export default function Training(props : any) {
                 <Route  path={`${urlParams.path}/general`} component={General} ></Route>
                 <Route  path={`${urlParams.path}/rutina`} component={Rutine} ></Route>
                 <Route  path={`${urlParams.path}/dieta`} component={Diet} ></Route>
-            <Route path={`${urlParams.url}`}  component={Article}>
+                <Route path={`${urlParams.url}`}  component={Article}>
                 <Redirect to={`${urlParams.url}/general`}/>
             </Route> 
             </div>

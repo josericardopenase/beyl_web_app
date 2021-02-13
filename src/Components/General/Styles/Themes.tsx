@@ -16,16 +16,16 @@ const darkTheme : ITheme = {
     textPrimary: "white",
     textSecondary: '#BBBBBB',
     primaryTransparent: 'rgb(39, 43, 47, 0.7)',
-    tertiary: '#22262A'
+    tertiary: '#59575F',
 };
 
 const lightTheme : ITheme = {
     primary: '#f5f5f5',
     secondary: 'white',
-    textPrimary: "black",
+    textPrimary: "#1E2025",
     textSecondary: '#808080',
     primaryTransparent: '#f5f5f5',
-    tertiary: '#e9e9e9'
+    tertiary: '#C9C9C9',
 };
 
 export default {lightTheme, darkTheme, beylColor};

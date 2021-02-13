@@ -9,7 +9,7 @@ interface IProps{
 
 export default function RemoveIcon({onClick} : IProps) {
     return (
-        <div onClick={onClick} style={{zIndex: 300}}>
+        <div onClick={onClick} style={{zIndex: 300, cursor: "pointer"}}>
             <Icon>
                 <FaTrashAlt></FaTrashAlt>
             </Icon>

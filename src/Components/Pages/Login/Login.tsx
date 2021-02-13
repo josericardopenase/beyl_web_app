@@ -14,9 +14,13 @@ import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
 import loginImage from '../../../MediaFiles/loginImage.png' 
 import {authLogin} from '../../../Store/authentication'
+import { BeylIcon } from '../../General/Constants/Icons/BeylIcon'
+import Themes from '../../General/Styles/Themes'
+import useThemes from '../../../CustomHooks/useThemes'
+import { Link } from 'react-router-dom'
 
 const validationSchema = Yup.object().shape({
-    email: Yup.string().required(),
+    email: Yup.string().required().email(),
     password : Yup.string().required(),
 
 })
@@ -24,17 +28,18 @@ const validationSchema = Yup.object().shape({
 export default function Login() {
 
     const imageStyle = {
-    backgroundImage: `    
-    linear-gradient(
-      rgba(0, 0, 0, 0.45), 
-      rgba(0, 0, 0, 0.45)
-    ), url(${loginImage}) `,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover"
-} as React.CSSProperties
+        backgroundImage: `    
+        linear-gradient(
+        rgba(0, 0, 0, 0.45), 
+        rgba(0, 0, 0, 0.45)
+        ), url(${loginImage}) `,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover"
+    } as React.CSSProperties
 
     const dispatch = useDispatch()
     const apiErrors  = useSelector((state : any) => state.auth.errors)
+    const themes = useThemes()
     
     const performLogin = ({email, password} : any) => {
         dispatch(authLogin(email, password))
@@ -43,6 +48,7 @@ export default function Login() {
     return (
 
         <Container fluid>
+            <BeylIcon style={{position: "absolute", margin: "1rem"}} size={80}></BeylIcon>
             <Row style={{height: "100vh"}}>
                 <Col className="d-flex flex-column justify-content-center align-items-center">
                     <div style={{paddingRight: 100, paddingLeft: 100}}>
@@ -58,12 +64,32 @@ export default function Login() {
                                             <Input name="password" onChange={handleChange} type="password" icon = {<FaLock></FaLock>} style={{padding: 10, width : "100%",   maxWidth: "600px"}} placeholder="contraseña" primary={true}></Input>
                                             { errors.password ? <TitleError>{errors.password}</TitleError> : null}
                                         </div>
-                                        <ButtonMain onClick={handleSubmit} style={{marginTop: 20, textAlign : "center",  maxWidth: "600px"}}>
-                                                 
-                                            Log in
-                                            
-                                        </ButtonMain>
-                                        { apiErrors ? <TitleError>{apiErrors.non_field_errors}</TitleError> : null}
+
+                                        <Row>
+
+                                            <Col xs={7}>
+                                                <ButtonMain onClick={handleSubmit} style={{marginTop: 20, textAlign : "center",  maxWidth: "600px"}}>
+                                                        
+                                                    Log in
+                                                    
+                                                </ButtonMain>
+                                            </Col>
+                                            <Col className="pl-0">
+
+                                                <Link to="/register">
+
+                                                    <ButtonMain style={{marginTop: 20, textAlign : "center",  maxWidth: "600px", backgroundColor: themes.colors.secondary}}>
+                                                            
+                                                        Register
+                                                        
+                                                    </ButtonMain>
+
+                                                </Link>
+                                                
+                                            </Col>
+
+                                        </Row>
+                                        { apiErrors ? <TitleError>{"Dirección de correo electrónico o contraseña incorrectos"}</TitleError> : null}
                                     </>
                                 )
                             }

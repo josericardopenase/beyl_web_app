@@ -65,8 +65,8 @@ export default function RoutesConfig(props : any) {
                 <Title2><Bolder>Configuracion</Bolder></Title2>
 
                 <div className="mt-4">
-                    <ConfigMenu to={url + '/perfil'} name="Perfil"></ConfigMenu>
                     <ConfigMenu  to={url + '/clientes'} name="Gestión de clientes"></ConfigMenu>
+                    <ConfigMenu to={url + '/perfil'} name="Perfil"></ConfigMenu>
 
                     <div className="mt-4 d-flex pl-3 transform-right-hover"  onClick={() => {
                         dispatch(logOut({}))
@@ -83,14 +83,12 @@ export default function RoutesConfig(props : any) {
 
             <ContainerSidebarSelector>               
                 
-
-
                     <Route path={`${url}/clientes`} component={Clients}></Route>
                     <Route path={`${url}/perfil`} component={Profile}></Route>
 
-                        <Route path="/">
-                            <Redirect to={`${url}/perfil`} />
-                        </Route>
+                    <Route path="/">
+                        <Redirect to={`${url}/clientes`} />
+                    </Route>
 
             </ContainerSidebarSelector>
 

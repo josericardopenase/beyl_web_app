@@ -9,6 +9,7 @@ import { Title3 } from '../../../../General/Constants/Text/Title3'
 import { Title4 } from '../../../../General/Constants/Text/Title4'
 import { Title5 } from '../../../../General/Constants/Text/Title5'
 import { ContainerGraphs } from '../../../../General/Containers/ContainerGraphs'
+import NotFound from '../../../../General/Errors/NotFound'
 
 export default function LastUpdates() {
 
@@ -64,7 +65,7 @@ export default function LastUpdates() {
             )
             :
             (
-            <Title3>Aun no existe actividad</Title3>
+                <NotFound></NotFound>
             )
         }
         </ContainerGraphs>

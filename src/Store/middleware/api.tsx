@@ -37,7 +37,7 @@ const api = ({dispatch, getState} : any)=> (next :any) => async (action : any) =
         } catch(error) {
 
             if(onError){
-                dispatch({type: onError, payload: error.response.data})
+                dispatch({type: onError, payload: error.response ? error.response.data : error})
             }
 
             dispatch(callFailed(error));

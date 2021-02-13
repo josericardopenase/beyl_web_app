@@ -24,6 +24,7 @@ interface IProps {
 export const Day = ({ day, index, rutine} : IProps) => {
 
     const [text, setText] = useState(day.name);
+    const [hover, setHover] = useState(false);
 
     const loc = useRouteMatch();
     const dispatch = useDispatch();
@@ -68,25 +69,25 @@ export const Day = ({ day, index, rutine} : IProps) => {
 
     return (
         <DraggingComponent id = {day.id} index = {day.order}>
-                <div className="mr-3">
+                <div className="mr-3" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}  >
                     <ContainerBox color={active ? Themes.beylColor : themes.colors.secondary}>
                         <div className="pl-2 pr-2 d-flex align-items-center"> 
 
                             <Link to = {`${loc.url}/${day.id}`} >
                                 { !isVisible ? 
-                                <Title3 style={active ? {color: "white"  } : {}}>{day.name}</Title3> 
+                                <Title3 style={active ? {color: "white"  } : {}} color={hover ? Themes.beylColor : "primary"}>{day.name}</Title3> 
                                 :
                                 <Input onChange = {(data : any) => setText(data.target.value)}  customref ={ref} style={{width: 120}} defaultValue = {day.name} onKeyDown = {pressEnter}></Input>
                                 }
                             </Link>
 
-                            <div onClick = {() => setIsVisible(!isVisible)}>
+                            <div onClick = {() => setIsVisible(!isVisible)} style={{cursor: "pointer"}}>
                                 <Icon color={active ? "white" : ""}>
                                     <FaEdit name="FaEdit" className="ml-3"></FaEdit>
                                 </Icon>
                             </div>
 
-                            <div onClick = {deleteCurrentDay}>
+                            <div onClick = {deleteCurrentDay} style={{cursor: "pointer"}}>
                                 <Icon color={active ? "white" : ""}>
                                     <FaTrashAlt name="FaEdit" className="ml-3"/>
                                 </Icon>

@@ -16,6 +16,7 @@ import { Icon } from '../../../../General/Constants/Icons/Icon';
 import RemoveIcon from '../../../../General/Constants/Icons/RemoveIcon';
 import { Bolder } from '../../../../General/Constants/Text/Bolder';
 import { deleteDietGroup, patchDietGroup } from '../../../../../Store/Diets/dietGroups';
+import Themes from '../../../../General/Styles/Themes';
 
 interface props {
     name: string,
@@ -34,20 +35,22 @@ export const TrainingList = ({name, children, id, order, popUp, nameAdd, onDragE
 
     const theme = useContext(ThemeContext);
 
+
+    const [modalShow, setModalShow] = useState(false);
+    const [hover, setHover] = useState(false)
+
+    const dispatch = useDispatch();
+
     const style = {
         container : {
             backgroundColor: theme.colors.secondary,
-            border: `3px ${theme.colors.secondary} solid`,
+            border: hover ? `2px ${theme.colors.tertiary} solid` : `2px ${theme.colors.secondary} solid`,
             borderRadius: "20px",
             width: 400,
             height: "auto",
-            transition: "height 1s linear"
+            transition: "0.3s all ease"
         } as React.CSSProperties
     }
-
-    const [modalShow, setModalShow] = useState(false);
-
-    const dispatch = useDispatch();
 
     function modifyName(newName : string){
         if(rutine){
@@ -64,7 +67,7 @@ export const TrainingList = ({name, children, id, order, popUp, nameAdd, onDragE
         <>
         
             <DraggingComponent id ={id} index={order}>
-                <div style={style.container} className="p-3 mr-3 mb-3">
+                <div style={style.container} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className="p-3 mr-3 mb-3">
 
                     <div className="w-100 d-flex justify-content-between">
 

@@ -13,6 +13,5 @@ export default function LoadingButton({onClick} : any) {
             </ContainerBox>
         </div>
 
-
     )
 }
