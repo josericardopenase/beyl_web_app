@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import React, { Children, useContext } from 'react'
 import { useLocation } from 'react-router-dom';
 import ThemeContext from '../../../../Store/Themes/ThemeContext'
@@ -39,7 +40,15 @@ export const Sidebar = ({construction} : any) => {
     
 
     return (
-        <div style={style.base }>
+        <motion.div
+        
+            initial= {{x : -160, opacity: 0}}
+                animate={{x : 0, opacity: 1}} 
+                transition = {{duration: 0.4}}
+                exit={{x: -200, opacity: 0}}
+                
+                key={3}
+        style={style.base }>
 
             <div style={style.container}>
 
@@ -56,7 +65,7 @@ export const Sidebar = ({construction} : any) => {
                 <span></span>
             </div>
 
-        </div>
+        </motion.div>
     )
 }
 

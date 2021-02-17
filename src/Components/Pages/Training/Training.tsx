@@ -14,6 +14,7 @@ import * as types from '../../../Types/Types'
 import { useDispatch, useSelector } from 'react-redux'
 import { url } from 'inspector'
 import { setSelectedAthlete } from '../../../Store/athleltes'
+import Loading from '../../General/Constants/Loading/Loading'
 
 
 export default function Training(props : any) {
@@ -27,14 +28,14 @@ export default function Training(props : any) {
     const user = storelook[0]
 
     useEffect(() => {
-        if(user !== undefined){
+
+        if(user !== undefined)
             dispatch(setSelectedAthlete(user))
-        }
+
     }, [id])
 
     if(loading)
-        return (<div> hello </div>)
-
+        return <Loading></Loading>
 
     return (
         <div className="pl-4 pt-4">
@@ -49,7 +50,7 @@ export default function Training(props : any) {
                 <Route  path={`${urlParams.path}/dieta`} component={Diet} ></Route>
                 <Route path={`${urlParams.url}`}  component={Article}>
                 <Redirect to={`${urlParams.url}/general`}/>
-            </Route> 
+                </Route> 
             </div>
 
         </div>

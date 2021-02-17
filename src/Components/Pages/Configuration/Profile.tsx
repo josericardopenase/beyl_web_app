@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import useThemes from '../../../CustomHooks/useThemes'
 import ButtonMain from '../../General/Constants/Button/ButtonMain'
 import ProfilePicIcon from '../../General/Constants/Icons/ProfilePicIcon'
+import Loading from '../../General/Constants/Loading/Loading'
 import { Bolder } from '../../General/Constants/Text/Bolder'
 import Input from '../../General/Constants/Text/Inputs/Input'
 import { Title1 } from '../../General/Constants/Text/Title1'
@@ -21,7 +22,7 @@ export default function Profile() {
     const user = useSelector((state : any) => state.auth.user)
 
     if(!user){
-        return <div>loading indicator</div>
+        return <Loading></Loading>
     }
 
     return (

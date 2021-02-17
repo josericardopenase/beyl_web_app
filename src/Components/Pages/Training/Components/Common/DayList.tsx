@@ -3,6 +3,7 @@ import { useDispatch, useSelector, useStore } from 'react-redux'
 import { getDietDaysOfDiet, postDietDay, reorderDietDay } from '../../../../../Store/Diets/dietDays'
 import { getDaysOfRutine, patchDay, postDay, reorderDay } from '../../../../../Store/Rutines/rutineDays'
 import DraggingSurface from '../../../../General/Constants/DragAndDrop/DraggingSurface'
+import Loading from '../../../../General/Constants/Loading/Loading'
 import { Title2 } from '../../../../General/Constants/Text/Title2'
 import { Title4 } from '../../../../General/Constants/Text/Title4'
 import { AddList } from './AddList'
@@ -30,7 +31,7 @@ export const DayList = ({rutine} : any) => {
     }, [])
 
     if(loading || !listDays)
-        return <div>loading</div>
+        return <Loading></Loading>
  
     return (
         <DraggingSurface className="d-flex mt-3 mb-3 align-items-center text-nowrap overflow-auto pb-3" direction={"horizontal"} style={{whiteSpace : "no-wrap", overflow: "auto"}} 

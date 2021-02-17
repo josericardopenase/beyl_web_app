@@ -4,6 +4,7 @@ import { FaRuler, FaRunning, FaWeight } from 'react-icons/fa'
 import { useStore } from 'react-redux'
 import useThemes from '../../../../../CustomHooks/useThemes'
 import { getAmountExcersise } from '../../../../General/Constants/functions/DietFunctions'
+import Loading from '../../../../General/Constants/Loading/Loading'
 import { Bolder } from '../../../../General/Constants/Text/Bolder'
 import { Title3 } from '../../../../General/Constants/Text/Title3'
 import { Title4 } from '../../../../General/Constants/Text/Title4'
@@ -36,7 +37,7 @@ export default function FitnessData() {
     const athlete = useStore().getState().athletes.selectedAthlete;
 
     if(!athlete){
-        return <div>loading</div>
+        return <Loading></Loading>
     }
 
     return (

@@ -58,4 +58,24 @@ a{
   height: auto !important;
   margin-top: 20px;
   margin-bottom: 20px;
+}/* Change the white to any color ;) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+
+  -webkit-appearance: none;
+  box-shadow: none !important;
+  -webkit-appearance: none;
+/*Change text in autofill textbox*/
+}
+input[type=text] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  
+}
+
+input{
+  -webkit-appearance: none;
 }

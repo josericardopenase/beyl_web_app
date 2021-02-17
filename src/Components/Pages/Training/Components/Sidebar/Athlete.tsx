@@ -1,5 +1,6 @@
 import React from 'react'
 import { Row } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 import { Link, NavLink, useLocation, useRouteMatch } from 'react-router-dom'
 import * as types from '../../../../../Types/Types'
 import ProfilePicIcon from '../../../../General/Constants/Icons/ProfilePicIcon'
@@ -16,10 +17,15 @@ export const Athlete = ({obj} : IProps) => {
 
     const path = `${useRouteMatch().url}/${obj.id}`
     const url =  useRouteMatch(path)
+    console.log(url)
 
+    const handleClick = (e : any) => {
+        if("/training/" + obj.id === url?.path) e.preventDefault()
+    }
 
+    console.log(url)
     return (
-        <NavLink to={{pathname : path,  state : { user :obj}}} activeClassName="bg-light"  >
+        <NavLink onClick={handleClick} to={{pathname : path,  state : { user :obj}}} activeClassName="bg-light"  >
             <div className="mt-3 mb-2">
                 <ContainerBox>
                     <div className="d-flex align-items-center">

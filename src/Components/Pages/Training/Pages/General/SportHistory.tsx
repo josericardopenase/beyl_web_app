@@ -5,6 +5,7 @@ import { useDispatch, useSelector, useStore } from 'react-redux'
 import useThemes from '../../../../../CustomHooks/useThemes'
 import { getGeneralHistoryFromUser } from '../../../../../Store/generalHistory'
 import { Icon } from '../../../../General/Constants/Icons/Icon'
+import Loading from '../../../../General/Constants/Loading/Loading'
 import { Title3 } from '../../../../General/Constants/Text/Title3'
 import { Title4 } from '../../../../General/Constants/Text/Title4'
 import { Title5 } from '../../../../General/Constants/Text/Title5'
@@ -12,6 +13,8 @@ import { ContainerBlockBox } from '../../../../General/Containers/ContainerBlock
 import ContainerBox from '../../../../General/Containers/ContainerBox'
 import { ContainerCard } from '../../../../General/Containers/ContainerCard'
 import { ContainerGraphs } from '../../../../General/Containers/ContainerGraphs'
+import NotFound from '../../../../General/Errors/NotFound'
+import NotFoundLastPublications from '../../../../General/Errors/NotFoundLastPublications'
 
 export default function SportHistory() {
 
@@ -33,7 +36,7 @@ export default function SportHistory() {
     }, [athlete]) 
 
     if(loading){
-      return <div>invalid</div>
+      return <Loading></Loading>
     }
 
     console.log(generalHistory)
@@ -65,7 +68,12 @@ export default function SportHistory() {
             )
             :
             (
-            <Title3>Aun no existe actividad</Title3>
+                <NotFound message="Tu cliente aún no han publicado nada."
+                    svg={
+                        <NotFoundLastPublications></NotFoundLastPublications>
+                    } 
+                >
+                </NotFound>
             )
         }
         </ContainerGraphs>

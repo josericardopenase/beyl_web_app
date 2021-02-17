@@ -7,6 +7,7 @@ import { logOut, removeLocalToken } from '../../../Store/authentication'
 import { getAllCode, getNewCode } from '../../../Store/trainerCode'
 import { Icon } from '../../General/Constants/Icons/Icon'
 import ProfilePicIcon from '../../General/Constants/Icons/ProfilePicIcon'
+import SvgJoinClient from '../../General/Constants/SVGS/SvgJoinClient'
 import { Bolder } from '../../General/Constants/Text/Bolder'
 import { Title1 } from '../../General/Constants/Text/Title1'
 import { Title2 } from '../../General/Constants/Text/Title2'
@@ -149,7 +150,15 @@ export default function Clients() {
                     <Title3>Tus clientes:</Title3>
 
                     {
-                    athletes.map((x : any) => <Client obj={x}></Client>)
+                        athletes.length > 0 ?
+
+                            athletes.map((x : any) => <Client obj={x}></Client>)
+
+                        :
+
+                        <div style={{marginTop: 110}}>
+                            <SvgJoinClient></SvgJoinClient>
+                        </div>
                     }
                 </div>
 

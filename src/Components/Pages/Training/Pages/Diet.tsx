@@ -7,6 +7,7 @@ import useApiCallback from '../../../../CustomHooks/useApiCallback'
 import { getDiet } from '../../../../Store/Diets/diet'
 import { getRutine } from '../../../../Store/Rutines/rutine'
 import { Athlete } from '../../../../Types/Types'
+import Loading from '../../../General/Constants/Loading/Loading'
 import { Title1 } from '../../../General/Constants/Text/Title1'
 import { Title3 } from '../../../General/Constants/Text/Title3'
 import { Article } from '../../Home/Article/Article'
@@ -32,7 +33,7 @@ export const Diet = (props: any) => {
 
 
     if(loading || !diet )
-        return <div>loading</div>
+        return <Loading></Loading>
 
     return (
         <div>

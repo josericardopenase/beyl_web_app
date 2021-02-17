@@ -18,6 +18,7 @@ import { BeylIcon } from '../../General/Constants/Icons/BeylIcon'
 import Themes from '../../General/Styles/Themes'
 import useThemes from '../../../CustomHooks/useThemes'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email(),
@@ -43,15 +44,30 @@ export default function Login() {
     
     const performLogin = ({email, password} : any) => {
         dispatch(authLogin(email, password))
+
     }
 
     return (
 
+        <motion.div
+        initial={{opacity: 0}}
+        animate={{ opacity: 1 }}
+        transition={{duration: 0.4}}
+        exit={{opacity: 0}}
+
+        >
         <Container fluid>
             <BeylIcon style={{position: "absolute", margin: "1rem"}} size={80}></BeylIcon>
             <Row style={{height: "100vh"}}>
                 <Col className="d-flex flex-column justify-content-center align-items-center">
-                    <div style={{paddingRight: 100, paddingLeft: 100}}>
+                    <motion.div style={{paddingRight: 100, paddingLeft: 100}}
+                    
+                        initial={{opacity: 0, y : 400}}
+                        animate={{ opacity: 1, y:0 }}
+                        transition={{duration: 0.4}}
+                        exit={{opacity: 0, y: 400}}
+                    
+                    >
                         <Title1 style={{marginBottom: 40}}><Bolder>Bienvenido, <br/> Inicia sesión y empieza</Bolder></Title1> 
 
                         <Formik validationSchema={validationSchema} initialValues={{email : '', password : ''}} onSubmit={(data : any) => performLogin(data)}>
@@ -94,18 +110,29 @@ export default function Login() {
                                 )
                             }
                         </Formik>
-                    </div>
+                    </motion.div>
                 </Col>
 
                 <Col style={imageStyle} className="d-flex flex-column justify-content-center align-items-center">
-                    <TitleResizable style={{ fontSize: 80}}><Bolder>
-                        Train<br/>
-                        Eat<br/>
-                        Sleep<br/>
-                        Repeat.<br/>
-                    </Bolder></TitleResizable> 
+                    <motion.div
+                    
+                        initial={{opacity: 0, y : 400}}
+                        animate={{ opacity: 1, y:0 }}
+                        transition={{duration: 0.4, delay: 0.4}}
+                        exit={{opacity: 0, y: 400}}
+                    
+                    
+                    >
+                        <TitleResizable style={{ fontSize: 80}}><Bolder>
+                            Train<br/>
+                            Eat<br/>
+                            Sleep<br/>
+                            Repeat.<br/>
+                        </Bolder></TitleResizable> 
+                    </motion.div>
                 </Col>
             </Row>
         </Container>
+        </motion.div>
     )
 }

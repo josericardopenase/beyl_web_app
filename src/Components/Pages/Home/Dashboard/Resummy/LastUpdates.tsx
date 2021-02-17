@@ -5,11 +5,13 @@ import useThemes from '../../../../../CustomHooks/useThemes'
 import { getGeneralHistory } from '../../../../../Store/generalHistory'
 import { Icon } from '../../../../General/Constants/Icons/Icon'
 import ProfilePicIcon from '../../../../General/Constants/Icons/ProfilePicIcon'
+import Loading from '../../../../General/Constants/Loading/Loading'
 import { Title3 } from '../../../../General/Constants/Text/Title3'
 import { Title4 } from '../../../../General/Constants/Text/Title4'
 import { Title5 } from '../../../../General/Constants/Text/Title5'
 import { ContainerGraphs } from '../../../../General/Containers/ContainerGraphs'
 import NotFound from '../../../../General/Errors/NotFound'
+import NotFoundLastPublications from '../../../../General/Errors/NotFoundLastPublications'
 
 export default function LastUpdates() {
 
@@ -27,7 +29,13 @@ export default function LastUpdates() {
     }, []) 
 
     if(loading){
-      return <div>Loading</div>
+      return (
+
+        <ContainerGraphs col={4} title={"Ultimas publicaciones"} >
+            <Loading></Loading>
+        </ContainerGraphs>
+
+      )
     }
 
     console.log(generalHistory)
@@ -65,7 +73,14 @@ export default function LastUpdates() {
             )
             :
             (
-                <NotFound></NotFound>
+                <NotFound message="Tus clientes aún no han publicado nada."
+                
+                svg={
+                    <NotFoundLastPublications></NotFoundLastPublications>
+                } 
+                
+                >
+                </NotFound>
             )
         }
         </ContainerGraphs>

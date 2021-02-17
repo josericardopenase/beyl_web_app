@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadAthletes } from './Store/athleltes';
 import { getLocalToken, getProfile, setToken } from './Store/authentication';
 import LoginRoutes from './Routers/LoginRoutes';
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
   
@@ -46,16 +47,17 @@ function App() {
 
   return (
 
+  
       <BrowserRouter>
+        <AnimatePresence exitBeforeEnter >
+        {
+          isLogged ? 
+          <Routes key={110}/>
+          :
+          <LoginRoutes key={120}/>
 
-      {
-        isLogged ? 
-        <Routes/>
-        :
-        <LoginRoutes></LoginRoutes>
-
-      }
-      
+        }
+        </AnimatePresence>
       </BrowserRouter>
   );
 }

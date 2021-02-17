@@ -4,13 +4,14 @@ import ThemeContext from '../../../Store/Themes/ThemeContext'
 interface IProps{
     children: any,
     color ?: string
+    style ?: React.CSSProperties
 }
 
-export default function ContainerBox({children, color} : IProps) {
+export default function ContainerBox({children, color, style} : IProps) {
 
     const themes = useContext(ThemeContext);
 
-    const style : React.CSSProperties = {
+    const inStyle : React.CSSProperties = {
         backgroundColor: color === "primary" || color === "secondary" || color === undefined ?  color === "primary" ? themes.colors.primary : themes.colors.secondary : color,
         padding: 10,
         borderRadius: "20px",
@@ -19,7 +20,7 @@ export default function ContainerBox({children, color} : IProps) {
     }
 
     return (
-        <div style={style}>
+        <div style={{...inStyle, ...style}}>
             {
                 children
             }

@@ -7,6 +7,7 @@ import useApiCallback from '../../../../../CustomHooks/useApiCallback'
 import { ContainerBlockBox } from '../../../../General/Containers/ContainerBlockBox'
 import { NewsSingle } from './Components/NewsSingle'
 import { getArticles} from '../../../../../Store/articles'
+import Loading from '../../../../General/Constants/Loading/Loading'
 
 export const News = () => {
 
@@ -22,7 +23,7 @@ export const News = () => {
     }, [])
 
     if(loading || articles.length === 0){
-        return <div>loading</div> 
+        return <Loading></Loading>
     }
 
     return (

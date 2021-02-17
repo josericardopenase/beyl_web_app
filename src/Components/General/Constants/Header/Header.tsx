@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import React from 'react'
 import ContainerBox from '../../Containers/ContainerBox'
 import { ContainerHeader } from './Components/ContainerHeader'
@@ -22,7 +23,16 @@ export const Header = () => {
     return (
 
         
-            <div style={styles.container}>
+            <motion.div
+            
+            initial= {{y: -160, opacity: 0}}
+                    animate={{y : 0, opacity: 1}} 
+                    transition = {{duration: 0.4, delay: 0.4}}
+                    exit={{y: -160, opacity: 0}}
+                    
+                    key={3}
+            
+            style={styles.container}>
             
 
                 <ContainerHeader>
@@ -33,7 +43,7 @@ export const Header = () => {
                 
                 </ContainerHeader>
 
-            </div>
+            </motion.div>
 
 
 

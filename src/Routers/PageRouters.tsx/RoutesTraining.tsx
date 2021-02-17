@@ -19,6 +19,8 @@ import Training from '../../Components/Pages/Training/Training';
 import useApiCallback from '../../CustomHooks/useApiCallback';
 import { loadAthletes } from '../../Store/athleltes';
 import Placeholder from '../../Components/General/Constants/SVGS/Placeholder'
+import { motion } from 'framer-motion';
+import Loading from '../../Components/General/Constants/Loading/Loading';
 
 export default function RoutesTraining(props : any) {
 
@@ -41,12 +43,21 @@ export default function RoutesTraining(props : any) {
 
 
     if(athletes.loading)
-        return <div>cargando</div>
+        return <Loading></Loading>
 
 
     return (
 
-        <div>     
+        <motion.div
+        
+            initial= {{opacity: 0, size: 0}}
+                    animate={{opacity: 1}} 
+                    transition = {{duration: 0.4}}
+                    exit={{opacity: 0}}
+                    
+                    key={"routes_training"}
+        
+        >
 
             <SidebarSelector>
 
@@ -93,7 +104,7 @@ export default function RoutesTraining(props : any) {
 
             </ContainerSidebarSelector>
 
-        </div> 
+</motion.div>
 
     )
 }

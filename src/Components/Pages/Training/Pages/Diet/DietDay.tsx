@@ -20,6 +20,7 @@ import Themes from '../../../../General/Styles/Themes';
 import useThemes from '../../../../../CustomHooks/useThemes';
 import { Title4 } from '../../../../General/Constants/Text/Title4';
 import { MetabolismoBasal } from '../../../../General/Constants/functions/DietFunctions';
+import Loading from '../../../../General/Constants/Loading/Loading';
 
 export const DietDay = (props : any) => {
 
@@ -42,7 +43,7 @@ export const DietDay = (props : any) => {
     }, [dietDay])
 
     if(dietGroup.loading){
-        return <div> loading</div>
+        return <Loading></Loading>
     }
 
 

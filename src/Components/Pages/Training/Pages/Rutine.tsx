@@ -6,11 +6,13 @@ import apiTraining from '../../../../Api/apiTraining'
 import useApiCallback from '../../../../CustomHooks/useApiCallback'
 import { getRutine } from '../../../../Store/Rutines/rutine'
 import { Athlete } from '../../../../Types/Types'
+import Loading from '../../../General/Constants/Loading/Loading'
 import { Title1 } from '../../../General/Constants/Text/Title1'
 import { Title3 } from '../../../General/Constants/Text/Title3'
 import { Article } from '../../Home/Article/Article'
 import { Day } from '../Components/Common/Day'
 import { DayList } from '../Components/Common/DayList'
+import SaveChanges from './General/SaveChanges'
 import { RutineDay } from './Rutine/RutineDay'
 
 export const Rutine = (props: any) => {
@@ -35,12 +37,12 @@ export const Rutine = (props: any) => {
     }, [store.getState().athletes.selectedAthlete])
 
     if(loading || !rutine)
-        return <div>loading</div>
+        return <Loading></Loading>
     return (
-        <div>
+        <div className="position-relative">
             <DayList rutine = {true} days={rutine.rutine_days}></DayList> 
             <Route  path={`${urlParams.path}/:rutineDay`} component={RutineDay}></Route>
-
+            <SaveChanges></SaveChanges> 
         </div>
     )
 }

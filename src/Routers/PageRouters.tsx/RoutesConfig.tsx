@@ -23,6 +23,7 @@ import Themes from '../../Components/General/Styles/Themes';
 import Clients from '../../Components/Pages/Configuration/Clients';
 import { logOut, removeLocalToken } from '../../Store/authentication';
 import Profile from '../../Components/Pages/Configuration/Profile';
+import { motion } from 'framer-motion';
 
 
 function ConfigMenu({name, to } : any){
@@ -58,7 +59,16 @@ export default function RoutesConfig(props : any) {
 
     return (
 
-        <div>     
+        <motion.div
+        
+            initial= {{opacity: 0, size: 0}}
+                    animate={{opacity: 1}} 
+                    transition = {{duration: 0.4}}
+                    exit={{opacity: 0}}
+                    
+                    key={"routes_training"}
+        
+        >
 
             <SidebarSelector>
 
@@ -92,7 +102,7 @@ export default function RoutesConfig(props : any) {
 
             </ContainerSidebarSelector>
 
-        </div> 
+        </motion.div> 
 
     )
 }

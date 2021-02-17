@@ -73,3 +73,24 @@
   transition: 0.2s all ease;
 
 }
+input[type=text] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+
+  -webkit-appearance: none;
+  box-shadow: none !important;
+  -webkit-appearance: none;
+/*Change text in autofill textbox*/
+}
+input[type=text] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}

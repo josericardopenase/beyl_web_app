@@ -6,6 +6,7 @@ import RutineList from '../../Components/List/RutineList';
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import { getGroupsOfDay, postRutineGroup, reorderGroup } from '../../../../../Store/Rutines/rutineGroups';
 import { Title3 } from '../../../../General/Constants/Text/Title3';
+import Loading from '../../../../General/Constants/Loading/Loading';
 
 export const RutineDay = (props : any) => {
 
@@ -21,7 +22,7 @@ export const RutineDay = (props : any) => {
     }, [rutineDay])
 
     if(rutineGroup.loading){
-        return <div> loading</div>
+        return <Loading></Loading>
     }
 
     return (

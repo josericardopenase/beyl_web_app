@@ -8,16 +8,26 @@ import ContainerMarginTop from '../../../General/Containers/ContainerMarginTop'
 import { News } from './News/News'
 import LastUpdates from './Resummy/LastUpdates'
 import ClientsGraph from './Resummy/ClientsGraph'
+import { useSelector } from 'react-redux'
+import Loading from '../../../General/Constants/Loading/Loading'
 
 
 export const Home = () => {
+
+
+    const athlete = useSelector((state : any) => state.auth.user )
+    
+
+    if(!athlete)
+        return <Loading></Loading>
+
 
     return (
         
         <ContainerMarginTop>        
             
-            
-            <Title1><Bolder>Bienvenido de nuevo,</Bolder> Jose</Title1>
+
+            <Title1><Bolder>Bienvenido de nuevo,</Bolder> {athlete.user.first_name}</Title1>
 
 
             {/* Noticias display */}

@@ -8,6 +8,7 @@ import { ContainerGraphs } from '../../../../General/Containers/ContainerGraphs'
 import useThemes from '../../../../../CustomHooks/useThemes';
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import { getWeightHistoryFromUser } from '../../../../../Store/weightHistory';
+import Loading from '../../../../General/Constants/Loading/Loading';
 
 const data = [
   {
@@ -49,7 +50,7 @@ export default function WeightGraph() {
     }, [athlete]) 
 
     if(loading){
-      return <div>invalid</div>
+      return <Loading></Loading>
     }
 
 

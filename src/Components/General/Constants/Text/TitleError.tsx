@@ -5,10 +5,11 @@ import { Title4 } from './Title4'
 
 interface IProps{
     children : any
+    style ?: any
 }
 
-export default function TitleError({children} : IProps) {
+export default function TitleError({children, style} : IProps) {
     return (
-        <Title4 color="#e82727" style={{marginTop: 10}}><FaBug></FaBug> {children}</Title4>
+        <Title4 color="#e82727" style={{marginTop: 10, ...style}}><FaBug></FaBug> {children}</Title4>
         )
 }

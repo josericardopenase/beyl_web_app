@@ -44,7 +44,6 @@ export const TrainingList = ({name, children, id, order, popUp, nameAdd, onDragE
     const style = {
         container : {
             backgroundColor: theme.colors.secondary,
-            border: hover ? `2px ${theme.colors.tertiary} solid` : `2px ${theme.colors.secondary} solid`,
             borderRadius: "20px",
             width: 400,
             height: "auto",
@@ -64,40 +63,49 @@ export const TrainingList = ({name, children, id, order, popUp, nameAdd, onDragE
 
     return (
         
-        <>
         
-            <DraggingComponent id ={id} index={order}>
-                <div style={style.container} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className="p-3 mr-3 mb-3">
+        <>
+        <Draggable key={id} draggableId={id.toString()} index ={order}>
+            {(provided, snapshot) =>  (
+                <div   {...provided.draggableProps} ref={provided.innerRef}>
+                    
+                        <div style={{...style.container, border: hover || snapshot.isDragging ? `2px ${theme.colors.tertiary} solid` : `2px ${theme.colors.secondary} solid`}}  className="p-3 mr-3 mb-3">
+            
 
-                    <div className="w-100 d-flex justify-content-between">
+                            <div className="w-100 d-flex justify-content-between p-2 mouse-cursor" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} style={{cursor: "pointer"}} {...provided.dragHandleProps}>
 
-                        <Bolder><TitleInput onChange={modifyName}>{name}</TitleInput></Bolder>
-                        <RemoveIcon onClick={() => rutine ? dispatch(deleteRutineGroup(id)) : dispatch(deleteDietGroup(id))}></RemoveIcon>
+                                <Bolder><TitleInput onChange={modifyName}>{name}</TitleInput></Bolder>
+                                <RemoveIcon onClick={() => rutine ? dispatch(deleteRutineGroup(id)) : dispatch(deleteDietGroup(id))}></RemoveIcon>
 
-                    </div>
+                            </div>
 
-                    <DraggingSurface onDragEnd={(action: any) => {
-                        onDragEnd(action)
-                     
-                    }} final={
-                        <AddList styleContainer = {{marginTop: 10}}  text={nameAdd} onClick = {() => setModalShow(true)}></AddList>
-                    }>
-                        <Row className="mt-2">
-                                {
-                                children
-                                }
+                            <DraggingSurface onDragEnd={(action: any) => {
+                                onDragEnd(action)
+                            
+                            }} final={
+                                <AddList styleContainer = {{marginTop: 10}}  text={nameAdd} onClick = {() => setModalShow(true)}></AddList>
+                            }>
+                                <Row className="mt-2">
+                                        {
+                                        children
+                                        }
 
-                        </Row>
+                                </Row>
 
-                    </DraggingSurface>
+                            </DraggingSurface>
+                        </div>
+                    
+
                 </div>
-            </DraggingComponent>
+                )
+            }
 
 
+
+        </Draggable>
             {
                 popUp(modalShow, () => setModalShow(false), id)
             }
-
         </>
     )
 }

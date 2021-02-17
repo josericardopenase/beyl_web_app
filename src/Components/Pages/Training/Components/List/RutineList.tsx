@@ -3,6 +3,7 @@ import { useDispatch, useSelector, useStore } from 'react-redux'
 import { getExcersiseOfGroup, reorderExcersise } from '../../../../../Store/Rutines/rutineExcersise'
 import { reorderGroup } from '../../../../../Store/Rutines/rutineGroups'
 import { Group } from '../../../../../Types/Types'
+import Loading from '../../../../General/Constants/Loading/Loading'
 import { RutineExcercise } from '../../Pages/Rutine/Components/RutineExcercise'
 import AddExcersise from '../Modal/AddExcersise'
 import { TrainingList } from './TrainingList'
@@ -25,7 +26,7 @@ export default function RutineList({obj , index} : props) {
     }, [])
 
     if(loading){
-        return <div>loading</div>
+        return <Loading></Loading>
     }
 
     return (

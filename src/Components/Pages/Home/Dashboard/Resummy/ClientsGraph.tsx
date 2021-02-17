@@ -9,11 +9,14 @@ import { getGeneralHistory } from '../../../../../Store/generalHistory'
 import Bottom1 from '../../../../General/Constants/Button/Button1'
 import { Icon } from '../../../../General/Constants/Icons/Icon'
 import ProfilePicIcon from '../../../../General/Constants/Icons/ProfilePicIcon'
+import Loading from '../../../../General/Constants/Loading/Loading'
 import { Title3 } from '../../../../General/Constants/Text/Title3'
 import { Title4 } from '../../../../General/Constants/Text/Title4'
 import { Title5 } from '../../../../General/Constants/Text/Title5'
 import { ContainerGraphs } from '../../../../General/Containers/ContainerGraphs'
 import NotFound from '../../../../General/Errors/NotFound'
+import NotFoundAthletes from '../../../../General/Errors/NotFoundAthletes'
+import NotFoundLastPublications from '../../../../General/Errors/NotFoundLastPublications'
 
 export default function ClientsGraph() {
 
@@ -29,7 +32,7 @@ export default function ClientsGraph() {
     }, []) 
 
     if(loading){
-      return <div>invalid</div>
+      return <Loading></Loading>
     }
 
     console.log(generalHistory)
@@ -52,7 +55,13 @@ export default function ClientsGraph() {
             )
             :
             (
-                <NotFound message="No tienes ningún atleta ahora mismo">
+                <NotFound message="No tienes ningún atleta ahora mismo"
+                
+                svg={
+                    <NotFoundAthletes></NotFoundAthletes>
+                } 
+                
+                >
                     <Link to="/config/clientes">
                         <Bottom1 className="mt-3">Añade un atleta</Bottom1>
                     </Link>

@@ -14,6 +14,7 @@ import { ContainerPadding } from '../../Components/General/Containers/ContainerP
 
 import useApiCallback from '../../CustomHooks/useApiCallback';
 import { loadAthletes } from '../../Store/athleltes';
+import Loading from '../../Components/General/Constants/Loading/Loading';
 
 export default function RoutesTraining(props : any) {
 
@@ -35,7 +36,7 @@ export default function RoutesTraining(props : any) {
 
 
     if(athletes.loading)
-        return <div>cargando</div>
+        return <Loading></Loading>
 
 
     return (

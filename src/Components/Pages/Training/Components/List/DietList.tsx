@@ -4,6 +4,7 @@ import { getFoodOfGroup, reorderFood } from '../../../../../Store/Diets/dietFood
 import { getExcersiseOfGroup, reorderExcersise } from '../../../../../Store/Rutines/rutineExcersise'
 import { reorderGroup } from '../../../../../Store/Rutines/rutineGroups'
 import { Group } from '../../../../../Types/Types'
+import Loading from '../../../../General/Constants/Loading/Loading'
 import { DietFood } from '../../Pages/Diet/Components/DietFood'
 import { RutineExcercise } from '../../Pages/Rutine/Components/RutineExcercise'
 import AddExcersise from '../Modal/AddExcersise'
@@ -28,7 +29,7 @@ export default function DietList({obj , index} : props) {
     }, [])
 
     if(loading){
-        return <div>loading</div>
+        return <Loading></Loading>
     }
 
     return (

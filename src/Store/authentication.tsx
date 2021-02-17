@@ -50,6 +50,20 @@ export const authLogin = (email : string, password : string) => callBegan({
     onBegin : 'auth/startRequest'
 })
 
+export const authRegister = (email : string, password : string, name : string, surname: string) => callBegan({
+    url : '/register_trainer/',
+    onSuccess : 'auth/setToken',
+    data : {
+        email : email,
+        password : password,
+        name : name,
+        surname: surname
+    },
+    method: 'post',
+    onError : 'auth/setErrors',
+    onBegin : 'auth/startRequest'
+})
+
 export const getProfile = () => callBegan({
 
     url : '/profile/trainer/',

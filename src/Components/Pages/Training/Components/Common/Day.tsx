@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { FaEdit, FaTrashAlt } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
-import { Link, useLocation, useRouteMatch } from 'react-router-dom'
+import { Link, useHistory, useLocation, useRouteMatch } from 'react-router-dom'
 import useVisible from '../../../../../CustomHooks/useVisible'
 import { deleteDietDay, patchDietDay } from '../../../../../Store/Diets/dietDays'
 import { patchDay, deleteDay } from '../../../../../Store/Rutines/rutineDays'
@@ -27,6 +27,7 @@ export const Day = ({ day, index, rutine} : IProps) => {
     const [hover, setHover] = useState(false);
 
     const loc = useRouteMatch();
+    const history = useHistory()
     const dispatch = useDispatch();
     const active = useRouteMatch(`${loc.url}/${day.id}`);
     const themes = useContext(ThemeContext);
@@ -65,6 +66,10 @@ export const Day = ({ day, index, rutine} : IProps) => {
         }else{
             dispatch(deleteDietDay(day.id))
         }
+
+        if(active)
+            history.push(loc.url)
+
     }
 
     return (
