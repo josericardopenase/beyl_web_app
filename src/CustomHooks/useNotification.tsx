@@ -16,7 +16,7 @@ export default function useNotification(){
 
     const dispatch = useDispatch<any>()
     const store = useStore()
-    const notificationTime : number = 3000;
+    const notificationTime : number = 4000;
     let many : number = 0
 
     const pushNotification = (notification : notification) => {

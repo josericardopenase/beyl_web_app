@@ -39,6 +39,8 @@ export default function Profile() {
 
                         ({handleSubmit}) => (
                             <div className="w-100 mt-4">
+
+                                <input type="file"></input>
                                 <Title4>Nombre:</Title4>
                                 <Row className="mt-3">
                                     <Col>

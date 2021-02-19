@@ -105,7 +105,7 @@ export default function Login() {
                                             </Col>
 
                                         </Row>
-                                        { apiErrors ? <TitleError>{"Dirección de correo electrónico o contraseña incorrectos"}</TitleError> : null}
+                                        { apiErrors ? <TitleError>{apiErrors.non_field_errors}</TitleError> : null}
                                     </>
                                 )
                             }

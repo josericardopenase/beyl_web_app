@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { url } from 'inspector'
 import { setSelectedAthlete } from '../../../Store/athleltes'
 import Loading from '../../General/Constants/Loading/Loading'
+import { AnimatePresence } from 'framer-motion'
 
 
 export default function Training(props : any) {
@@ -38,6 +39,7 @@ export default function Training(props : any) {
         return <Loading></Loading>
 
     return (
+        <AnimatePresence exitBeforeEnter>
         <div className="pl-4 pt-4">
 
             <Title1><Bolder>{user?.user.first_name + " " + user?.user.last_name}</Bolder></Title1>
@@ -45,14 +47,15 @@ export default function Training(props : any) {
             <TrainingHeader actualPath = {urlParams.url}></TrainingHeader>
 
             <div className="pt-3"> 
-                <Route  path={`${urlParams.path}/general`} component={General} ></Route>
-                <Route  path={`${urlParams.path}/rutina`} component={Rutine} ></Route>
-                <Route  path={`${urlParams.path}/dieta`} component={Diet} ></Route>
+                <Route key={"general"}  path={`${urlParams.path}/general`} component={General} ></Route>
+                <Route  key={"rutine"} path={`${urlParams.path}/rutina`} component={Rutine} ></Route>
+                <Route key={"diet"} path={`${urlParams.path}/dieta`} component={Diet} ></Route>
                 <Route path={`${urlParams.url}`}  component={Article}>
                 <Redirect to={`${urlParams.url}/general`}/>
                 </Route> 
             </div>
 
         </div>
+        </AnimatePresence>
     )
 }

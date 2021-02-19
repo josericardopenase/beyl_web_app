@@ -1,7 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Switch from 'react-bootstrap/esm/Switch'
 import { FaHome, FaFire, FaComment} from 'react-icons/fa'
+import { useDispatch } from 'react-redux'
 import { Redirect, Route, useLocation } from 'react-router-dom'
 import { Header } from '../Components/General/Constants/Header/Header'
 import { CreateRoutes } from '../Components/General/Constants/Routing/CreateRoutes'
@@ -11,6 +12,7 @@ import { ContainerSidebar } from '../Components/General/Containers/ContainerSide
 import NotificationComponent from '../Components/Notificaciones/Components/NotificationComponent'
 import NotificationCenter from '../Components/Notificaciones/NotificationCenter'
 import { Home } from '../Components/Pages/Home/Dashboard/Home'
+import useNotification from '../CustomHooks/useNotification'
 import RoutesChat from './PageRouters.tsx/RoutesChat'
 import RoutesConfig from './PageRouters.tsx/RoutesConfig'
 import { RoutesHome } from './PageRouters.tsx/RoutesHome'
@@ -19,6 +21,17 @@ import RoutesTraining from './PageRouters.tsx/RoutesTraining'
 export const Routes = () => {
 
     const location = useLocation()
+    const notificationCenter = useNotification()
+
+    useEffect(() => {
+
+       notificationCenter.pushNotification({
+            type: "success",
+            message: `Bienvenido denuevo ${"Pepe"}` 
+
+       }) 
+
+    }, [])
 
 
     return (

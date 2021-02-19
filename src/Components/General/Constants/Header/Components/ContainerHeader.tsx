@@ -13,7 +13,8 @@ export const ContainerHeader = ({children} : PropsInterfaces.IOnlyChildren) => {
         margin: 20, 
         backgroundColor: themes.colors.primaryTransparent,
         boxShadow: "0px 0px 28px 17px rgba(0,0,0,0.10)",
-        backdropFilter: "saturate(180%) blur(20px)"
+        backdropFilter: "saturate(180%) blur(20px)",
+        position: "relative"
         } as React.CSSProperties,
 
 

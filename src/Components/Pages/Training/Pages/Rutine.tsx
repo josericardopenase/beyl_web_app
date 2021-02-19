@@ -42,7 +42,8 @@ export const Rutine = (props: any) => {
         <div className="position-relative">
             <DayList rutine = {true} days={rutine.rutine_days}></DayList> 
             <Route  path={`${urlParams.path}/:rutineDay`} component={RutineDay}></Route>
-            <SaveChanges></SaveChanges> 
+            <SaveChanges key="save_rutine" notificationText="Cambios en la rutina aplicados correctamente" text="Guardar cambios de la rutina realizados" buttonText="Actualizar" apiSave={apiTraining.saveRutine} ></SaveChanges> 
+
         </div>
     )
 }

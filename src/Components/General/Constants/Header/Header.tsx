@@ -1,28 +1,54 @@
-import { motion } from 'framer-motion'
-import React from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import React, { useState } from 'react'
+import { FaCog, FaSignOutAlt } from 'react-icons/fa'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import useThemes from '../../../../CustomHooks/useThemes'
+import useVisible from '../../../../CustomHooks/useVisible'
+import { logOut, removeLocalToken } from '../../../../Store/authentication'
 import ContainerBox from '../../Containers/ContainerBox'
+import Themes from '../../Styles/Themes'
+import { Icon } from '../Icons/Icon'
+import { Title3 } from '../Text/Title3'
+import { Title4 } from '../Text/Title4'
 import { ContainerHeader } from './Components/ContainerHeader'
 import { NotificationCenter } from './Components/Notifications/NotificationCenter'
 import { ProfileInfo } from './Components/ProfileInfo'
 
 export const Header = () => {
 
+    const theme = useThemes()
+    const {ref, isVisible, setIsVisible} = useVisible(false);
+
     const styles = {
         container: {
             position: "fixed",
             top: 0,
             right: 0,
-            zIndex: 1000,
+            zIndex: 100000,
 
         } as React.CSSProperties,
+        dropdown: {
+
+            backgroundColor: theme.colors.secondary,
+            position: "absolute",
+            right: 0,
+            top: 0,
+            marginTop: 60,
+            padding: 15,
+            borderRadius: 10,
+            zIndex: 0
+
+
+        } as React.CSSProperties
 
 
     }
 
+    const dispatch = useDispatch()
 
     return (
 
-        
             <motion.div
             
             initial= {{y: -160, opacity: 0}}
@@ -36,15 +62,65 @@ export const Header = () => {
             
 
                 <ContainerHeader>
+                
 
                     <NotificationCenter badge={true}/>
                     
-                    <ProfileInfo/>
+                    <div onClick={() => setIsVisible(!isVisible)}>
+                        <ProfileInfo/>
+                    </div>
+
+
+                <AnimatePresence exitBeforeEnter>
+                    {
+
+                    isVisible ? 
+
+                    <motion.div 
+
+                    ref={ref}
+                    initial= {{x: 60, opacity: 0}}
+                    animate={{x : 0, opacity: 1}} 
+                    transition = {{duration: 0.1}}
+                    exit={{x: 60, opacity: 0}}
+                    key={100}
+                    
+                    style={styles.dropdown} className="shadow">
+
+                        <Link className="d-flex align-items-center" style={{cursor: "pointer"}} to="/config">
+
+                            <Icon>
+                                <FaCog></FaCog>
+                            </Icon>
+
+                            <Title4 style={{marginLeft: 10}}>Configuracion</Title4> 
+                        </Link>
+
+                        <div className="d-flex align-items-center mt-3"  style={{cursor: "pointer"}}
+                        onClick={() => {
+                        dispatch(logOut({}))
+                        removeLocalToken()
+                    }}
+                        
+                        
+                        >
+
+                            <FaSignOutAlt size={20} color={Themes.beylColor} />
+
+                            <Title4 style={{marginLeft: 10, color: Themes.beylColor}}>Cerrar Sesión</Title4> 
+                        </div>
+
+                    </motion.div>
+                    : 
+                    null
+                    }
                 
+                </AnimatePresence>
                 </ContainerHeader>
 
-            </motion.div>
 
+            </motion.div>
+            
 
 
     )

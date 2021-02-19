@@ -1,5 +1,5 @@
 import { useContext } from "react";
-
+import { store } from "../Store/store";
 const { create } = require("apisauce");
 
 const apiClient = create({
@@ -7,10 +7,11 @@ const apiClient = create({
     
 })
 apiClient.addAsyncRequestTransform(async (request : any) => {
-/*     const authToken = await storage.getUser();
-        if (!authToken) return; */
-    request.headers["Authorization"] = "Token " +  "827a9e27f9f29b1f1c1c9f61a49fac631bc9a0f0";
+    const authToken = store.getState().auth.token;
+
+    if (!authToken) return;
+
+    request.headers["Authorization"] = "Token " +  authToken;
 });
-    
 
 export default apiClient
