@@ -2,8 +2,10 @@ import { useContext } from "react";
 import { store } from "../Store/store";
 const { create } = require("apisauce");
 
+ export const apiUrl = 'https://beyl-api.herokuapp.com/v1/'
+
 const apiClient = create({
-    baseURL: 'http://192.168.0.14:9000/v1/',
+    baseURL: apiUrl
     
 })
 apiClient.addAsyncRequestTransform(async (request : any) => {

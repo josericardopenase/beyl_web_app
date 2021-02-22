@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { request } from 'https'
+import { apiUrl } from '../../Api/apiClient'
 import { callFailed , callSuccess, callBegan} from '../apiActions'
 
 
@@ -23,7 +24,7 @@ const api = ({dispatch, getState} : any)=> (next :any) => async (action : any) =
 
             const token = getState().auth.token
         
-            const response = await axios.request({ baseURL : 'http://192.168.0.14:9000/v1', url, method, data, headers : token ? {'Authorization' : `Token ${token}` } : null })
+            const response = await axios.request({ baseURL : apiUrl, url, method, data, headers : token ? {'Authorization' : `Token ${token}` } : null })
             
             const requestPayload = payload ? payload : response.data;
 
