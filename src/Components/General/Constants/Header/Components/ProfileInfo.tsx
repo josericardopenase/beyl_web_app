@@ -24,7 +24,7 @@ export const ProfileInfo = () => {
 
     return (
             <div className="d-flex align-items-center" style={{cursor: "pointer"}}>
-                <ProfilePicIcon url={'http://192.168.0.14:9000' + user.user.profile_pic} size={30}></ProfilePicIcon>
+                <ProfilePicIcon url={user.user.profile_pic} size={30}></ProfilePicIcon>
                 <Title4 style={{marginLeft: 10}}>{user.user.first_name + " " + user.user.last_name}</Title4>
                 <div style={{marginLeft: 10, marginRight: 10}}>
                     <Icon>

@@ -48,7 +48,6 @@ export const RutineDay = (props : any) => {
                         {
                             rutineGroup.list.map((x: any, index : number) => 
                                 <RutineList key={x.id} obj={x} index = {index}></RutineList>
-                            
                             )
                         }
 

@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import React, { useEffect } from 'react'
 import Switch from 'react-bootstrap/esm/Switch'
 import { FaHome, FaFire, FaComment} from 'react-icons/fa'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Redirect, Route, useLocation } from 'react-router-dom'
 import { Header } from '../Components/General/Constants/Header/Header'
 import { CreateRoutes } from '../Components/General/Constants/Routing/CreateRoutes'
@@ -22,14 +22,17 @@ export const Routes = () => {
 
     const location = useLocation()
     const notificationCenter = useNotification()
+    const user = useSelector((state : any) => state.auth.user)
 
     useEffect(() => {
 
-       notificationCenter.pushNotification({
-            type: "success",
-            message: `Bienvenido denuevo ${"Pepe"}` 
+        if(user){
+            notificationCenter.pushNotification({
+                    type: "success",
+                    message: `Bienvenido denuevo ${user.user.first_name}` 
 
-       }) 
+            }) 
+        }
 
     }, [])
 

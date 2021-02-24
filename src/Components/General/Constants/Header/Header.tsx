@@ -18,7 +18,7 @@ import { ProfileInfo } from './Components/ProfileInfo'
 export const Header = () => {
 
     const theme = useThemes()
-    const {ref, isVisible, setIsVisible} = useVisible(false);
+    const {ref, isVisible, setIsVisible, closeRef} = useVisible(false);
 
     const styles = {
         container: {
@@ -66,7 +66,7 @@ export const Header = () => {
 
                     <NotificationCenter badge={true}/>
                     
-                    <div onClick={() => setIsVisible(!isVisible)}>
+                    <div ref={closeRef} onClick={() => setIsVisible(!isVisible)}>
                         <ProfileInfo/>
                     </div>
 
@@ -79,10 +79,10 @@ export const Header = () => {
                     <motion.div 
 
                     ref={ref}
-                    initial= {{x: 60, opacity: 0}}
-                    animate={{x : 0, opacity: 1}} 
+                    initial= {{y: -30, opacity: 0}}
+                    animate={{y : 0, opacity: 1}} 
                     transition = {{duration: 0.1}}
-                    exit={{x: 60, opacity: 0}}
+                    exit={{y: -30, opacity: 0}}
                     key={100}
                     
                     style={styles.dropdown} className="shadow">

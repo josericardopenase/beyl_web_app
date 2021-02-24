@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import React, { useContext } from 'react'
 import { FaDumbbell, FaExclamation, FaExclamationCircle, FaExclamationTriangle, FaInfoCircle } from 'react-icons/fa';
 import ThemeContext from '../../../../../../../Store/Themes/ThemeContext'
@@ -30,9 +31,17 @@ export const NotificationPopUp = ({Ref} : any) => {
     return (
 
         /* Container para realizar posicionamiento */
-        <div ref={Ref} style={styles.position}>
 
-           {/*  Container para realizar la colocación de los elementos */}
+        <motion.div 
+            key={10000} 
+            ref={Ref} 
+            style={styles.position}
+            initial= {{y: -40, opacity: 0}}
+            animate={{y: 0, opacity: 1}} 
+            transition = {{duration: 0.2}}
+            exit={{y: -40, opacity:0}}
+        >
+
             <div style={styles.container}>
 
 
@@ -43,6 +52,6 @@ export const NotificationPopUp = ({Ref} : any) => {
 
 
             </div>
-        </div>
+        </motion.div>
     )
 }

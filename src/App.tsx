@@ -36,8 +36,6 @@ function App() {
   useEffect(() => {
     const token = getLocalToken()
 
-    console.log(token)
-
     if(token) {
       dispatch(setToken({token : token}))
       dispatch(getProfile())

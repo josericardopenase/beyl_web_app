@@ -10,27 +10,6 @@ import { useDispatch, useSelector, useStore } from 'react-redux';
 import { getWeightHistoryFromUser } from '../../../../../Store/weightHistory';
 import Loading from '../../../../General/Constants/Loading/Loading';
 
-const data = [
-  {
-    name: '29/1/2020', weight: 70,  amt: 2400,
-  },
-  {
-    name: '2/2/2020', weight: 72,  amt: 2210,
-  },
-  {
-    name: '12/2/2020', weight: 74,amt: 2290,
-  },
-  {
-    name: '14/2/2020', weight: 76,amt: 2000,
-  },
-  {
-    name: '18/2/2020', weight: 74,  amt: 2181,
-  },
-  {
-    name: '24/2/2020', weight: 78, amt: 2500,
-  },
-];
-
 export default function WeightGraph() {
 
 
@@ -45,8 +24,6 @@ export default function WeightGraph() {
             dispatch(getWeightHistoryFromUser(athlete.id))
         }
         
-
-        console.log(weightHistory)
     }, [athlete]) 
 
     if(loading){

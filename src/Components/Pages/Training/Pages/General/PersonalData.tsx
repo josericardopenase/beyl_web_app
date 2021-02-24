@@ -14,10 +14,11 @@ function DataDisplay({data, value} : any){
 
     return (
 
-                    <div className="d-flex mt-4 mb-2 justify-content-between pr-4">
-                        <Title4 color="secondary">{data}</Title4> 
-                        <Title4><Bolder>{value}</Bolder></Title4> 
-                    </div>
+            <div className="d-flex mt-4 mb-2 justify-content-between pr-4">
+                <Title4 color="secondary">{data}</Title4> 
+                <Title4><Bolder>{value}</Bolder></Title4> 
+            </div>
+
     )
 
 }
@@ -40,16 +41,16 @@ export default function PersonalData() {
                 <Col>
                     <DataDisplay data="Nombre" value={athlete.user.first_name}></DataDisplay>
                     <DataDisplay data="Apellido" value={athlete.user.last_name}></DataDisplay>
-                    <DataDisplay data="Fecha de nacimiento" value={athlete.born_date}></DataDisplay>
                 </Col>
 
                 <Col>
                     <DataDisplay data="Género" value={athlete.sexo}></DataDisplay>
-                    <DataDisplay data="Correo" value={athlete.user.email}></DataDisplay>
+                    <DataDisplay data="Fecha de nacimiento" value={athlete.born_date}></DataDisplay>
                 </Col>
 
             </Row>
 
+            <DataDisplay data="Correo" value={athlete.user.email}></DataDisplay>
         </ContainerGraphs>
     )
 }

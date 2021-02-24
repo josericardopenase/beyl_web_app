@@ -89,16 +89,17 @@ export default function SearchSelector({apiFunction, name, multiple, element} : 
     return (
 
         <div>
-            <Input onChange={(e : any) => setText(e.target.value)} style={{backgroundColor: theme.colors.secondary, width: "100%"}} 
-            icon = {<FaSearch></FaSearch>}
-            placeholder = {"Busca un ejercicio"}></Input>
-
+            <div className="pr-2  pl-2">
+                <Input primary={true} onChange={(e : any) => setText(e.target.value)} style={{backgroundColor: theme.colors.secondary, width: "100%"}} 
+                icon = {<FaSearch size={15}></FaSearch>}
+                placeholder = {"Busca un ejercicio"}></Input>
+            </div>
             <div className={"w-100 text-center"}>
                 { multiple ? <Title2 style={{marginTop: 20, marginBottom: 20}}><Bolder>{field.value.length > 1 ? "Superserie" : field.value.length == 1 ? "Serie normal" : ""}</Bolder></Title2> : null}
             </div>
             {
                 excersises.map((obj) => (
-                    <div className="mt-1 p-1" style={{backgroundColor: multiple ? field.value.includes(obj.id) ? Themes.beylColor : "transparent" : field.value===obj.id ? Themes.beylColor :  "transparent", borderRadius: 20, cursor: "pointer"}} onClick = {() => {
+                    <div className="mt-3 p-1" style={{backgroundColor: multiple ? field.value.includes(obj.id) ? Themes.beylColor : "transparent" : field.value===obj.id ? Themes.beylColor :  "transparent", borderRadius: 20, cursor: "pointer"}} onClick = {() => {
                         if(multiple){
                             if(field.value.includes(obj.id)){
                                 removeFromState(obj.id) 

@@ -47,7 +47,7 @@ export const TrainingList = ({name, children, id, order, popUp, nameAdd, onDragE
             borderRadius: "20px",
             width: 400,
             height: "auto",
-            transition: "0.3s all ease"
+            transition: "0.3s all ease",
         } as React.CSSProperties
     }
 
@@ -75,7 +75,7 @@ export const TrainingList = ({name, children, id, order, popUp, nameAdd, onDragE
                             <div className="w-100 d-flex justify-content-between p-2 mouse-cursor" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} style={{cursor: "pointer"}} {...provided.dragHandleProps}>
 
                                 <Bolder><TitleInput onChange={modifyName}>{name}</TitleInput></Bolder>
-                                <RemoveIcon onClick={() => rutine ? dispatch(deleteRutineGroup(id)) : dispatch(deleteDietGroup(id))}></RemoveIcon>
+                                <RemoveIcon popUp={false} onClick={() => rutine ? dispatch(deleteRutineGroup(id)) : dispatch(deleteDietGroup(id))}></RemoveIcon>
 
                             </div>
 
@@ -86,10 +86,9 @@ export const TrainingList = ({name, children, id, order, popUp, nameAdd, onDragE
                                 <AddList styleContainer = {{marginTop: 10}}  text={nameAdd} onClick = {() => setModalShow(true)}></AddList>
                             }>
                                 <Row className="mt-2">
-                                        {
-                                        children
-                                        }
-
+                                    {
+                                    children
+                                    }
                                 </Row>
 
                             </DraggingSurface>

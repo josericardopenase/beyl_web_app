@@ -35,16 +35,14 @@ export default function ClientsGraph() {
       return <Loading></Loading>
     }
 
-    console.log(generalHistory)
-
     return (
         <ContainerGraphs col={8} title={"Atletas recientes"} >
             <Row className="align-items-center">
         {
 
             generalHistory.length > 0  ? 
-                generalHistory.map((x: any) => (
-                    <Col md={4} style={{backgroundColor: theme.colors.primary, borderRadius: 25, border: `10px ${themes.colors.secondary} solid`}} className="p-4 mt-2 d-flex justify-content-center align-items-stretch">
+                generalHistory.map((x: any, index: number) => (
+                    <Col key={index} md={4} style={{backgroundColor: theme.colors.primary, borderRadius: 25, border: `10px ${themes.colors.secondary} solid`}} className="p-4 mt-2 d-flex justify-content-center align-items-stretch">
                         <div className="d-flex justify-content-center p-3 flex-column text-center align-items-center">
                             <ProfilePicIcon size={130} url={x.user.profile_pic}></ProfilePicIcon>
                             <Title3 style={{marginTop: 20}}>{x.user.first_name + " " + x.user.last_name}</Title3>

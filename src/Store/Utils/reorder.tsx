@@ -36,12 +36,12 @@ export default function reorder(state : any, action : any ){
 
 export function reorder_excersise(state : any, action : any ){
 
+
             const item = state.list.find((obj : any) => obj.id === action.payload.id)
 
-            const slice = state.list.filter((obj : any) => obj.group === item.group)
+            console.log(item.group)
 
-
-            const nuevo_array = slice.map((obj : any) => {
+            const nuevo_array = state.list.map((obj : any) => {
                 if(obj. id === action.payload.id){
                     obj.order = action.payload.order
                     return obj
@@ -49,7 +49,7 @@ export function reorder_excersise(state : any, action : any ){
 
                 if(action.payload.order - item.order < 0){
 
-                    if(obj.order >= action.payload.order ){
+                    if(obj.order >= action.payload.order && obj.group === item.group){
                         obj.order += 1;
                         return obj;
                     }else{
@@ -58,7 +58,7 @@ export function reorder_excersise(state : any, action : any ){
                 
                 }else{
                 
-                    if(obj.order <= action.payload.order ){
+                    if(obj.order <= action.payload.order && obj.group === item.group){
                         obj.order -= 1;
                         return obj;
                     }else{
@@ -67,7 +67,5 @@ export function reorder_excersise(state : any, action : any ){
                 }
             })
 
-            slice.sort((a: any, b : any) => a.order - b.order)
-
-            return [...state.list.filter((x : any) => x.group === item.group), ...slice]
+            return state.list.sort((a: any, b : any) => a.order - b.order)
 }

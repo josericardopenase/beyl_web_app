@@ -28,8 +28,6 @@ const api = ({dispatch, getState} : any)=> (next :any) => async (action : any) =
             
             const requestPayload = payload ? payload : response.data;
 
-            console.log(requestPayload);
-
             if(onSuccess)
                 dispatch({type: onSuccess, payload: requestPayload})
             else

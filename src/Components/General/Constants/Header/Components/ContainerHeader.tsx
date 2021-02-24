@@ -7,6 +7,7 @@ export const ContainerHeader = ({children} : PropsInterfaces.IOnlyChildren) => {
     const themes = useContext(ThemeContext)
 
     const styles = {
+
         container : {
         padding: 10,
         borderRadius: 10, 
@@ -15,6 +16,7 @@ export const ContainerHeader = ({children} : PropsInterfaces.IOnlyChildren) => {
         boxShadow: "0px 0px 28px 17px rgba(0,0,0,0.10)",
         backdropFilter: "saturate(180%) blur(20px)",
         position: "relative"
+
         } as React.CSSProperties,
 
 

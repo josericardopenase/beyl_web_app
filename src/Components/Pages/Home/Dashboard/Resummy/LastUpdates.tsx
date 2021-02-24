@@ -24,8 +24,6 @@ export default function LastUpdates() {
     const themes = useThemes()
     useEffect(() => {
             dispatch(getGeneralHistory())
-    
-        
     }, []) 
 
     if(loading){
@@ -37,8 +35,6 @@ export default function LastUpdates() {
 
       )
     }
-
-    console.log(generalHistory)
 
     return (
         <ContainerGraphs col={4} title={"Ultimas publicaciones"} >

@@ -9,6 +9,7 @@ import ThemeContext from '../../../../../Store/Themes/ThemeContext'
 import * as types from '../../../../../Types/Types'
 import DraggingComponent from '../../../../General/Constants/DragAndDrop/DraggingComponent'
 import { Icon } from '../../../../General/Constants/Icons/Icon'
+import RemoveIcon from '../../../../General/Constants/Icons/RemoveIcon'
 import Input from '../../../../General/Constants/Text/Inputs/Input'
 import TitleInput from '../../../../General/Constants/Text/interactable/TitleInput'
 import { Title3 } from '../../../../General/Constants/Text/Title3'
@@ -86,17 +87,13 @@ export const Day = ({ day, index, rutine} : IProps) => {
                                 }
                             </Link>
 
-                            <div onClick = {() => setIsVisible(!isVisible)} style={{cursor: "pointer"}}>
+                            <div onClick = {() => setIsVisible(!isVisible)} style={{cursor: "pointer", marginRight: 15}}>
                                 <Icon color={active ? "white" : ""}>
                                     <FaEdit name="FaEdit" className="ml-3"></FaEdit>
                                 </Icon>
                             </div>
 
-                            <div onClick = {deleteCurrentDay} style={{cursor: "pointer"}}>
-                                <Icon color={active ? "white" : ""}>
-                                    <FaTrashAlt name="FaEdit" className="ml-3"/>
-                                </Icon>
-                            </div>
+                            <RemoveIcon onClick={deleteCurrentDay} popUp={true} color={active ? "white" : undefined}></RemoveIcon>
 
                         </div>
                     </ContainerBox>

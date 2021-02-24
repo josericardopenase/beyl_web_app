@@ -17,13 +17,11 @@ export const Athlete = ({obj} : IProps) => {
 
     const path = `${useRouteMatch().url}/${obj.id}`
     const url =  useRouteMatch(path)
-    console.log(url)
 
     const handleClick = (e : any) => {
         if("/training/" + obj.id === url?.path) e.preventDefault()
     }
 
-    console.log(url)
     return (
         <NavLink onClick={handleClick} to={{pathname : path,  state : { user :obj}}} activeClassName="bg-light"  >
             <div className="mt-3 mb-2">

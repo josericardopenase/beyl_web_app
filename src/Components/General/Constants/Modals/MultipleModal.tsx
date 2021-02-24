@@ -35,7 +35,7 @@ export default function MultipleModal({title, onFinish, children, show, onHide} 
     }
 
     return (
-        <VerticallyCenteredModal onHide = {() => { if(onHide) {onHide(); } setIndex(0) }  } show={show} title={title}
+        <VerticallyCenteredModal size="lg" onHide = {() => { if(onHide) {onHide(); } setIndex(0) }  } show={show} title={title}
         
         footer = {
             <div className = { index > 0 ? "justify-content-between d-flex w-100" : ""}>

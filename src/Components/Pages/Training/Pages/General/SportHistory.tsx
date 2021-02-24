@@ -30,16 +30,12 @@ export default function SportHistory() {
         if(athlete !== undefined){
             dispatch(getGeneralHistoryFromUser(athlete.id))
         }
-        
 
-        console.log(generalHistory)
     }, [athlete]) 
 
     if(loading){
       return <Loading></Loading>
     }
-
-    console.log(generalHistory)
 
     return (
         <ContainerGraphs col={4} title={"Historial"} >

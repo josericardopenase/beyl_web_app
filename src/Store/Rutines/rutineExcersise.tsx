@@ -31,7 +31,7 @@ const rutineExcersise = createSlice({
         reorderExcersise: (state : any, action : any) => {
 
             //reordenamiento total causa errores aqui, hay que ordenar por grupos, no por todos.
-            state.list = reorder(state, action)
+            state.list = reorder_excersise(state, action)
         },
         modifyExcersise : (state : any, action : any) => {
             const index = state.list.findIndex((group : any) => action.payload.id === group.id);

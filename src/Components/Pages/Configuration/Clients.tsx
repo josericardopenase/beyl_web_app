@@ -7,6 +7,7 @@ import { logOut, removeLocalToken } from '../../../Store/authentication'
 import { getAllCode, getNewCode } from '../../../Store/trainerCode'
 import { Icon } from '../../General/Constants/Icons/Icon'
 import ProfilePicIcon from '../../General/Constants/Icons/ProfilePicIcon'
+import RemoveIcon from '../../General/Constants/Icons/RemoveIcon'
 import SvgJoinClient from '../../General/Constants/SVGS/SvgJoinClient'
 import { Bolder } from '../../General/Constants/Text/Bolder'
 import { Title1 } from '../../General/Constants/Text/Title1'
@@ -47,8 +48,6 @@ function TrainerCode(){
     useEffect(() => {
         dispatch(getAllCode());
     }, [])
-
-    console.log(lastCode)
 
     return (
         <div className="mt-5 ">
@@ -97,10 +96,8 @@ function Client({obj} : any){
             </div>
 
 
-            <div className="mr-3" onClick={() => dispatch(deleteAthlete(obj.id))}>
-                <Icon>
-                    <FaTrash size={25}></FaTrash>
-                </Icon>
+            <div className="mr-2">
+                <RemoveIcon size={22} popUp={true}  onClick={() => dispatch(deleteAthlete(obj.id))}/>
             </div>
 
         </div>

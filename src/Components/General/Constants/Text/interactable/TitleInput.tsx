@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import useVisible from '../../../../../CustomHooks/useVisible';
 import Input from '../Inputs/Input';
 import { Title3 } from '../Title3';

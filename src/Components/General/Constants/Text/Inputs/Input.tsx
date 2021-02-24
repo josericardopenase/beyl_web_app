@@ -11,7 +11,7 @@ export default function Input(props : any) {
 
 
     const style= {
-        borderRadius: 5,
+        borderRadius: 10,
         border: 0,
         padding: "4px 10px 4px 10px",
         outline: 0,

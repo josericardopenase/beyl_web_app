@@ -11,7 +11,8 @@ interface props{
   children : any,
   footer: any,
   show : any,
-  onHide: any
+  onHide: any,
+  size ?: | "sm" | "lg" | "xl" 
 }
 
 
@@ -23,6 +24,7 @@ export default function VerticallyCenteredModal(props : props) {
      container: {
       backgroundColor: themes.colors.primary + " !important",
       color: themes.colors.textPrimary,
+      padding: 10,
       border: 0,
     } as React.CSSProperties,
     body : {
@@ -36,9 +38,9 @@ export default function VerticallyCenteredModal(props : props) {
   
     return (
       <Modal
-        show = {props.show}
-        onHide = {props.onHide}
-        size="lg"
+        show   = { props.show   }
+        onHide = { props.onHide }
+        size   = { props.size   }
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
