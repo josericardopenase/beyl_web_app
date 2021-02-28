@@ -30,7 +30,7 @@ export const Header = () => {
         } as React.CSSProperties,
         dropdown: {
 
-            backgroundColor: theme.colors.secondary,
+            backgroundColor:  theme.colors.secondary,
             position: "absolute",
             right: 0,
             top: 0,
@@ -64,7 +64,7 @@ export const Header = () => {
                 <ContainerHeader>
                 
 
-                    <NotificationCenter badge={true}/>
+{/*                     <NotificationCenter badge={true}/> */}
                     
                     <div ref={closeRef} onClick={() => setIsVisible(!isVisible)}>
                         <ProfileInfo/>
@@ -99,7 +99,9 @@ export const Header = () => {
                         <div className="d-flex align-items-center mt-3"  style={{cursor: "pointer"}}
                         onClick={() => {
                         dispatch(logOut({}))
+                        theme.setDarkMode()
                         removeLocalToken()
+                        localStorage.setItem('firstTime', 'true')
                     }}
                         
                         

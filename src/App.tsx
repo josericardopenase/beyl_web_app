@@ -41,6 +41,7 @@ function App() {
       dispatch(getProfile())
     }
 
+
   })
 
   return (

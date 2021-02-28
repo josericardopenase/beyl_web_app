@@ -16,6 +16,7 @@ import { Title3 } from '../../../../General/Constants/Text/Title3';
 import * as Yup from 'yup'
 import { useDispatch } from 'react-redux';
 import { postDietFood } from '../../../../../Store/Diets/dietFoods';
+import FormikInput from '../../../../General/Constants/Text/Inputs/FormikInput';
 
 
 const validationSchema = Yup.object().shape({
@@ -38,7 +39,7 @@ export default function AddFood(props: any) {
 
     return (
 
-        <Formik validationSchema={validationSchema} initialValues={{group : props.id, food : null , portion_unity: "gr", portion_cuantity : null}} onSubmit={(values, {resetForm}) =>  { console.log("hello"); postData(values); props.onHide(); resetForm();}}>
+        <Formik validationSchema={validationSchema} initialValues={{group : props.id, food : null , portion_unity: "gr", portion_cuantity : 0}} onSubmit={(values, {resetForm}) =>  { console.log("hello"); postData(values); props.onHide(); resetForm();}}>
         {
         
             ({values, errors, touched, handleChange, handleSubmit, isSubmitting, handleBlur}) => (
@@ -61,8 +62,8 @@ export default function AddFood(props: any) {
                     <>
                         <div className="d-flex">
 
-                            <Input type="number" name="portion_cuantity" onChange={handleChange} onBlur={handleBlur} style={{backgroundColor: theme.colors.secondary, width: "100%"}} 
-                            placeholder = {"Cantidad de ración"}></Input>
+                            <FormikInput type="number" name="portion_cuantity" style={{backgroundColor: theme.colors.secondary, width: "100%"}} 
+                            placeholder = {"Cantidad de ración"}></FormikInput>
 
                             <Title3 style={{marginRight : 10, marginLeft: 10}}>gr</Title3>
 {/*                             <Dropdown className="ml-2">
@@ -80,7 +81,6 @@ export default function AddFood(props: any) {
                             </Dropdown> */}
                         </div>
 
-                        { errors.portion_cuantity ? <TitleError>{errors.portion_cuantity}</TitleError> : null }
                     </>
                     ]
                 }

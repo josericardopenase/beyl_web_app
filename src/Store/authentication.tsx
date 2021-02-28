@@ -1,12 +1,13 @@
 import {createSlice} from '@reduxjs/toolkit'
 import * as types from '../Types/Types'
 import { callBegan, callFailed } from './apiActions';
+import { notification } from '../CustomHooks/useNotification'
 
 
 const authentication = createSlice({
     name : "auth",
     initialState : {
-        loading : true,
+        loading : false,
         user: null,
         token: null, 
         isLoggedIn : false,
@@ -15,14 +16,21 @@ const authentication = createSlice({
 
     reducers : {
         setToken: (state : any, action : any) => {
+            state.loading = false
             state.token = action.payload.token
             setLocalToken(state.token);
             state.isLoggedIn = true
         },
         setProfile: (state : any, action : any) => {
+            state.loading = false
             state.user = action.payload
         },
+        modifyProfile: (state : any, action : any) => {
+            state.loading = false
+            state.user.user = action.payload
+        },
         logOut: (state: any, action: any) => {
+            state.loading = false
             state.isLoggedIn = false
             state.user  = null
             state.token = null 
@@ -31,7 +39,11 @@ const authentication = createSlice({
             state.errors = null
             state.loading = true
         },
+        finishRequest : (state : any, action : any) => {
+            state.loading = false
+        },
         setErrors : (state : any, action: any) => {
+            state.loading = false
             state.errors = action.payload
         }
     }
@@ -52,7 +64,6 @@ export const authLogin = (email : string, password : string) => callBegan({
 
 export const authRegister = (email : string, password : string, name : string, surname: string) => callBegan({
     url : '/register_trainer/',
-    onSuccess : 'auth/setToken',
     data : {
         email : email,
         password : password,
@@ -61,7 +72,8 @@ export const authRegister = (email : string, password : string, name : string, s
     },
     method: 'post',
     onError : 'auth/setErrors',
-    onBegin : 'auth/startRequest'
+    onBegin : 'auth/startRequest',
+    onSuccess : 'auth/finishRequest'
 })
 
 export const getProfile = () => callBegan({
@@ -73,8 +85,45 @@ export const getProfile = () => callBegan({
 
 })
 
+const successNotification : notification = {
+    type : "success",
+    message: "Se ha modificado el perfil correctamente!"
+}
 
+const errorNotification : notification = {
+    type : "error",
+    message: "No se ha podido modificar el perfil"
+}
+
+export const modifyProfile = (data : any) => callBegan({
+
+    url : '/profile/edit/',
+    data: data,
+    onSuccess : 'auth/modifyProfile',
+    onError : 'auth/setErrors',
+    onBegin : 'auth/startRequest',
+    method: 'PUT',
+    notifyOnSuccess: successNotification,
+    notifyOnError: errorNotification
+
+
+})
+
+export const changePassword = (data : any) => callBegan({
+
+    url : '/profile/change_password/',
+    data: data,
+    onSuccess : 'auth/finishRequest',
+    onError : 'auth/setErrors',
+    onBegin : 'auth/startRequest',
+    method: 'PUT',
+    notifyOnSuccess: successNotification,
+    notifyOnError: errorNotification
+
+})
 const key = "token";
+
+
 
 const setLocalToken = (token : string) => {
     try{

@@ -9,8 +9,15 @@ function useVisible(initialIsVisible : any) {
   const handleClickOutside = (event : any) => {
 
     if(ref.current !== null){
-        if (ref.current && !ref.current.contains(event.target) && closeRef.current && !closeRef.current.contains(event.target)) {
-            setIsVisible(false);
+        if(closeRef.current !== null){
+          console.log(closeRef)
+          if (ref.current && !ref.current.contains(event.target) && closeRef.current && !closeRef.current.contains(event.target)) {
+              setIsVisible(false);
+          }
+        }else{
+          if (ref.current && !ref.current.contains(event.target)) {
+              setIsVisible(false);
+          }
         }
     }
   };

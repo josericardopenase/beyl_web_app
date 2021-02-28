@@ -19,6 +19,7 @@ import Themes from '../../General/Styles/Themes'
 import useThemes from '../../../CustomHooks/useThemes'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import FormikInput from '../../General/Constants/Text/Inputs/FormikInput'
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email(),
@@ -74,12 +75,10 @@ export default function Login() {
                             {
                                 ({handleChange, handleSubmit, errors}) => (
                                     <>
-                                        <Input name="email" onChange={handleChange} icon={<FaEnvelope/>} style={{padding: 10, width : "100%", maxWidth: "600px"}} placeholder="Correo" primary={true}></Input>
-                                        { errors.email ? <TitleError>{errors.email}</TitleError> : null}
-                                        <div className="mt-3">
-                                            <Input name="password" onChange={handleChange} type="password" icon = {<FaLock></FaLock>} style={{padding: 10, width : "100%",   maxWidth: "600px"}} placeholder="contraseña" primary={true}></Input>
-                                            { errors.password ? <TitleError>{errors.password}</TitleError> : null}
+                                        <div className="mb-3">
+                                            <FormikInput name="email" onChange={handleChange} icon={<FaEnvelope/>} style={{padding: 10, width : "100%", maxWidth: "900px"}} placeholder="Correo" primary={true}></FormikInput>
                                         </div>
+                                        <FormikInput name="password" onChange={handleChange} type="password" icon = {<FaLock></FaLock>} style={{padding: 10, width : "100%",   maxWidth: "600px"}} placeholder="contraseña" primary={true}></FormikInput>
 
                                         <Row>
 
@@ -113,7 +112,7 @@ export default function Login() {
                     </motion.div>
                 </Col>
 
-                <Col style={imageStyle} className="d-flex flex-column justify-content-center align-items-center">
+                <Col style={imageStyle} className="d-none d-md-flex flex-column justify-content-center align-items-center ">
                     <motion.div
                     
                         initial={{opacity: 0, y : 400}}

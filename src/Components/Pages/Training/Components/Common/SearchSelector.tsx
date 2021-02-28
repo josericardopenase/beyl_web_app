@@ -32,6 +32,7 @@ export default function SearchSelector({apiFunction, name, multiple, element} : 
     const [page, setPage] = useState(1);
     const [state, setState] = useState<any>(multiple ? [] : null)
     const [more, setMore] = useState(true)
+    const [search, setSearch] = useState<any>(null);
 
     const formik = useFormikContext()
 
@@ -54,15 +55,25 @@ export default function SearchSelector({apiFunction, name, multiple, element} : 
 
     useEffect(() => {
 
-        console.log(page)
-        apiExcersises.request(text, page);
+        apiExcersises.request(text, page)
 
     }, [page])
 
     useEffect(() => {
 
-        setPage(1);
-        apiExcersises.request(text, page);
+
+
+
+        if(search){
+            clearTimeout(search)
+        }
+
+        console.log(page)
+
+        setSearch(setTimeout(() =>{
+            setPage(1);
+            apiExcersises.request(text, page)
+        }, 200))
 
     }, [text])
 

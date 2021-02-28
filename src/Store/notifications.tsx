@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit'
+import {createAction, createSlice} from '@reduxjs/toolkit'
 
 
 let id = 0;
@@ -7,7 +7,8 @@ const notifications = createSlice({
     name : "notifications",
     initialState : {
         loading : false,
-        queue : []
+        queue : [],
+        popup : null,
     },
     reducers : {
         addNotification: (state : any, action : any) => {
@@ -19,13 +20,22 @@ const notifications = createSlice({
             //remove notification
             state.queue.shift();
         },
+        showPopUp: (state : any, action: any) => {
+            if(state.popup === null){
+                state.popup = action.payload
+            }
+        },
+        closePopUp : (state : any) => {
+            state.popup = null 
+        }
     }
 });
 
 
 
 
+export const pushNotification = createAction<any>("notification/pushNotification")
 
 export const name = notifications.name
-export const {addNotification, shiftNotification} = notifications.actions
+export const {addNotification, shiftNotification, showPopUp, closePopUp} = notifications.actions
 export default notifications.reducer

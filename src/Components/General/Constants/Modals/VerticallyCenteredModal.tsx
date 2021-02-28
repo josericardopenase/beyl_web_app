@@ -12,7 +12,8 @@ interface props{
   footer: any,
   show : any,
   onHide: any,
-  size ?: | "sm" | "lg" | "xl" 
+  size ?: | "sm" | "lg" | "xl" ,
+  animated ?: boolean
 }
 
 
@@ -28,7 +29,7 @@ export default function VerticallyCenteredModal(props : props) {
       border: 0,
     } as React.CSSProperties,
     body : {
-      borderRadius: 15,
+      borderRadius: 25,
       backgroundColor: themes.colors.primary,
       color: themes.colors.textPrimary,
       border: 0
@@ -43,6 +44,7 @@ export default function VerticallyCenteredModal(props : props) {
         size   = { props.size   }
         aria-labelledby="contained-modal-title-vcenter"
         centered
+        animation= {props.animated ? false : true}
       >
         <div style={styles.body} >
         
@@ -51,6 +53,7 @@ export default function VerticallyCenteredModal(props : props) {
           {
             props.title
           }
+          <div></div>
 
           <CloseButton onClick={() => props.onHide()}></CloseButton>
           </Modal.Title>

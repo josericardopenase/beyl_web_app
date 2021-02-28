@@ -1,14 +1,20 @@
 import { useDispatch, useSelector, useStore } from "react-redux"
 import React, {useState, useEffect} from 'react'
-import { addNotification, shiftNotification } from "../Store/notifications"
+import * as nt from "../Store/notifications"
 
-interface notification{
+export interface notification{
     message : string,
     type : 
     "danger" |
     "information" |
     "error" |
     "success"
+}
+
+export interface popUp{
+    image : any,
+    title : any,
+    body : any
 }
 
 
@@ -21,22 +27,22 @@ export default function useNotification(){
 
     const pushNotification = (notification : notification) => {
 
-        many++;
-
-        setTimeout(() => {
-        
-            dispatch(addNotification(notification));
-
-            setTimeout(() => {
-
-                dispatch(shiftNotification({}))
-
-            }, notificationTime)
-        
-        }, notificationTime * (many - 1) + 600 * many)
+        dispatch(nt.pushNotification(notification));
 
     }
 
-    return { pushNotification }
+    const addPopUp = (popUp  : popUp ) => {
+
+        dispatch(nt.showPopUp(popUp))
+
+    }
+
+    const closePopUp = (popUp  : popUp ) => {
+
+        dispatch(nt.closePopUp())
+
+    }
+
+    return { pushNotification, addPopUp, closePopUp }
 
 }

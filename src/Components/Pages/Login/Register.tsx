@@ -20,14 +20,17 @@ import * as Yup from 'yup'
 import TitleError from '../../General/Constants/Text/TitleError'
 import ContainerBox from '../../General/Containers/ContainerBox'
 import { Title2 } from '../../General/Constants/Text/Title2'
-import { FaArrowLeft, FaCheck, FaFire, FaPlus, FaTelegram, FaTelegramPlane } from 'react-icons/fa'
+import { FaArrowLeft, FaCheck, FaCross, FaFire, FaPlus, FaRegTimesCircle, FaTelegram, FaTelegramPlane } from 'react-icons/fa'
 import { authRegister } from '../../../Store/authentication'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import  athletes  from '../../../Api/apiAthletes'
 import { AnimatePresence, motion } from 'framer-motion'
 import SvgRegisterFinish from '../../General/Constants/SVGS/SvgRegisterFinish'
 import { Icon } from '../../General/Constants/Icons/Icon'
 import { Link } from 'react-router-dom'
+import Loading from '../../General/Constants/Loading/Loading'
+import RegisterFlow from '../../General/Constants/SVGS/RegisterFlow'
+import PlaceHolderEmail from '../../General/Constants/SVGS/PlaceholderEmail'
 
 function RegisterPoint({numero, titulo, menu, first} : any){
 
@@ -134,11 +137,18 @@ export default function Register() {
     const [number, setNumber] = useState(1)
     const [emailErrors, setEmailErrors] = useState<string>()
     const dispatch = useDispatch()
+    const auth = useSelector((state : any) => state.auth)
 
     const validations = [
+        null
+        ,
         Yup.object().shape({
             email: Yup.string().required().email(),
-            password : Yup.string().required().min(8).max(20),
+            password : Yup.string().required().label("Password").matches(
+                         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/,
+                       "Tiene que tener una mayúscula, al menos un  \n número y mínimo 8 ca      rácteres"
+                )
+             ,
             confirmpassword: Yup.string().required().when("password", {
                 is: (val : any) => (val && val.length > 0 ? true : false),
                 then: Yup.string().oneOf(
@@ -156,6 +166,21 @@ export default function Register() {
 
 
     const menu = ({handleChange, handleBlur, handleSubmit, values, errors } : FormikProps<any>) => [
+            <motion.div 
+            initial= {{y: 160, opacity: 0}}
+                    animate={{y : 0, opacity: 1}} 
+                    transition = {{duration: 0.4}}
+                    exit={{y: -200, opacity: 0}}
+                    
+                    key={0}
+            className="d-flex flex-column w-100 align-items-center">
+                    <Title1 style={{textAlign: "center"}}><Bolder>Bienvenido a la <span style={{color: Themes.beylColor}}>beta gratuita </span>de Beyl</Bolder></Title1>
+                    <Title2 color="secondary" style={{textAlign: "center", marginTop: 20, marginBottom: 70}}>¿Cómo funciona?</Title2>
+
+                    <RegisterFlow></RegisterFlow>
+ 
+                <ButtonMain onClick={handleSubmit} enabled={false} style={{maxWidth: 500, width: "100%", borderRadius: "100px", textAlign: "center", marginTop: "40px"}}>Siguiente</ButtonMain>
+            </motion.div>,
 
             <motion.div 
             initial= {{y: 160, opacity: 0}}
@@ -195,9 +220,9 @@ export default function Register() {
             <TitleErrorRegister error={errors.name}/>
             <InputBox name="surname" value={values.surname} onChange={handleChange} placeholder="apellidos..."></InputBox>
             <TitleErrorRegister error={errors.surname}/>
-            <ButtonMain onClick={handleSubmit} style={{maxWidth: 500, width: "100%", borderRadius: "100px", textAlign: "center", marginTop: "100px"}}>Siguiente</ButtonMain>
+            <ButtonMain icon={<FaFire size={22}></FaFire>} onClick={handleSubmit} style={{maxWidth: 500, width: "100%", borderRadius: "100px", textAlign: "center", marginTop: "55px"}}>Crear cuenta</ButtonMain>
         </motion.div>,
-        <motion.div
+/*         <motion.div
         
             initial= {{y: 160, opacity: 0}}
                     animate={{y : 0, opacity: 1}} 
@@ -217,7 +242,7 @@ export default function Register() {
 
         </motion.div>
 
-        ,
+        , */
 
             <motion.div 
             initial= {{y: 160, opacity: 0}}
@@ -228,23 +253,51 @@ export default function Register() {
                     key={4}
             
             className="d-flex flex-column w-100 align-items-center" style={{maxWidth: "600px"}}>
-            <Title1 style={{textAlign: "center"}}>Genial, <Bolder>{values.name}</Bolder></Title1>
-            <Title3 style={{textAlign: "center", marginTop: 20, marginBottom: 40}}>¡{values.name}! <span style={{fontWeight: 600, color : Themes.beylColor}}>necesitamos tu ayuda</span>, con el fin de adaptar Beyl a tus necesidades, nos sería de gran ayuda que te unieras a nuestro<span style={{fontWeight: 600, color : Themes.beylColor}}> grupo de telegram</span> para "Founders".</Title3>
-            <SvgRegisterFinish></SvgRegisterFinish>
-            <a target="blank" className="w-100 m-0 p-0 d-flex justify-content-center" href={"http://t.me/joinchat/IJEwQVrG3AVyw8R9"}>
-                <ButtonMain icon={<FaTelegramPlane size={25}/>} style={{maxWidth: 500, width: "100%", borderRadius: "100px", textAlign: "center", marginTop: "100px", backgroundColor: "#0088CC"}}>Unirme al grupo</ButtonMain>
-            </a>
-            <ButtonMain icon={<FaFire size={22}></FaFire>} onClick={handleSubmit} style={{maxWidth: 500, width: "100%", borderRadius: "100px", textAlign: "center", marginTop: "15px"}}>Crear cuenta</ButtonMain>
-        </motion.div>
+            {
+
+                auth.loading ?
+
+                <div>
+
+                    <Loading></Loading>
+
+                </div>
+
+                :
+
+                auth.errors ?
+
+                <>
+                    <FaRegTimesCircle size={250} color="#de3c3c"></FaRegTimesCircle>
+                    <Title1 style={{textAlign: "center", marginTop: 40}}><Bolder>Algo ha salido mal</Bolder></Title1>
+                    <Title3 style={{textAlign: "center", marginTop: 20, marginBottom: 40}}>Ha ocurrido un error inesperado, registrate denuevo o intentalo mas tarde</Title3>
+                </>
+            
+                :
+
+                <>
+                    <Title1 style={{textAlign: "center"}}>Genial, <Bolder>{values.name}</Bolder></Title1>
+                    <Title3 style={{textAlign: "center", marginTop: 20, marginBottom: 40}}>Te aceptaremos dentro de poco, cuando lo hagamos te <span style={{fontWeight: 600, color : Themes.beylColor}}> enviaremos un email</span></Title3>
+                    <PlaceHolderEmail></PlaceHolderEmail>
+{/*                     <a target="blank" className="w-100 m-0 p-0 d-flex justify-content-center" href={"http://t.me/joinchat/IJEwQVrG3AVyw8R9"}>
+                        <ButtonMain icon={<FaTelegramPlane size={25}/>} style={{maxWidth: 500, width: "100%", borderRadius: "100px", textAlign: "center", marginTop: "100px", backgroundColor: "#0088CC"}}>Unirme al grupo</ButtonMain>
+                    </a> */}
+                    <Link to="/login" className="w-100 d-flex justify-content-center">
+                        <ButtonMain enabled={false} style={{maxWidth: 500, width: "100%", borderRadius: "100px", textAlign: "center", marginTop: "100px"}}>Terminar</ButtonMain>
+                    </Link>
+                </>
+            }
+        </motion.div>,
+
 
     ]
 
     const next = async (data : any, bag : any) => {
         console.log(number)
 
-        if(4 > number){
+        if(3 > number){
 
-            if(number === 1){
+            if(number === 2){
 
                 try{
                     console.log("hello")
@@ -264,11 +317,18 @@ export default function Register() {
 
             setNumber(number + 1)
 
-        }else{
+        }else if(number === 3){
             bag.setTouched({});
             console.log(data)
             dispatch(authRegister(data.email, data.password, data.name, data.surname))
+
             console.log(data)
+
+            setNumber(number + 1)
+
+        }else{
+
+            setNumber(number + 1)
 
         }
 
@@ -294,9 +354,9 @@ export default function Register() {
                     <div className="mt-5 align-items-center">
 
                         <span style={{backgroundColor: theme.colors.textPrimary, width:2, height:220, position: "absolute", marginLeft: 44, zIndex: -1, marginTop: 20}}></span>
-                        <RegisterPoint numero = {1} titulo = {"Cuenta"} menu={number} ></RegisterPoint>
-                        <RegisterPoint numero = {2} titulo = {"Tu información"} menu = {number}></RegisterPoint>
-                        <RegisterPoint numero = {3} titulo = {"Elige tu plan"} menu = {number}></RegisterPoint>
+                        <RegisterPoint numero = {1} titulo = {"Bienvenido"} menu={number} ></RegisterPoint>
+                        <RegisterPoint numero = {2} titulo = {"Cuenta"} menu = {number}></RegisterPoint>
+                        <RegisterPoint numero = {3} titulo = {"Tus datos"} menu = {number}></RegisterPoint>
                         <RegisterPoint numero = {4} titulo = {"Comienza a entrenar"} menu = {number}></RegisterPoint>
 
                     </div>

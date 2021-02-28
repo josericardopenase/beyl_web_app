@@ -75,7 +75,7 @@ export const TrainingList = ({name, children, id, order, popUp, nameAdd, onDragE
                             <div className="w-100 d-flex justify-content-between p-2 mouse-cursor" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} style={{cursor: "pointer"}} {...provided.dragHandleProps}>
 
                                 <Bolder><TitleInput onChange={modifyName}>{name}</TitleInput></Bolder>
-                                <RemoveIcon popUp={false} onClick={() => rutine ? dispatch(deleteRutineGroup(id)) : dispatch(deleteDietGroup(id))}></RemoveIcon>
+                                <RemoveIcon popUp={true} onClick={() => rutine ? dispatch(deleteRutineGroup(id)) : dispatch(deleteDietGroup(id))}></RemoveIcon>
 
                             </div>
 

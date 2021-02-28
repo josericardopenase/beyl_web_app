@@ -10,6 +10,10 @@ interface IProps{
 
 export default function TitleError({children, style} : IProps) {
     return (
-        <Title4 color="#e82727" style={{marginTop: 10, ...style}}><FaBug></FaBug> {children}</Title4>
+            
+                children ? 
+            <Title4 color="#e82727" style={{marginTop: 10, ...style}}><FaBug></FaBug> {children}</Title4>
+            :null
+            
         )
 }

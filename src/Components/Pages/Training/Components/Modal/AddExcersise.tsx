@@ -19,6 +19,7 @@ import { postRutineExcersise } from '../../../../../Store/Rutines/rutineExcersis
 import * as Yup from 'yup'
 import TitleError from '../../../../General/Constants/Text/TitleError';
 import RutineExcersiseSearch from '../Common/SearchComponents/RutineExcersiseSearch';
+import FormikTextArea from '../../../../General/Constants/Text/Inputs/FormikTextArea';
 
 const validationSchema = Yup.object().shape({
     excersise: Yup.array().required().min(1),
@@ -60,11 +61,10 @@ export default function AddExcersise(props: any) {
                     ,
 
                     <>
-                        <TextArea name = "series" onChange={handleChange} onBlur={handleBlur} 
-                        placeholder = {"Series, repeticiones etc..."}></TextArea>
-                        { errors.series ? <TitleError>{errors.series}</TitleError> : null }
-                        <TextArea name={"anotation"} onChange={handleChange} onBlur={handleBlur} value={values.anotation} placeholder="Anotaciones"></TextArea>
-                        { errors.anotation ? <TitleError>{errors.anotation}</TitleError> : null }
+
+                        <FormikTextArea name = "series" placeholder = {"Series, repeticiones etc..."}></FormikTextArea>
+                        <FormikTextArea name = "anotation" placeholder = {"Anotaciones"}></FormikTextArea>
+
                     </>
                     ]
                 }

@@ -23,7 +23,10 @@ import Themes from '../../Components/General/Styles/Themes';
 import Clients from '../../Components/Pages/Configuration/Clients';
 import { logOut, removeLocalToken } from '../../Store/authentication';
 import Profile from '../../Components/Pages/Configuration/Profile';
+import Apariencia from '../../Components/Pages/Configuration/Apariencia';
 import { motion } from 'framer-motion';
+import SeparationBar from '../../Components/General/Constants/GeneralPropose/SeparationBar';
+import Privacidad from '../../Components/Pages/Configuration/Privacidad';
 
 
 function ConfigMenu({name, to } : any){
@@ -34,11 +37,18 @@ function ConfigMenu({name, to } : any){
 
 
     return (
-        <Link to={to}>
-            <div onMouseEnter={() => setHighlight(true)} onMouseLeave={() => setHighlight(false)} className="mt-2" style={{borderRadius: 10, backgroundColor:  to  === url?.path || highlight ? themes.colors.secondary : "", padding: "0.8rem 1rem", transition: "0.2s all ease"}}>
-                <Title4>{name}</Title4>
-            </div>
-        </Link>
+            to
+            ?
+            <Link to={to}>
+                <div onMouseEnter={() => setHighlight(true)} onMouseLeave={() => setHighlight(false)} className="mt-2" style={{borderRadius: 10, backgroundColor:  to  === url?.path || highlight ? themes.colors.secondary : "", padding: "0.8rem 1rem", transition: "0.2s all ease"}}>
+                    <Title4>{name}</Title4>
+                </div>
+            </Link>
+            :
+
+                <div onMouseEnter={() => setHighlight(true)} onMouseLeave={() => setHighlight(false)} className="mt-2" style={{borderRadius: 10, backgroundColor:  to  === url?.path || highlight ? themes.colors.secondary : "", padding: "0.8rem 1rem", transition: "0.2s all ease"}}>
+                    <Title4>{name}</Title4>
+                </div>
     )
 
 }
@@ -77,8 +87,14 @@ export default function RoutesConfig(props : any) {
                 <div className="mt-4">
                     <ConfigMenu  to={url + '/clientes'} name="Gestión de clientes"></ConfigMenu>
                     <ConfigMenu to={url + '/perfil'} name="Perfil"></ConfigMenu>
+                    <SeparationBar></SeparationBar>
+                    <ConfigMenu to={url + '/apariencia'} name="Apariencia"></ConfigMenu>
 
+                    <ConfigMenu to={url + '/privacidad'} name="Privacidad y seguridad"></ConfigMenu>
+
+                    <SeparationBar></SeparationBar>
                     <div className="mt-4 d-flex pl-3 transform-right-hover"  onClick={() => {
+                        themes.setDarkMode()
                         dispatch(logOut({}))
                         removeLocalToken()
                     }}>
@@ -95,10 +111,12 @@ export default function RoutesConfig(props : any) {
                 
                     <Route path={`${url}/clientes`} component={Clients}></Route>
                     <Route path={`${url}/perfil`} component={Profile}></Route>
-
+                    <Route path={`${url}/apariencia`} component={Apariencia}></Route>
+                    <Route path={`${url}/privacidad`} component={Privacidad}></Route>
+{/* 
                     <Route path="/">
                         <Redirect to={`${url}/clientes`} />
-                    </Route>
+                    </Route> */}
 
             </ContainerSidebarSelector>
 

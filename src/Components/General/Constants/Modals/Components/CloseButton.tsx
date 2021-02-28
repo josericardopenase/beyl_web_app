@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaTimes } from 'react-icons/fa'
+import { VscClose } from 'react-icons/vsc'
 import { Icon } from '../../Icons/Icon'
 
 interface props{
@@ -8,9 +8,9 @@ interface props{
 
 export default function CloseButton({onClick} : props) {
     return (
-        <div onClick={onClick}>
+        <div onClick={onClick} className="text-right" style={{cursor: "pointer"}}>
             <Icon>
-                <FaTimes/>
+                <VscClose size={30}/>
             </Icon>
         </div>
    )

@@ -29,14 +29,13 @@ export const RutineDay = (props : any) => {
     
         <div  className="flex-nowrap m-0 p-0" style={{overflowX: 'auto', whiteSpace : "nowrap"}}>
 
-                <DraggingSurface direction="horizontal" className="row flex-nowrap m-0 p-0" style={{overflowX: 'auto', whiteSpace : "nowrap", width: "100%"}} 
+                <DraggingSurface direction="horizontal" className="row flex-nowrap m-0 p-0" style={{overflow: 'auto', whiteSpace : "nowrap", width: "100%", maxHeight: "100%"}} 
                 final={ 
                     <AddList onClick={() => dispatch(postRutineGroup({day : rutineDay}))} styleText = {{padding: "0px 10px 0px 10px"}} text={"Añade lista de ejercicios"}></AddList>
                 }
 
                 onDragEnd={
                     (action : any)=> {
-                            console.log(action)
                             dispatch(reorderGroup(parseInt(action.draggableId), store.getState().training.rutine.group.list[action.destination.index].order))
                     }
 
