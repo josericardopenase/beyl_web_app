@@ -27,9 +27,9 @@ export const DietFood = ({obj, index} : any) => {
             <Row className="align-items-center p-2">
                 <Col md={12}>
                     <div className="d-flex justify-content-between align-items-stretch w-100">
-                        <div className="d-flex justify-content-center align-items-center mb-2">
-                            <Title3><Bolder>{obj.food.name}</Bolder></Title3>
-                            <Title4 color="secondary" style={{marginLeft: 10}}>| {obj.portion_cuantity} {obj.portion_unity}</Title4>
+                        <div className="d-flex justify-content-center  mb-2">
+                            <Title3 style={{marginBottom: "0.5rem", wordBreak: "break-word", whiteSpace: "break-spaces"}}><Bolder>{obj.food.name}</Bolder></Title3>
+                            <Title4 color="secondary" style={{marginLeft: 15, marginTop: 4, marginRight: 10}}>| {obj.portion_cuantity} {obj.portion_unity}</Title4>
                         </div>
                         <div className="p-1 d-flex flex-column justify-content-between">
 

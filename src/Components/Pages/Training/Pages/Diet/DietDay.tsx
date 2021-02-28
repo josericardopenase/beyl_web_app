@@ -57,7 +57,7 @@ export const DietDay = (props : any) => {
 
     return (
     
-        <div  className="flex-nowrap m-0 p-0" style={{overflowX: 'auto', whiteSpace : "nowrap"}}>
+        <div  className="flex-nowrap p-0" style={{overflowX: 'auto', whiteSpace : "nowrap",  marginBottom: "50px"}}>
 
 
             
