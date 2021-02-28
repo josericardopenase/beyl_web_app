@@ -91,12 +91,12 @@ export const Routes = () => {
 
                             <Route path="/config" component={RoutesConfig}></Route>
 
-{/*                             <Route path="/">
+                            <Route path="/">
                                 <motion.div exit="undefined">
                                     <Redirect to="/home" />
                                 </motion.div>
                             </Route>  
- */}
+
                         </Switch>
                     </AnimatePresence>
                     <NotificationCenter></NotificationCenter>

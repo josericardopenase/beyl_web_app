@@ -13,7 +13,7 @@ const ThemeProvider = ({children} : Props) => {
 
     useEffect(() => {
 
-        const storeTheme = localStorage.getItem('theme')
+        const storeTheme = localStorage.getItem('theme') || 'dark'
 
         console.log(storeTheme)
 

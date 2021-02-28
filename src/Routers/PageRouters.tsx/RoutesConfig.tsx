@@ -96,6 +96,7 @@ export default function RoutesConfig(props : any) {
                     <div className="mt-4 d-flex pl-3 transform-right-hover"  onClick={() => {
                         themes.setDarkMode()
                         dispatch(logOut({}))
+                        localStorage.setItem('firstTime', 'true')
                         removeLocalToken()
                     }}>
                         
@@ -113,10 +114,10 @@ export default function RoutesConfig(props : any) {
                     <Route path={`${url}/perfil`} component={Profile}></Route>
                     <Route path={`${url}/apariencia`} component={Apariencia}></Route>
                     <Route path={`${url}/privacidad`} component={Privacidad}></Route>
-{/* 
+
                     <Route path="/">
                         <Redirect to={`${url}/clientes`} />
-                    </Route> */}
+                    </Route>
 
             </ContainerSidebarSelector>
 
