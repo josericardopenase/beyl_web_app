@@ -4,7 +4,9 @@ export function MetabolismoBasal(peso : number, altura : number, edad : number, 
 
     let sport = 1.5
 
-    switch(sport_amount){
+    console.log(sport_amount)
+
+    switch(sport_amount.toUpperCase()){
         case 'NE':
             sport = 1.2 
             break;
@@ -23,7 +25,9 @@ export function MetabolismoBasal(peso : number, altura : number, edad : number, 
         
     }
 
-    return Math.round((10 * peso) + (6.25 * altura) - (5 * edad) + (sexo === "hombre" ? 5 : -161) * 1.5 * sport)
+    console.log(sport)
+
+    return Math.round(((10 * peso) + (6.25 * altura) - (5 * edad) + (sexo.toLowerCase() === "hombre" ? 5 : -161)) * sport)
 
 }
 

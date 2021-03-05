@@ -375,7 +375,6 @@ export default function Register() {
                             <Icon>
                                 <FaArrowLeft size={30}></FaArrowLeft>
                             </Icon>
-                            <Title3 style={{marginLeft: 15}}>Volver al login</Title3>
                         </motion.div>
                     </Link>
                     <div className="w-100 p-3 d-flex flex-column align-items-center justify-content-center" style={{height: "99vh"}}>
