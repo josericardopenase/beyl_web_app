@@ -10,6 +10,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useRouteMatch } from 'react-router-dom'
 import { getArticles } from '../../../../Store/articles'
 import ReactHtmlParser  from 'react-html-parser';
+import useThemes from '../../../../CustomHooks/useThemes'
+import { FaArrowLeft } from 'react-icons/fa'
+import { motion } from 'framer-motion'
 export const Article = () => {
 
 
@@ -17,6 +20,7 @@ export const Article = () => {
     const dispatch = useDispatch()
     const loading = useSelector((state : any) => state.articles.loading)
     const articles = useSelector((state : any) => state.articles.list.find((x : any) => x.id == urlParams ))
+    const theme = useThemes();
 
     useEffect( () => {
 
@@ -49,10 +53,24 @@ export const Article = () => {
 
     return (
         <Container className ="mt-5">
+
+        <Link to="/home">
+            <motion.div
+            
+                        whileHover={{ x: -10.05 }}
+
+
+            className="d-flex mb-4 " style={{cursor: "pointer"}}>
+                <FaArrowLeft color={theme.colors.textPrimary} size={25} style={{marginRight: 20}}/>
+                <Title3>Volver atrás</Title3>
+            </motion.div>
             <Title1><Bolder>{articles.title}</Bolder></Title1>
+        </Link>
+            <div style={{width: "100%", justifyContent: "center", display: "flex", marginTop: 30}}>
+                <img src={articles.image} width="100%"  height={350} style={{objectFit: "cover", borderRadius: 20}}></img>
+            </div>
 
-
-                <div className="text-light mt-5 rich-text">{ReactHtmlParser(articles.texto)}</div>
+            <div className="mt-5" style={{color: theme.colors.textPrimary}}>{ReactHtmlParser(articles.texto)}</div>
         </Container>
     )
 }

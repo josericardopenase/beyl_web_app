@@ -45,7 +45,7 @@ export default function FitnessData() {
             <Row>
 
                 <Col>
-                    <DataDisplay icon = {<FaWeight></FaWeight>} value={athlete.weight + " kg"}></DataDisplay>
+                    <DataDisplay icon = {<FaWeight></FaWeight>} value={Math.round(athlete.weight * 100)/100 + " kg"}></DataDisplay>
                     <DataDisplay icon = {<FaRuler></FaRuler>} value={athlete.height + " cm"}></DataDisplay>
                     <DataDisplay icon={<FaRunning></FaRunning>} value={getAmountExcersise(athlete.amount_excersise)}></DataDisplay>
                 </Col>

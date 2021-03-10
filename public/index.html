@@ -26,6 +26,9 @@
     -->
     <script>
       console.log(window.location.protocol)
+        if(window.location.hostname === "localhost:3000"){
+          return;
+        }
         if(window.location.protocol === "http:" || window.locaiton.protocol === "http"){
           if(location.protocol.slice(-1)==":")
           { 

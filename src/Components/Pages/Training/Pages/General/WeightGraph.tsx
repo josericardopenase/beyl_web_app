@@ -35,9 +35,10 @@ export default function WeightGraph() {
       
     return (
         <ContainerGraphs col={8} title={"Evolución de peso"}>
-            <ResponsiveContainer width="99%" height={350}>
+            <div className="w-100 d-flex justify-content-center">
+            <ResponsiveContainer width="100%" height={450}>
                 <LineChart
-                        data={weightHistory.reverse()}
+                        data={weightHistory.reverse().map((x : any) => {return {...x, data: Math.round(x.data * 100)/100};})}
                         margin={{
                         top: 5, right: 30, left: -14, bottom: 5,
                         }}
@@ -46,11 +47,12 @@ export default function WeightGraph() {
                             margin={{top: 10}}
                         />
                         <XAxis dataKey="created" fontSize={10}/>
-                        <YAxis domain={[40,80]} unit="Kg"/>
+                        <YAxis domain={[Math.min(weightHistory.map((x : any) => Math.round(x.data * 10)/10)),Math.max(weightHistory.map((x : any) => Math.round(x.data * 10)/10))]} unit="kg" fontSize={12}/>
                         <Tooltip contentStyle={{backgroundColor: themes.colors.primary, borderRadius: 10, border : 0}} labelStyle={{color: themes.colors.textPrimary}} />
                         <Line type="monotone" dataKey="data" name="peso" unit="Kg" stroke="#ffc600" activeDot={{ r: 8, }} strokeWidth={5} />
                     </LineChart>
                 </ResponsiveContainer>
+            </div>
         </ContainerGraphs>
     )
 }
