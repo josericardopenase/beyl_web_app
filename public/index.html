@@ -25,8 +25,9 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <script>
-
-        window.location.protocol = "https";
+        if(window.location.protocol === "http"){
+          window.location.protocol = "https";
+        }
     </script>
     <title>Beyl App</title>
   </head>
