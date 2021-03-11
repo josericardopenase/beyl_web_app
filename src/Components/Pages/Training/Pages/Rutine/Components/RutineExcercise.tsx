@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { Bolder } from '../../../../../General/Constants/Text/Bolder'
 import { Title3 } from '../../../../../General/Constants/Text/Title3'
@@ -9,13 +9,33 @@ import ModifyExcersise from '../../../Components/Modal/ModifyExcersise'
 import DayElement from '../../../Components/Common/DayElement'
 import { RutineExcersise } from '../../../../../../Types/Types'
 import { Title2 } from '../../../../../General/Constants/Text/Title2'
-import { FaPlus } from 'react-icons/fa'
+import { FaPlus, FaPlay } from 'react-icons/fa'
 import { Icon } from '../../../../../General/Constants/Icons/Icon'
 import RemoveIcon from '../../../../../General/Constants/Icons/RemoveIcon'
 import AnotationIcon from '../../../../../General/Constants/Icons/AnotationIcon'
 import { useDispatch } from 'react-redux'
 import { deleteRutineExcersise } from '../../../../../../Store/Rutines/rutineExcersise'
 import { patchRutineExcersise } from '../../../../../../Store/Rutines/rutineExcersise'
+
+
+function ImageExcersise({src} : any){
+
+    const [select, setSelected] = useState<boolean>(false);
+
+    return (
+
+        <Col md={4} style={{cursor: "pointer"}} className="justify-content-stretch d-flex position-relative justify-content-center align-items-center" onMouseEnter={() => setSelected(true)} onMouseLeave={() => setSelected(false)}>
+            <img style={{borderRadius: "20px", objectFit: "cover", width: "100%", minHeight: "80px", filter: select ? "brightness(30%)" : "brightness(100%)", transition: "0.2s all ease"}} src={src} />
+            {
+                select ?
+
+                <FaPlay size={30} color="white" style={{zIndex: 700, position: "absolute"}}></FaPlay>
+                :
+                null
+            }
+        </Col>
+    )
+}
 
 export const RutineExcercise = ({obj, index} : any) => {
 
@@ -34,11 +54,6 @@ export const RutineExcercise = ({obj, index} : any) => {
             muscles : "Chess",
             description: "",
         }
-
-
-
-
-
     } 
 
 
@@ -52,9 +67,7 @@ export const RutineExcercise = ({obj, index} : any) => {
             obj.excersise.length == 1? 
             <Row className="align-items-stretch d-flex justify-content-stretch">
 
-                <Col md={4}>
-                    <img style={{borderRadius: "20px", objectFit: "cover", width: "100%", height: 80 }} src={obj.excersise[0].image} />
-                </Col>
+                <ImageExcersise src={obj.excersise[0].image} />
                 
                 <Col md={8} className="d-flex align-items-stretch">
                     <div className="d-flex justify-content-between align-items-stretch w-100">
@@ -112,9 +125,8 @@ export const RutineExcercise = ({obj, index} : any) => {
                                 null
                                 }
                                 <Row className="align-items-center mt-2">
-                                    <Col md={4}>
-                                        <img style={{borderRadius: "20px", objectFit: "cover", width: "100%", height: 80 }} src={obj.image} />
-                                    </Col>
+
+                                    <ImageExcersise src={obj.image} />
                                     
                                     <Col md={8}>
                                         <Title3 style={{marginBottom: "0.5rem", wordBreak: "break-word", whiteSpace: "break-spaces"}}><Bolder>{obj.name}</Bolder></Title3>
