@@ -9,6 +9,7 @@ import useThemes from '../../../../../CustomHooks/useThemes';
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import { getWeightHistoryFromUser } from '../../../../../Store/weightHistory';
 import Loading from '../../../../General/Constants/Loading/Loading';
+import { DateToSpanishDate } from '../../../../General/Utils/TextUtils';
 
 export default function WeightGraph() {
 
@@ -38,7 +39,7 @@ export default function WeightGraph() {
             <div className="w-100 d-flex justify-content-center">
             <ResponsiveContainer width="100%" height={450}>
                 <LineChart
-                        data={weightHistory.reverse().map((x : any) => {return {...x, data: Math.round(x.data * 100)/100};})}
+                        data={weightHistory.reverse().map((x : any) => {return {...x, data: Math.round(x.data * 100)/100, created: DateToSpanishDate(x.created) };})}
                         margin={{
                         top: 5, right: 30, left: -14, bottom: 5,
                         }}

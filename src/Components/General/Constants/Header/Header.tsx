@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { useState } from 'react'
+import { CloseButton } from 'react-bootstrap'
 import { FaCog, FaSignOutAlt } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -8,6 +9,7 @@ import useVisible from '../../../../CustomHooks/useVisible'
 import { logOut, removeLocalToken } from '../../../../Store/authentication'
 import ContainerBox from '../../Containers/ContainerBox'
 import Themes from '../../Styles/Themes'
+import CloseSession from '../Button/CloseSession'
 import { Icon } from '../Icons/Icon'
 import { Title3 } from '../Text/Title3'
 import { Title4 } from '../Text/Title4'
@@ -96,21 +98,8 @@ export const Header = () => {
                             <Title4 style={{marginLeft: 10}}>Configuracion</Title4> 
                         </Link>
 
-                        <div className="d-flex align-items-center mt-3"  style={{cursor: "pointer"}}
-                        onClick={() => {
-                        dispatch(logOut({}))
-                        theme.setDarkMode()
-                        removeLocalToken()
-                        localStorage.setItem('firstTime', 'true')
-                    }}
-                        
-                        
-                        >
+                            <CloseSession></CloseSession>
 
-                            <FaSignOutAlt size={20} color={Themes.beylColor} />
-
-                            <Title4 style={{marginLeft: 10, color: Themes.beylColor}}>Cerrar Sesión</Title4> 
-                        </div>
 
                     </motion.div>
                     : 

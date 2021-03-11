@@ -15,6 +15,7 @@ import { ContainerCard } from '../../../../General/Containers/ContainerCard'
 import { ContainerGraphs } from '../../../../General/Containers/ContainerGraphs'
 import NotFound from '../../../../General/Errors/NotFound'
 import NotFoundLastPublications from '../../../../General/Errors/NotFoundLastPublications'
+import { DateToSpanishDate } from '../../../../General/Utils/TextUtils'
 
 export default function SportHistory() {
 
@@ -56,7 +57,7 @@ export default function SportHistory() {
                                 <Icon size={"12px"}>
                                     <FaCalendar/>
                                 </Icon>
-                                <Title5 style={{marginLeft: 10}}>{x.date}</Title5>
+                                <Title5 style={{marginLeft: 10}}>{DateToSpanishDate(x.date)}</Title5>
                             </div>
                         </div>
                     </div>

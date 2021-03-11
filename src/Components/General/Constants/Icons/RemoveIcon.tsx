@@ -20,7 +20,7 @@ interface IProps{
 export default function RemoveIcon({onClick, popUp, color, size} : IProps) {
 
 
-    const [open, setOpen] = useState<boolean>(false)
+    const [open, setOpen] = useState<boolean>(false);
     const theme = useThemes();
 
     return (

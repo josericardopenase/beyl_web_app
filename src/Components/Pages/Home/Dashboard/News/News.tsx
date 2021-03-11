@@ -27,14 +27,15 @@ export const News = () => {
     }
 
     return (
-        <ContainerBlockBox title="Articulos de interes">
+        <ContainerBlockBox title="Artículos de interes">
             
-            <Row>
+            <Row className="align-items-stretch">
 
-            { 
-                articles.map((obj : any) => <NewsSingle key ={obj.id} id={obj.id} date="23-5-2001" author="" title={obj.title} 
-                excerpt={""} image={obj.image} stars={3}/>)
-            }
+                { 
+                    articles.map((obj : any) => <NewsSingle key ={obj.id} id={obj.id} date="23-5-2001" author="" title={obj.title} 
+                    excerpt={""} image={obj.image} texto={obj.texto} stars={3}/>)
+                }
+
             </Row>
 
         </ContainerBlockBox>

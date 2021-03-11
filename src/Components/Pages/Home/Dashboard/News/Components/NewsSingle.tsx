@@ -6,6 +6,8 @@ import { Stars } from '../../../../../General/Constants/GeneralPropose/Stars'
 import { Bolder } from '../../../../../General/Constants/Text/Bolder'
 import { Paragraph } from '../../../../../General/Constants/Text/Paragraph'
 import { Title2 } from '../../../../../General/Constants/Text/Title2'
+import { Title3 } from '../../../../../General/Constants/Text/Title3'
+import { Title5 } from '../../../../../General/Constants/Text/Title5'
 import ContainerBox from '../../../../../General/Containers/ContainerBox'
 
 interface props {
@@ -15,10 +17,11 @@ interface props {
     excerpt: string,
     date: string,
     author: string
-    image: string
+    image: string,
+    texto: string
 }
 
-export const NewsSingle = ({id, stars, title, excerpt, date, author, image} : props) => {
+export const NewsSingle = ({id, stars, title, texto, date, author, image} : props) => {
     
     
     const styles = {
@@ -38,18 +41,19 @@ export const NewsSingle = ({id, stars, title, excerpt, date, author, image} : pr
     
     return (
 
-            <Col sm ={12} md={6} lg={6} xl={4}  className="mt-3 mt-md-3 mt-lg-3 p-2">
+            <Col sm ={12} md={6} lg={6} xl={4}  className="mt-3 mt-md-3 mt-lg-3 p-2 d-flex align-items-stretch">
 
                 <motion.div 
                 
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.9 }}
+                className="d-flex align-items-stretch"
 
 
                 >
-                <Link to={`home/article/${id}`}>
-                    <ContainerBox>
-                        <Row className="align-items-center">
+                <Link to={`home/article/${id}`} className="d-flex align-items-stretch">
+                    <ContainerBox className="d-flex align-items-stretch">
+                        <Row className="align-items-stretch d-flex">
 
                             <Col sm = {5}>
                             
@@ -57,13 +61,13 @@ export const NewsSingle = ({id, stars, title, excerpt, date, author, image} : pr
                             
                             </Col>
 
-                            <Col style={{wordBreak: "break-word"}} className="mt-3 mt-sm-0 align-items-center">
+                            <Col style={{wordBreak: "break-word"}} className="mt-3 mt-sm-0 align-items-center d-flex">
 
-                                <Title2 style={{marginBottom: 10}}><Bolder>{title}</Bolder></Title2>
-
-                                <Paragraph color="secondary">{excerpt}</Paragraph>
-                                
-                                <Stars number = {stars}></Stars>
+                                <div>
+                                    <Title2 style={{marginBottom: 10}}><Bolder>{title}</Bolder></Title2>
+                                    
+                                    <Stars number = {stars}></Stars>
+                                </div>
                             </Col>
 
 

@@ -12,6 +12,7 @@ import { Title5 } from '../../../../General/Constants/Text/Title5'
 import { ContainerGraphs } from '../../../../General/Containers/ContainerGraphs'
 import NotFound from '../../../../General/Errors/NotFound'
 import NotFoundLastPublications from '../../../../General/Errors/NotFoundLastPublications'
+import { DateToSpanishDate } from '../../../../General/Utils/TextUtils'
 
 export default function LastUpdates() {
 
@@ -37,7 +38,7 @@ export default function LastUpdates() {
     }
 
     return (
-        <ContainerGraphs col={4} title={"Ultimas publicaciones"} >
+        <ContainerGraphs col={4} title={"Últimas publicaciones"} >
         {
 
             generalHistory.length  ? 
@@ -61,7 +62,7 @@ export default function LastUpdates() {
                                 <Icon size={"12px"}>
                                     <FaCalendar/>
                                 </Icon>
-                                <Title5 style={{marginLeft: 10}}>{x.date}</Title5>
+                                <Title5 style={{marginLeft: 10}}>{DateToSpanishDate(x.date)}</Title5>
                             </div>
                         </div>
                     </div>

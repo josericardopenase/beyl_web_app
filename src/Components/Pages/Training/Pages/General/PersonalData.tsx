@@ -9,6 +9,7 @@ import { ContainerBlockBox } from '../../../../General/Containers/ContainerBlock
 import ContainerBox from '../../../../General/Containers/ContainerBox'
 import { ContainerCard } from '../../../../General/Containers/ContainerCard'
 import { ContainerGraphs } from '../../../../General/Containers/ContainerGraphs'
+import { DateToSpanishDate } from '../../../../General/Utils/TextUtils'
 
 function DataDisplay({data, value} : any){
 
@@ -45,7 +46,7 @@ export default function PersonalData() {
 
                 <Col>
                     <DataDisplay data="Género" value={athlete.sexo}></DataDisplay>
-                    <DataDisplay data="Fecha de nacimiento" value={athlete.born_date}></DataDisplay>
+                    <DataDisplay data="Fecha de nacimiento" value={DateToSpanishDate(athlete.born_date)}></DataDisplay>
                 </Col>
 
             </Row>

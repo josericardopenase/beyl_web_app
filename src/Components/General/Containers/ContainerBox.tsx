@@ -4,10 +4,11 @@ import ThemeContext from '../../../Store/Themes/ThemeContext'
 interface IProps{
     children: any,
     color ?: string
-    style ?: React.CSSProperties
+    style ?: React.CSSProperties,
+    className ?: string,
 }
 
-export default function ContainerBox({children, color, style} : IProps) {
+export default function ContainerBox({children, color, style, className} : IProps) {
 
     const themes = useContext(ThemeContext);
 
@@ -20,7 +21,7 @@ export default function ContainerBox({children, color, style} : IProps) {
     }
 
     return (
-        <div style={{...inStyle, ...style}}>
+        <div style={{...inStyle, ...style}} className={className}>
             {
                 children
             }
