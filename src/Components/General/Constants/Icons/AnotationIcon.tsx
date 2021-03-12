@@ -41,7 +41,7 @@ export default function AnotationIcon({obj, modifyMethod} : IProps) {
         >
                 <div className="p-3" ref={ref}>
                     <Title3><Bolder>Anotacion</Bolder></Title3>
-                    <TextArea placeholder={"Escribe tus indicaciones para realizar el ejercicio..."} value={text} onChange={(a : any) => setText(a.target.value)} style={{backgroundColor: themes.colors.primary, border : 0, borderRadius: 10, width: "15rem", height: "6rem", color : themes.colors.textPrimary, outline: 0, padding: "0.5rem", fontSize: 16}}>
+                    <TextArea placeholder={"Escribe tus indicaciones para realizar el ejercicio..."} defaultValue={obj.anotation} onChange={(a : any) => setText(a.target.value)} style={{backgroundColor: themes.colors.primary, border : 0, borderRadius: 10, width: "15rem", height: "6rem", color : themes.colors.textPrimary, outline: 0, padding: "0.5rem", fontSize: 16}}>
 
                     </TextArea>
                     <Button1 style={{marginTop: 5, color : "white"}} onClick={modify}>

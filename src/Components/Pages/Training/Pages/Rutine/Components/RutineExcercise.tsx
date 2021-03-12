@@ -25,7 +25,7 @@ function ImageExcersise({src} : any){
     return (
 
         <Col md={4} style={{cursor: "pointer"}} className="justify-content-stretch d-flex position-relative justify-content-center align-items-center" onMouseEnter={() => setSelected(true)} onMouseLeave={() => setSelected(false)}>
-            <img style={{borderRadius: "20px", objectFit: "cover", width: "100%", minHeight: "80px", filter: select ? "brightness(30%)" : "brightness(100%)", transition: "0.2s all ease"}} src={src} />
+            <img style={{borderRadius: "20px", objectFit: "cover", width: "100%", minHeight: "80px", filter: select ? "brightness(30%)" : "brightness(100%)", transition: "0.21s all ease"}} src={src} />
             {
                 select ?
 
@@ -40,6 +40,7 @@ function ImageExcersise({src} : any){
 export const RutineExcercise = ({obj, index} : any) => {
 
     const dispatch = useDispatch()
+    const [show, setShow] = useState<boolean>(false);
 
 
     const excersise : RutineExcersise = {
@@ -58,11 +59,12 @@ export const RutineExcercise = ({obj, index} : any) => {
 
 
     return (
-        <DayElement component = {excersise} id={obj.id} index={index}
+        <DayElement component = {excersise} id={obj.id} index={index} show={show} setShow={setShow}
         modifyElement={
-            (component, show, hide) => <ModifyExcersise show={show} excersise={component} onHide={hide}></ModifyExcersise>
+            (component, show, hide) => <ModifyExcersise show={show} excersise={obj} onHide={hide}></ModifyExcersise>
         } 
         >
+            
             {
             obj.excersise.length == 1? 
             <Row className="align-items-stretch d-flex justify-content-stretch">
@@ -71,7 +73,7 @@ export const RutineExcercise = ({obj, index} : any) => {
                 
                 <Col md={8} className="d-flex align-items-stretch">
                     <div className="d-flex justify-content-between align-items-stretch w-100">
-                        <div className="d-flex flex-column justify-content-center">
+                        <div className="d-flex flex-column justify-content-center" style={{cursor: "pointer"}} onClick =  {() => setShow(true)}>
                             <Title3 style={{marginBottom: "0.5rem", wordBreak: "break-word", whiteSpace: "break-spaces"}}><Bolder>{obj.excersise[0].name}</Bolder></Title3>
                             <Title4 color="secondary" style={{wordBreak: "break-word", whiteSpace: "break-spaces"}}>{obj.series}</Title4>
                         </div>
@@ -95,7 +97,7 @@ export const RutineExcercise = ({obj, index} : any) => {
 
                 <>
                     <div className="d-flex align-items-stretch justify-content-between p-2">
-                        <div className="d-flex flex-column justify-content-center">
+                        <div className="d-flex flex-column justify-content-center" style={{cursor: "pointer"}} onClick={() => setShow(true)} >
                             <Title3 style={{marginBottom: "0.5rem", wordBreak: "break-word", whiteSpace: "break-spaces"}}><Bolder>Superserie</Bolder></Title3>
                             <Title4 color="secondary" style={{wordBreak: "break-word", whiteSpace: "break-spaces"}}>{obj.series}</Title4>
                         </div>

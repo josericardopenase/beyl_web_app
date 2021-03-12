@@ -35,7 +35,7 @@ const rutineExcersise = createSlice({
         },
         modifyExcersise : (state : any, action : any) => {
             const index = state.list.findIndex((group : any) => action.payload.id === group.id);
-            state.list[index].anotation = action.payload.anotation;
+            state.list[index] = {...state.list[index], ...action.payload};
             //state.list = state.list.sort((a : any ,b : any) => a.order - b.order)
         },
 

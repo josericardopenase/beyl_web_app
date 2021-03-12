@@ -11,13 +11,14 @@ interface props {
     index : number,
     children : any,
     component : any,
-    onHide ?: any
+    onHide ?: any,
+    show ?: any,
+    setShow ?: any,
 
 }
 
-export default function DayElement({component, id, index, modifyElement, children, onHide} : props) {
+export default function DayElement({component, id, index, modifyElement, children, onHide, show, setShow} : props) {
 
-    const [show, setShow] = useState(false)
     const [hover, setHover] = useState(false)
     const theme = useThemes()
 
@@ -40,7 +41,11 @@ export default function DayElement({component, id, index, modifyElement, childre
             </DraggingComponent>
 
             {
+                show && setShow ?
                 modifyElement(component, show, () => {setShow(false); if(onHide) onHide();})
+                :
+                null
+                
             }
         </>
     )
