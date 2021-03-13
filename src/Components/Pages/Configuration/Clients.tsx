@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FaCopy, FaSync, FaTrash, FaRedoAlt } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import useThemes from '../../../CustomHooks/useThemes'
@@ -24,19 +24,25 @@ function TrainerCode(){
 
     const themes = useThemes()
     const dispatch = useDispatch()
+    const [copySuccess, setCopySuccess] = useState<string | null>(null)
+    const textAreaRef : any = useRef(null);
+    const successColor : string = "#A3DE83";
 
-    const lastCode = useSelector((state : any) => state.trainerCode.list[state.trainerCode.list.length - 1] )
+    const lastCode = useSelector((state : any) => state.trainerCode.list[0] )
 
     const style ={
         input : {
             backgroundColor: themes.colors.secondary,
-            border : 0,
+            border : `2px ${!copySuccess ? themes.colors.secondary : Themes.beylColor} solid`,
+            borderWidth: copySuccess ? "2px 0px 2px 2px" : "0px !important",
             color: themes.colors.textPrimary,
-            padding: 10,
-            borderRadius: "7px 0px 0px 7px"
-        },
+            padding: 12,
+            width: 250,
+            borderRadius: "7px 0px 0px 7px",
+
+        } as React.CSSProperties,
         boton : {
-            backgroundColor: Themes.beylColor,
+            backgroundColor:  Themes.beylColor  ,
             border : 0,
             color: themes.colors.textPrimary,
             padding: "10px 15px",
@@ -49,15 +55,49 @@ function TrainerCode(){
         dispatch(getAllCode());
     }, [])
 
+    function copyToClipboard(e : any) {
+        if(textAreaRef.current != null){
+            textAreaRef.current.select();
+            document.execCommand('copy');
+            e.target.focus();
+            setCopySuccess('Copied!');
+        }
+
+      };
+
     return (
         <div className="mt-5 ">
             <Title4>Código para que tus clientes se registren</Title4>
             <Title5 style={{marginTop: 5}}>Solo tienen un uso</Title5>
             <div className="mt-3 d-flex align-items-stretch">
-                <input value={lastCode ? lastCode.key : "No tienes ningún código..."} style={style.input}></input>
-                <div style={style.boton} className="d-flex flex-column justify-content-center" onClick={() => dispatch(getNewCode())}>
+
+                <input ref={textAreaRef} value={lastCode ? lastCode.key : "No tienes ningún código..."} style={style.input}></input>
+
+                <div style={{backgroundColor: themes.colors.secondary, alignItems: "center", display: "flex",
+                border : `2px ${!copySuccess ? themes.colors.secondary : Themes.beylColor} solid`,
+                borderWidth: copySuccess ? "2px 2px 2px 0px" : "0px !important",
+            
+                    }} onClick={copyToClipboard}>
+                    <Title4 style={{backgroundColor: Themes.beylColor, padding: 7, borderRadius: 5,marginRight: 10, cursor: "pointer"}}>
+                        <Bolder>
+                        {
+                            !copySuccess ?
+                            "Copiar"
+                            :
+                            "Copiado!"
+                        }
+                        </Bolder>
+                    </Title4>
+                </div>
+
+                <div style={style.boton} className="d-flex flex-column justify-content-center" onClick={() => {
+                    dispatch(getNewCode());
+                    setCopySuccess(null);
+                    }
+                }>
                     <FaRedoAlt style={{color: "white"}}/>
                 </div>
+
             </div>
         </div>
     )
