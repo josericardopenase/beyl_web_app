@@ -25,15 +25,15 @@ export default function LoginRoutes() {
                     <Route path="/login" component={Login}></Route>
                     <Route path="/register" component={Register}></Route>
 
-        {/*             <Route path="/register" component={RoutesTraining}></Route>
-                    <Route path="/recoverPassword" component={RoutesConfig}></Route> 
-    */}
+{/*                      <Route path="/register" component={RoutesTraining}></Route>
+                    <Route path="/recoverPassword" component={RoutesConfig}></Route>  */}
+   
 
-{/*                     <Route path="/">
+                     <Route path="/">
                         <motion.div exit="undefined">
                             <Redirect to="/login" />
                         </motion.div>
-                    </Route>   */}
+                    </Route>   
 
                 </Switch>
             </AnimatePresence>
