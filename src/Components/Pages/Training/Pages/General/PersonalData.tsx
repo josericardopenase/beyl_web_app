@@ -35,7 +35,7 @@ export default function PersonalData() {
     }
 
     return (
-        <ContainerGraphs col={7} title={"Datos personales"} >
+        <ContainerGraphs col={8} title={"Datos personales"} >
 
             <Row>
 

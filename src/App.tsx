@@ -21,6 +21,10 @@ import { loadAthletes } from './Store/athleltes';
 import { getLocalToken, getProfile, setToken } from './Store/authentication';
 import LoginRoutes from './Routers/LoginRoutes';
 import { AnimatePresence } from 'framer-motion';
+import useWindowSize from './CustomHooks/useWindowSize';
+import { Title4 } from './Components/General/Constants/Text/Title4';
+import GoDesktopPlaceholder from './Components/General/Constants/SVGS/GoDesktopPlaceholder';
+import { Title3 } from './Components/General/Constants/Text/Title3';
 
 function App() {
   
@@ -32,6 +36,7 @@ function App() {
   const isLogged = useSelector(( state : any) => state.auth.isLoggedIn)
   const dispatch = useDispatch()
 
+  const size = useWindowSize();
 
   useEffect(() => {
     const token = getLocalToken()
@@ -43,6 +48,19 @@ function App() {
 
 
   })
+
+  if(size.width){
+    if(size.width < 768){
+
+        return (
+          <div className="p-3 text-center" style={{width: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexDirection : "column", height: "100vh"}}>
+            <GoDesktopPlaceholder></GoDesktopPlaceholder>
+            <Title3 style={{marginTop: 20}}>Tienes que acceder desde un ordenador</Title3>
+          </div>
+        )
+
+    }
+  }
 
   return (
 

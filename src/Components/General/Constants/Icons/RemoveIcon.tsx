@@ -26,7 +26,7 @@ export default function RemoveIcon({onClick, popUp, color, size} : IProps) {
     return (
         <>
 
-            <div onClick={() => popUp ? setOpen(true) : onClick() } style={{zIndex: 300, cursor: "pointer"}}>
+            <div onClick={() => popUp ? setOpen(true) : onClick() } style={{zIndex: 4000, cursor: "pointer"}}>
                 <Icon color={color }>
                     <FaTrashAlt  size={size}></FaTrashAlt>
                 </Icon>

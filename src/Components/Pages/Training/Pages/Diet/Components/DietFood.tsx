@@ -16,17 +16,17 @@ import { useDispatch } from 'react-redux'
 export const DietFood = ({obj, index} : any) => {
 
     const dispatch = useDispatch()
+    const [show, setShow] = useState(false);
 
-    return (
-        <DayElement component = {obj} id={obj.id} index={obj.order}
+    return ( <DayElement component = {obj} id={obj.id} index={obj.order} show={show} setShow={setShow}
             modifyElement={
                 (component, show, hide) => <ModifyFood show={show} food={component} onHide={hide}></ModifyFood>
             } 
         >
 
-            <Row className="align-items-center p-2">
+            <Row className="align-items-center p-2"  onClick={() => setShow(true)}>
                 <Col md={12}>
-                    <div className="d-flex justify-content-between align-items-stretch w-100">
+                    <div className="d-flex justify-content-between align-items-stretch w-100" >
                         <div className="d-flex justify-content-center  mb-2">
                             <Title3 style={{marginBottom: "0.5rem", wordBreak: "break-word", whiteSpace: "break-spaces"}}><Bolder>{obj.food.name}</Bolder></Title3>
                             <Title4 color="secondary" style={{marginLeft: 15, marginTop: 4, marginRight: 10}}>| {obj.portion_cuantity} {obj.portion_unity}</Title4>
@@ -38,7 +38,9 @@ export const DietFood = ({obj, index} : any) => {
                         </div>
                     </div>
                 </Col>
-                <MacroCounter portion_cuantity={obj.portion_cuantity} portion_weight={obj.food.portion_weight} protein={obj.food.protein} carbos={obj.food.carbohydrates} calories={obj.food.kcalories} grasas={obj.food.fat} unity={obj.portion_unity}></MacroCounter>
+                <Col className="mt-1">
+                    <MacroCounter fontSize={10} portion_cuantity={obj.portion_cuantity} portion_weight={obj.food.portion_weight} protein={obj.food.protein} carbos={obj.food.carbohydrates} calories={obj.food.kcalories} grasas={obj.food.fat} unity={obj.portion_unity}></MacroCounter>
+                </Col>
             </Row>
 
 

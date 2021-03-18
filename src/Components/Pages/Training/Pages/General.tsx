@@ -4,6 +4,7 @@ import { Bolder } from '../../../General/Constants/Text/Bolder'
 import { Title3 } from '../../../General/Constants/Text/Title3'
 import SportHistory from './General/SportHistory'
 import WeightGraph from './General/WeightGraph'
+
 import PersonalData from './General/PersonalData'
 import FitnessData from './General/FitnessData'
   

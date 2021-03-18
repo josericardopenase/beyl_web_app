@@ -21,6 +21,7 @@ import useThemes from '../../../../../CustomHooks/useThemes';
 import { Title4 } from '../../../../General/Constants/Text/Title4';
 import { MetabolismoBasal } from '../../../../General/Constants/functions/DietFunctions';
 import Loading from '../../../../General/Constants/Loading/Loading';
+import FoodMacrosChart from './Components/FoodMacrosChart';
 
 export const DietDay = (props : any) => {
 
@@ -52,8 +53,12 @@ export const DietDay = (props : any) => {
          return num * magic_number
     }
 
+    const kcal = dietFoods.reduce((a : any, b : any) => a + calculateTotalGr(b.food.kcalories, b.portion_cuantity, b.food.portion_weight), 0 ).toFixed(1)
+    const protein = dietFoods.reduce((a : any, b : any) => a + calculateTotalGr(b.food.protein, b.portion_cuantity, b.food.portion_weight), 0 ).toFixed(1)
+    const carbs = dietFoods.reduce((a : any, b : any) => a + calculateTotalGr(b.food.carbohydrates, b.portion_cuantity, b.food.portion_weight), 0 ).toFixed(1)
+    const lips = dietFoods.reduce((a : any, b : any) => a + calculateTotalGr(b.food.fat, b.portion_cuantity, b.food.portion_weight), 0 ).toFixed(1)
+    const basalMetabolism =  MetabolismoBasal(athlete.weight, athlete.height, athlete.age, athlete.sexo, athlete.amount_excersise);
 
-    console.log(dietFoods)
 
     return (
     
@@ -66,16 +71,22 @@ export const DietDay = (props : any) => {
                         <div className="text-left">
 
                             <Title4>Metabolismo basal actual</Title4>
-                            <Title3 style={{marginTop: 5}} color={"#F5A623"}>{MetabolismoBasal(athlete.weight, athlete.height, athlete.age, athlete.sexo, athlete.amount_excersise)} kcal</Title3>
+                            <div className="d-flex align-items-center" style={{marginTop: 5}}>
+                                <Title3  color={"#F5A623"}>{basalMetabolism} kcal</Title3>
+                                <Title4 style={{marginLeft: 10}} color={basalMetabolism - kcal >= 0 ? "#22A447" : "#FD413C"}>({basalMetabolism - kcal < 0 ? "+" + ((Math.abs(basalMetabolism - kcal)).toFixed(1)) : "-" + (basalMetabolism - kcal).toFixed(1)})</Title4>
 
+                            </div>
                         </div>
 
                         <div style={{height: "3rem", width: 1, backgroundColor: theme.colors.textSecondary, marginLeft: 20}}></div>
 
-                        <div className="ml-4 text-center mr-2">
+
+                        <FoodMacrosChart width={100} height={100} innerRadius={20} outerRadius={30} actualWeight={100} food={{ food : {carbohydrates : carbs, fat : lips, protein : protein, kcalories: kcal, portion_weight: 100}}}></FoodMacrosChart>
+
+                        <div className="ml-2 text-center mr-2">
                             <Title3 color="#FD413C">
                                 {
-                                    dietFoods.reduce((a : any, b : any) => a + calculateTotalGr(b.food.protein, b.portion_cuantity, b.food.portion_weight), 0 ).toFixed(1)
+                                   protein 
                                 } gr
                             </Title3>
                             <Title4 style={{marginTop: 5}}>Proteínas</Title4>
@@ -83,7 +94,7 @@ export const DietDay = (props : any) => {
                         <div className="ml-5 mr-2">
                             <Title3 color="#FFDD68">
                                 {
-                                    dietFoods.reduce((a : any, b : any) => a + calculateTotalGr(b.food.carbohydrates, b.portion_cuantity, b.food.portion_weight), 0 ).toFixed(1)
+                                   carbs 
                                 } gr
                             </Title3>
                             <Title4 style={{marginTop: 5}}>Carbohidrátos</Title4>
@@ -91,7 +102,7 @@ export const DietDay = (props : any) => {
                         <div className="ml-5 mr-2">
                             <Title3 color="#22A447">
                                 {
-                                    dietFoods.reduce((a : any, b : any) => a + calculateTotalGr(b.food.fat, b.portion_cuantity, b.food.portion_weight), 0 ).toFixed(1)
+                                   lips 
                                 } gr
                             </Title3>
                             <Title4 style={{marginTop: 5}}>Grasas</Title4>
@@ -99,13 +110,12 @@ export const DietDay = (props : any) => {
                         <div className="ml-5 mr-4">
                             <Title3 color="#F5A623">
                                 {
-                                    dietFoods.reduce((a : any, b : any) => a + calculateTotalGr(b.food.kcalories, b.portion_cuantity, b.food.portion_weight), 0 ).toFixed(1)
+                                   kcal 
                                 }
                             </Title3>
                             <Title4 style={{marginTop: 5}}>Kcal</Title4>
                         </div>
                     </div>
-
                 <DraggingSurface direction="horizontal" className="row flex-nowrap m-0 p-0" style={{overflowX: 'auto', whiteSpace : "nowrap", width: "100%"}} 
                 final={ 
                     <AddList onClick={() => dispatch(postDietGroup({name : "Comida nueva" , day : dietDay}))} styleText = {{padding: "0px 10px 0px 10px"}} text={"Añade nueva comida"}></AddList>

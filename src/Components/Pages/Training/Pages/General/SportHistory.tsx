@@ -39,7 +39,7 @@ export default function SportHistory() {
     }
 
     return (
-        <ContainerGraphs col={4} title={"Historial"} >
+        <ContainerGraphs col={5} title={"Historial"} >
         {
 
             generalHistory.length != 0  ? 

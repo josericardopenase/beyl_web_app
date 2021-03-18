@@ -6,6 +6,7 @@ import { reorderGroup } from '../../../../../Store/Rutines/rutineGroups'
 import { Group } from '../../../../../Types/Types'
 import Loading from '../../../../General/Constants/Loading/Loading'
 import { DietFood } from '../../Pages/Diet/Components/DietFood'
+import MacroCounter from '../../Pages/Diet/Components/MacroCounter'
 import { RutineExcercise } from '../../Pages/Rutine/Components/RutineExcercise'
 import AddExcersise from '../Modal/AddExcersise'
 import AddFood from '../Modal/AddFood'
@@ -22,7 +23,6 @@ export default function DietList({obj , index} : props) {
     const dispatch = useDispatch();
     const loading =useSelector((state : any) => state.training.diet.food.loading);
     const dietGroup = useSelector((state : any) => state.training.diet.food.list.filter((x : any) => x.group === obj.id));
-    const store = useStore()
 
     useEffect(() => {
        dispatch(getFoodOfGroup(obj.id)) 
@@ -32,6 +32,13 @@ export default function DietList({obj , index} : props) {
         return <Loading></Loading>
     }
 
+    const protein = dietGroup.reduce((a : any, b : any) => a + (b.food.protein * (b.portion_cuantity / b.food.portion_weight)), 0);
+    const carbs = dietGroup.reduce((a : any, b : any) => a + (b.food.carbohydrates * (b.portion_cuantity / b.food.portion_weight)), 0);
+    const lips = dietGroup.reduce((a : any, b : any) => a + (b.food.fat * (b.portion_cuantity / b.food.portion_weight)), 0);
+    const kcal =  dietGroup.reduce((a : any, b : any) => a + (b.food.kcalories * (b.portion_cuantity / b.food.portion_weight)), 0);
+
+    console.log(dietGroup);
+
     return (
         <TrainingList rutine={false} onDragEnd={(action : any) => {
 /*                 console.log(action.draggableId, store.getState().training.rutine.excersise.list[action.destination.index].order) */
@@ -39,6 +46,7 @@ export default function DietList({obj , index} : props) {
         }} nameAdd = {"Agrega nuevo alimento"} id={obj.id} order={obj.order} name={obj.name} popUp = 
         {(modalShow, setModalShow, id) => <AddFood show={modalShow} id = {id} onHide={() => setModalShow()} ></AddFood>}
         >
+            <MacroCounter fontSize={14} portion_cuantity={100} portion_weight={100} protein={protein} carbos={carbs} calories={kcal} grasas={lips} unity={"gr"}></MacroCounter>
             {
 
                 dietGroup.map((x : any, index : number) => <DietFood obj={x} index={x.order}></DietFood>)

@@ -41,7 +41,7 @@ export default function FitnessData() {
     }
 
     return (
-        <ContainerGraphs col={5} title={"Datos corporales"} >
+        <ContainerGraphs col={4} title={"Datos corporales"} >
             <Row>
 
                 <Col>

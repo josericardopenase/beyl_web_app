@@ -15,7 +15,7 @@ export default function ContainerBox({children, color, style, className} : IProp
     const inStyle : React.CSSProperties = {
         backgroundColor: color === "primary" || color === "secondary" || color === undefined ?  color === "primary" ? themes.colors.primary : themes.colors.secondary : color,
         padding: 10,
-        borderRadius: "20px",
+        borderRadius: "1.11111em",
         wordBreak: "break-word",
 
     }

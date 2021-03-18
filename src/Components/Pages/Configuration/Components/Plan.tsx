@@ -53,7 +53,7 @@ export default function Plan() {
                         <Checklist>Aplicación móvil para tus clientes</Checklist>
                         <Checklist>Atención al cliente</Checklist>
                         <Checklist>Soporte técnico personalizado</Checklist>
-                        <Checklist>¡Muchas mas cosa por venir!</Checklist>
+                        <Checklist>¡Muchas más cosa por venir!</Checklist>
                     </div>
                 </Col>
             </Row>

@@ -20,7 +20,7 @@ export const ContainerGraphs = ({title, children, col, ...otherProps} : props) =
 
             <Title3 style={{marginBottom: 20}}><Bolder>{title}</Bolder></Title3>
 
-            {children}
+                {children}
             
         </Col>
     )

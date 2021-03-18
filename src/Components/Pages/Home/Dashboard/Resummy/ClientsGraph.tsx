@@ -37,7 +37,8 @@ export default function ClientsGraph() {
 
     return (
         <ContainerGraphs col={8} title={"Atletas recientes"} >
-            <Row className="align-items-center">
+            
+            <Row className="align-items-stretch justify-content-center">
         {
 
             generalHistory.length > 0  ? 

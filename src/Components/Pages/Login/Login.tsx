@@ -112,7 +112,7 @@ export default function Login() {
                     </motion.div>
                 </Col>
 
-                <Col style={imageStyle} className="d-none d-md-flex flex-column justify-content-center align-items-center ">
+                <Col style={imageStyle} className="d-none d-lg-flex flex-column justify-content-center align-items-center ">
                     <motion.div
                     
                         initial={{opacity: 0, y : 400}}

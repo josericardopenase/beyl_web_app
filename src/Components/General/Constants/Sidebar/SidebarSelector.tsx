@@ -16,7 +16,7 @@ export const SidebarSelector = ({children, backgroundColor} : any) => {
     const style = {
         base: {
             height: "100%", 
-            width: "330px", 
+            width: "18.75em", 
             backgroundColor: backgroundColor ? backgroundColor :  theme.colors.primary,
             position: "fixed",
             borderRight: `1px solid ${backgroundColor ? backgroundColor : theme.colors.secondary}`,

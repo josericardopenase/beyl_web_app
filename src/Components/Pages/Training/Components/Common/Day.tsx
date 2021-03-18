@@ -76,24 +76,24 @@ export const Day = ({ day, index, rutine} : IProps) => {
     return (
         <DraggingComponent id = {day.id} index = {day.order}>
                 <div className="mr-3" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}  >
-                    <ContainerBox color={active ? Themes.beylColor : themes.colors.secondary}>
+                    <ContainerBox color={active ? "rgba(255, 198, 0, 0.20)" : themes.colors.secondary}>
                         <div className="pl-2 pr-2 d-flex align-items-center"> 
 
                             <Link to = {`${loc.url}/${day.id}`} >
                                 { !isVisible ? 
-                                <Title3 style={active ? {color: "white"  } : {}} color={hover ? Themes.beylColor : "primary"}>{day.name}</Title3> 
+                                <Title3 style={active ? {color: Themes.beylColor  } : {}} color={hover ? Themes.beylColor : "primary"}>{day.name}</Title3> 
                                 :
                                 <Input onChange = {(data : any) => setText(data.target.value)}  customref ={ref} style={{width: 120}} defaultValue = {day.name} onKeyDown = {pressEnter}></Input>
                                 }
                             </Link>
 
                             <div onClick = {() => setIsVisible(!isVisible)} style={{cursor: "pointer", marginRight: 15}}>
-                                <Icon color={active ? "white" : ""}>
+                                <Icon color={active ? Themes.beylColor : ""}>
                                     <FaEdit name="FaEdit" className="ml-3"></FaEdit>
                                 </Icon>
                             </div>
 
-                            <RemoveIcon onClick={deleteCurrentDay} popUp={true} color={active ? "white" : undefined}></RemoveIcon>
+                            <RemoveIcon onClick={deleteCurrentDay} popUp={true} color={active ? Themes.beylColor : undefined}></RemoveIcon>
 
                         </div>
                     </ContainerBox>

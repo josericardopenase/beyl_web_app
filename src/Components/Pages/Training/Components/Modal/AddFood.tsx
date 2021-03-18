@@ -74,7 +74,7 @@ export default function AddFood(props: any) {
 
                                 <Dropdown.Menu>
                                         <Dropdown.Item href="#/action-1">Gramos</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-2">Onza</Dropdown.Item>
+                                        <Dropdown.Item href="#/action-2">Onza</Dropdown.Iy--mt-3">
                                         <Dropdown.Item href="#/action-3">Unidades</Dropdown.Item>
                                 </Dropdown.Menu>
 

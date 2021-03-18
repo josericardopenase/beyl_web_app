@@ -16,7 +16,7 @@ export const SidebarIcon = ({obj, activate} : any) => {
     const style : React.CSSProperties = {
         margin: "40px 0px",
         width: "100%",
-        padding: "1.2rem 0rem",
+        padding: "1.05rem 0rem",
         backgroundColor: activate ? beylColor : themes.colors.primary,
         borderRadius: activate ? "20px" : inactiveBorderRadius,
         display: "flex",

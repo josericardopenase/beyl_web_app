@@ -1,7 +1,7 @@
 import { current } from '@reduxjs/toolkit'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector, useStore } from 'react-redux'
-import { Route, useRouteMatch } from 'react-router-dom'
+import { Redirect, Route, useRouteMatch } from 'react-router-dom'
 import apiDiet from '../../../../Api/apiDiet'
 import apiTraining from '../../../../Api/apiTraining'
 import useApiCallback from '../../../../CustomHooks/useApiCallback'
@@ -42,6 +42,15 @@ export const Diet = (props: any) => {
             <DayList rutine = {false}></DayList> 
 
             <Route  path={`${urlParams.path}/:dietDay`} component={DietDay}></Route>
+
+            {
+                diet.diet_days.length > 0 ?
+                <Route path={urlParams.path}>
+                    <Redirect to={`${urlParams.url}/${diet.diet_days[0]}`} />
+                </Route>
+                :
+                null
+            }
 
             <SaveChanges key={"save_diet"} notificationText="Cambios publicados correctamente" text="Guardar cambios realizados en la dieta" buttonText="Publicar" apiSave={apiDiet.saveDiet} ></SaveChanges> 
         </div>

@@ -17,7 +17,7 @@ export const Sidebar = ({construction} : any) => {
     const style = {
         base: {
             height: "100%", 
-            width: "70px", 
+            width: "65px", 
             backgroundColor: theme.colors.secondary,
             textAlign : "center",
             position: "fixed",

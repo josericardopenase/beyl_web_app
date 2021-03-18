@@ -37,7 +37,8 @@ function TrainerCode(){
             borderWidth: copySuccess ? "2px 0px 2px 2px" : "0px !important",
             color: themes.colors.textPrimary,
             padding: 12,
-            width: 250,
+            width: "40%",
+            minWidth: 150,
             borderRadius: "7px 0px 0px 7px",
 
         } as React.CSSProperties,
@@ -69,7 +70,8 @@ function TrainerCode(){
         <div className="mt-5 ">
             <Title4>Código para que tus clientes se registren</Title4>
             <Title5 style={{marginTop: 5}}>Solo tienen un uso</Title5>
-            <div className="mt-3 d-flex align-items-stretch">
+            <div>
+            <div className="mt-3 d-flex align-items-stretch position-relative">
 
                 <input ref={textAreaRef} value={lastCode ? lastCode.key : "No tienes ningún código..."} style={style.input}></input>
 
@@ -78,7 +80,7 @@ function TrainerCode(){
                 borderWidth: copySuccess ? "2px 2px 2px 0px" : "0px !important",
             
                     }} onClick={copyToClipboard}>
-                    <Title4 style={{backgroundColor: Themes.beylColor, padding: 7, borderRadius: 5,marginRight: 10, cursor: "pointer"}}>
+                    <Title4 color="white" style={{backgroundColor: Themes.beylColor, padding: 7, borderRadius: 5,marginRight: 10, cursor: "pointer"}}>
                         <Bolder>
                         {
                             !copySuccess ?
@@ -98,6 +100,7 @@ function TrainerCode(){
                     <FaRedoAlt style={{color: "white"}}/>
                 </div>
 
+            </div>
             </div>
         </div>
     )

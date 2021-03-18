@@ -31,18 +31,27 @@ export const Rutine = (props: any) => {
 
     }, [])
 
-
-    useEffect(() => {
-        console.log("hello ")
-    }, [store.getState().athletes.selectedAthlete])
-
     if(loading || !rutine)
         return <Loading></Loading>
+
+    console.log(`${urlParams.url}/${rutine.rutine_days[0]}`)
+
     return (
         <div className="position-relative">
             <DayList rutine = {true} days={rutine.rutine_days}></DayList> 
-            <Route  path={`${urlParams.path}/:rutineDay`} component={RutineDay}></Route>
-            <SaveChanges key="save_rutine" notificationText="Cambios en la rutina aplicados correctamente" text="Guardar cambios de la rutina realizados" buttonText="Actualizar" apiSave={apiTraining.saveRutine} ></SaveChanges> 
+            <Route  path={`${urlParams.url}/:rutineDay`} component={RutineDay}></Route>
+            
+            {
+                rutine.rutine_days.length > 0 ?
+                <Route path={urlParams.path}>
+                    <Redirect to={`${urlParams.url}/${rutine.rutine_days[0]}`} />
+                </Route>
+                :
+                null
+            }
+
+            
+            <SaveChanges key="save_rutine" notificationText="Cambios en la rutina aplicados correctamente" text="Guardar cambios de la rutina realizados" buttonText="Guardar" apiSave={apiTraining.saveRutine} ></SaveChanges> 
 
         </div>
     )
