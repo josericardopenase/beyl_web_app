@@ -26,7 +26,6 @@ function ImageExcersise({obj} : any){
     const [select, setSelected] = useState<boolean>(false);
     const [show, setShow] = useState<boolean>(false);
     const theme = useThemes();
-    console.log(obj)
 
     return (
 

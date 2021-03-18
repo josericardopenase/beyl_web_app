@@ -5,6 +5,7 @@ import { FaSearch } from 'react-icons/fa'
 import apiTraining from '../../../../../Api/apiTraining'
 import useApiCallback from '../../../../../CustomHooks/useApiCallback'
 import useThemes from '../../../../../CustomHooks/useThemes'
+import Bottom1 from '../../../../General/Constants/Button/Button1'
 import LoadingButton from '../../../../General/Constants/Button/LoadingButton'
 import { Bolder } from '../../../../General/Constants/Text/Bolder'
 import Input from '../../../../General/Constants/Text/Inputs/Input'
@@ -16,13 +17,16 @@ import Themes from '../../../../General/Styles/Themes'
 import ExcersisePuntuation from '../../Pages/Rutine/Components/ExcersisePuntuation'
 
 interface IProps{
-    apiFunction : () => any,
+    apiFunction : any,
     name : string, 
     multiple : boolean,
-    element : (obj : any) => any
+    element : (obj : any) => any,
+    selectedItems ?: any,
+    setSelectedItems ?: any,
+    maxSelectedItems ?: number
 }
 
-export default function SearchSelector({apiFunction, name, multiple, element} : any) {
+export default function SearchSelector({apiFunction, name, multiple, element, selectedItems, setSelectedItems, maxSelectedItems} : IProps) {
 
     const theme = useThemes();
 
@@ -77,13 +81,21 @@ export default function SearchSelector({apiFunction, name, multiple, element} : 
 
     }, [text])
 
-    function addToState (id : number){
+    function addToState (obj : any){
         if(multiple){
+            if(maxSelectedItems)
+                if(maxSelectedItems <= field.value.length)
+                    return;
 
-            formik.setFieldValue(name, [...field.value, id])
+            if(setSelectedItems)
+                setSelectedItems([...selectedItems, obj])
+
+            formik.setFieldValue(name, [...field.value, obj.id])
         }else{
+            if(setSelectedItems)
+                setSelectedItems(obj)
 
-            formik.setFieldValue(name, id)
+            formik.setFieldValue(name, obj.id)
         }
 
 
@@ -91,8 +103,28 @@ export default function SearchSelector({apiFunction, name, multiple, element} : 
 
     }
 
-    function removeFromState(id : number){
-        formik.setFieldValue(name, field.value.filter((ids : number) => ids !== id))
+    function deselectAll(){
+
+        if(multiple){
+            if(setSelectedItems)
+                setSelectedItems([])
+
+            formik.setFieldValue(name, [])
+        }else{
+            if(setSelectedItems)
+                setSelectedItems(null)
+
+            formik.setFieldValue(name, null)
+        }
+    }
+
+    function removeFromState(obj : any){
+
+        formik.setFieldValue(name, field.value.filter((ids : number) => ids !== obj.id))
+
+        if(setSelectedItems)
+            setSelectedItems(selectedItems.filter((cobj : any) => obj.id !== cobj.id))
+
     }
 
     
@@ -100,26 +132,29 @@ export default function SearchSelector({apiFunction, name, multiple, element} : 
     return (
 
         <div>
-            <div className="pr-2  pl-2">
-                <Input primary={true} onChange={(e : any) => setText(e.target.value)} style={{backgroundColor: theme.colors.secondary, width: "100%"}} 
-                icon = {<FaSearch size={15}></FaSearch>}
-                placeholder = {"Busca un ejercicio"}></Input>
-            </div>
+            <Input primary={true} onChange={(e : any) => setText(e.target.value)} style={{backgroundColor: theme.colors.secondary, width: "100%"}} 
+            icon = {<FaSearch size={15}></FaSearch>}
+            placeholder = {"Busca un ejercicio"}></Input>
+
             <div className={"w-100 text-center"}>
-                { multiple ? <Title2 style={{marginTop: 20, marginBottom: 20}}><Bolder>{field.value.length > 1 ? "Superserie" : field.value.length == 1 ? "Serie normal" : ""}</Bolder></Title2> : null}
+                { multiple ? <Title2 style={{marginTop: 20}}><Bolder>{field.value.length > 1 ? "Superserie" : field.value.length == 1 ? "Serie normal" : ""}</Bolder></Title2> : null}
+            </div>
+            <div className={"w-100 text-left d-flex align-items-center justify-content-between mt-3"}>
+                <Title3>{multiple ? field.value.length : field.value ? 1 : 0} Items Seleccionados</Title3>
+                <div onClick={() => deselectAll()} style={{backgroundColor: "#e3344c", padding: 5, borderRadius: 5, cursor: "pointer" }}><Bolder>Quitar todos</Bolder></div>
             </div>
             {
                 excersises.map((obj) => (
                     <div className="mt-3 p-1" style={{backgroundColor: multiple ? field.value.includes(obj.id) ? Themes.beylColor : "transparent" : field.value===obj.id ? Themes.beylColor :  "transparent", borderRadius: 20, cursor: "pointer"}} onClick = {() => {
                         if(multiple){
                             if(field.value.includes(obj.id)){
-                                removeFromState(obj.id) 
+                                removeFromState(obj) 
                             }else {
-                                addToState(obj.id)
+                                addToState(obj)
                             }
                         }else{
                             if(field.value !== obj.id){
-                                addToState(obj.id)
+                                addToState(obj)
                             }
                         }
                     }

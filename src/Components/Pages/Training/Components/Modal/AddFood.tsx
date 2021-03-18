@@ -20,30 +20,40 @@ import FormikInput from '../../../../General/Constants/Text/Inputs/FormikInput';
 
 
 const validationSchema = Yup.object().shape({
-    portion_cuantity: Yup.number().required().min(1).max(2000),
-    portion_unity: Yup.string().required(),
-    food: Yup.number().required()
+    portion_cuantity: Yup.number().required().min(1, "La cantidad mínima de alimento es 1gr").max(2000, "La cantidad máxima de alimento es 2 kg"),
+    portion_unity: Yup.string().required("Es necesario especificar la unidad de medida"),
+    food: Yup.number().typeError("Tienes que elegir un alimento para continuar.").required("Tienes que elegir un alimento para continuar")
 
 })
 
 export default function AddFood(props: any) {
 
     const theme = useThemes();
-    const [index, setIndex] = useState<number>(1);
+    const [slide, setSlide] = useState<number>(0);
     const dispatch = useDispatch()
+    const [selectedItems, setSelectedItems] = useState<any>([]);
 
-    function postData(values : any) : void{
+    function postData(values : any, resetForm : any) : void{
         dispatch(postDietFood(values))
+        props.onHide();
+        resetForm();
+        setSlide(0);
     }
 
+    const onHide = (resetForm: any) => {
+        props.onHide();
+        resetForm();
+        setSlide(0);
+    }
 
     return (
 
-        <Formik validationSchema={validationSchema} initialValues={{group : props.id, food : null , portion_unity: "gr", portion_cuantity : 0}} onSubmit={(values, {resetForm}) =>  { console.log("hello"); postData(values); props.onHide(); resetForm();}}>
+        <Formik validationSchema={validationSchema} initialValues={{group : props.id, food : null , portion_unity: "gr", portion_cuantity : 0}} onSubmit={(values,  {resetForm}) =>  {postData(values, resetForm); }}>
         {
         
-            ({values, errors, touched, handleChange, handleSubmit, isSubmitting, handleBlur}) => (
-                <MultipleModal {...props}  title="Añadir alimento" onFinish={handleSubmit}>
+            ({values, errors, touched, handleChange, handleSubmit, isSubmitting, handleBlur, resetForm}) => (
+
+                <MultipleModal slide={slide} setSlide={setSlide}  canSlide={() => values.food != null} errors={errors} {...props}  onHide={() => onHide(resetForm)} title="Añadir alimento" onFinish={handleSubmit}>
                 {
 
                     [
@@ -53,6 +63,8 @@ export default function AddFood(props: any) {
                         <SearchSelector multiple={false} name={"food"}  
                         element={(obj : any) => <DietFoodSearch obj ={obj}></DietFoodSearch>}
                         apiFunction = {apiDiet.getFood}
+                        setSelectedItems={setSelectedItems}
+                        selectedItems={selectedItems}
                         ></SearchSelector>
                         { errors.food ? <TitleError>{errors.food}</TitleError> : null }
                     </div>
