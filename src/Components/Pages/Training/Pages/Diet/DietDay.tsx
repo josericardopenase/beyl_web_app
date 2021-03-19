@@ -97,7 +97,7 @@ export const DietDay = (props : any) => {
                                    carbs 
                                 } gr
                             </Title3>
-                            <Title4 style={{marginTop: 5}}>Carbohidrátos</Title4>
+                            <Title4 style={{marginTop: 5}}>Hidratos</Title4>
                         </div>
                         <div className="ml-5 mr-2">
                             <Title3 color="#22A447">
