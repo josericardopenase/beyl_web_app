@@ -51,7 +51,7 @@ export default function Training(props : any) {
                 <Route  key={"rutine"} path={`${urlParams.path}/rutina`} component={Rutine} ></Route>
                 <Route key={"diet"} path={`${urlParams.path}/dieta`} component={Diet} ></Route>
                 <Route path={`${urlParams.url}`}  component={Article}>
-{/*                 <Redirect to={`${urlParams.url}/general`}/> */}
+                <Redirect to={`${urlParams.url}/general`}/>
                 </Route> 
             </div>
 

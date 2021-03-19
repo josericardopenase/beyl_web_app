@@ -106,10 +106,10 @@ export default function RoutesConfig(props : any) {
                     <Route path={`${url}/apariencia`} component={Apariencia}></Route>
                     <Route path={`${url}/privacidad`} component={Privacidad}></Route>
 
-{/*                     <Route path="/">
+                    <Route path="/">
                         <Redirect to={`${url}/clientes`} />
                     </Route>
- */}
+
             </ContainerSidebarSelector>
 
         </motion.div> 
