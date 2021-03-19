@@ -13,7 +13,7 @@ interface  IProps{
     unity : string,
     portion_weight: number,
     portion_cuantity : number,
-    fontSize ?: number
+    fontSize ?: number,
 
 }
 
@@ -33,7 +33,7 @@ export default function MacroCounter({protein, carbos, grasas, calories, unity, 
 
                 <Col>
                     <h5 color="#FFDD68" style={{fontSize: fontSize, color: "#FFDD68"}}>{(carbos * magic_number).toFixed(1)} {unity}</h5>
-                    <Title5 style={{marginTop: 5}}>Carbohidratos</Title5>
+                    <Title5 style={{marginTop: 5}}>Hidratos</Title5>
                 </Col>
 
                 <Col>
@@ -43,7 +43,7 @@ export default function MacroCounter({protein, carbos, grasas, calories, unity, 
 
                 <Col>
                     <h5 color="#F5A623" style={{fontSize: fontSize, color: "#F5A623"}}>{(calories * magic_number).toFixed(1)}</h5>
-                    <Title5 style={{marginTop: 5}}>Kcalorias</Title5>
+                    <Title5 style={{marginTop: 5}}>Kcal</Title5>
                 </Col>
             </Row>
         </Container>

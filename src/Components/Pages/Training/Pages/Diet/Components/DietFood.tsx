@@ -24,10 +24,10 @@ export const DietFood = ({obj, index} : any) => {
             } 
         >
 
-            <Row className="align-items-center p-2"  onClick={() => setShow(true)}>
+            <Row className="align-items-center p-2" >
                 <Col md={12}>
                     <div className="d-flex justify-content-between align-items-stretch w-100" >
-                        <div className="d-flex justify-content-center  mb-2">
+                        <div className="d-flex justify-content-start  mb-2 w-100 text-left"  style={{cursor: "pointer"}} onClick={() => setShow(true)}>
                             <Title3 style={{marginBottom: "0.5rem", wordBreak: "break-word", whiteSpace: "break-spaces"}}><Bolder>{obj.food.name}</Bolder></Title3>
                             <Title4 color="secondary" style={{marginLeft: 15, marginTop: 4, marginRight: 10}}>| {obj.portion_cuantity} {obj.portion_unity}</Title4>
                         </div>
@@ -38,7 +38,7 @@ export const DietFood = ({obj, index} : any) => {
                         </div>
                     </div>
                 </Col>
-                <Col className="mt-1">
+                <Col className="mt-1" onClick={ () => setShow(true)}>
                     <MacroCounter fontSize={10} portion_cuantity={obj.portion_cuantity} portion_weight={obj.food.portion_weight} protein={obj.food.protein} carbos={obj.food.carbohydrates} calories={obj.food.kcalories} grasas={obj.food.fat} unity={obj.portion_unity}></MacroCounter>
                 </Col>
             </Row>

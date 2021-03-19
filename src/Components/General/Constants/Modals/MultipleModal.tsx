@@ -10,11 +10,12 @@ interface props{
     onHide ?: () => any,
     setSlide : any,
     slide : any,
-    canSlide ?: () => boolean
+    canSlide ?: () => boolean,
+    resetForm : () => void;
 }
 
 
-export default function MultipleModal({title, onFinish, children, show, onHide,  setSlide, slide, canSlide} : props) {
+export default function MultipleModal({title, onFinish, children, show, onHide,  setSlide, slide, canSlide, resetForm} : props) {
 
 
     const [index, setIndex] = [slide, setSlide];
@@ -38,6 +39,7 @@ export default function MultipleModal({title, onFinish, children, show, onHide, 
     const backSlide = () => {
         if(index > 0){
             setIndex(index - 1)
+            resetForm()
         }
         
     }

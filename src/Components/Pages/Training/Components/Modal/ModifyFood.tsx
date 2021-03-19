@@ -53,7 +53,7 @@ export default function ModifyFood({food, show, onHide} : props) {
 
                                         <Col lg={6}>
 
-                                            <FoodMacrosChart showTooltip hasCalories width={"100%"} height={200} food={food} actualWeight={values.portion_cuantity}></FoodMacrosChart>
+                                            <FoodMacrosChart legend showTooltip hasCalories width={"100%"} height={220} food={food} actualWeight={values.portion_cuantity}></FoodMacrosChart>
 
                                         </Col>
 

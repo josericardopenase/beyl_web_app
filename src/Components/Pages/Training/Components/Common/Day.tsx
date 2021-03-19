@@ -34,6 +34,8 @@ export const Day = ({ day, index, rutine} : IProps) => {
     const themes = useContext(ThemeContext);
 
     const {ref, isVisible, setIsVisible} = useVisible(false);
+    let timer : any = 0;
+    let prevent : boolean = false;
 
     useEffect(() => {
 
@@ -73,27 +75,33 @@ export const Day = ({ day, index, rutine} : IProps) => {
 
     }
 
+
     return (
         <DraggingComponent id = {day.id} index = {day.order}>
                 <div className="mr-3" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}  >
                     <ContainerBox color={active ? "rgba(255, 198, 0, 0.20)" : themes.colors.secondary}>
                         <div className="pl-2 pr-2 d-flex align-items-center"> 
 
-                            <Link to = {`${loc.url}/${day.id}`} >
+                            <div onClick ={() => {
+                                timer = setTimeout(() => {
+                                    if(!prevent)
+                                        history.push(`${loc.url}/${day.id}`)
+                                }, 200)
+                            } }onDoubleClick={() => {
+                                prevent = true;
+                                clearTimeout(timer);
+                                setIsVisible(!isVisible)
+                            }  } >
                                 { !isVisible ? 
                                 <Title3 style={active ? {color: Themes.beylColor  } : {}} color={hover ? Themes.beylColor : "primary"}>{day.name}</Title3> 
                                 :
                                 <Input onChange = {(data : any) => setText(data.target.value)}  customref ={ref} style={{width: 120}} defaultValue = {day.name} onKeyDown = {pressEnter}></Input>
                                 }
-                            </Link>
-
-                            <div onClick = {() => setIsVisible(!isVisible)} style={{cursor: "pointer", marginRight: 15}}>
-                                <Icon color={active ? Themes.beylColor : ""}>
-                                    <FaEdit name="FaEdit" className="ml-3"></FaEdit>
-                                </Icon>
                             </div>
 
-                            <RemoveIcon onClick={deleteCurrentDay} popUp={true} color={active ? Themes.beylColor : undefined}></RemoveIcon>
+                            <div className="ml-3">
+                                <RemoveIcon onClick={deleteCurrentDay} popUp={true} color={active ? Themes.beylColor : undefined}></RemoveIcon>
+                            </div>
 
                         </div>
                     </ContainerBox>

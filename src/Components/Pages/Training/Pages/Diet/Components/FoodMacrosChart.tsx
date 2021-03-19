@@ -1,5 +1,5 @@
 import React from 'react'
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Tooltip, Label } from 'recharts';
+import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Tooltip, Label, Legend } from 'recharts';
 import useThemes from '../../../../../../CustomHooks/useThemes';
 
 interface IProps{
@@ -10,18 +10,27 @@ interface IProps{
     innerRadius ?: number,
     outerRadius ?:number,
     hasCalories ?: boolean,
-    showTooltip ?: boolean
+    showTooltip ?: boolean,
+    legend ?: boolean
 }
 
-export default function FoodMacrosChart({food, actualWeight, width, height, innerRadius, outerRadius, hasCalories, showTooltip} : IProps) {
+export default function FoodMacrosChart({food, actualWeight, width, height, innerRadius, outerRadius, hasCalories, showTooltip, legend} : IProps) {
 
     const factor = (actualWeight ? actualWeight : food.portion_cuantity)/food.food.portion_weight;
 
     const data = [
-        { name: 'Carbohidratos', value: Math.round((food.food.carbohydrates * factor +  1)  * 10)/10},
-        { name: 'Proteínas', value: Math.round((food.food.protein * factor+ 1) * 10)/10 },
-        { name: 'Grasas', value: Math.round((food.food.fat * factor + 1) * 10)/10 },
+        { name: 'Carbohidratos', value: Math.round((food.food.carbohydrates * factor)  * 10)/10},
+        { name: 'Proteínas', value: Math.round((food.food.protein * factor) * 10)/10 },
+        { name: 'Grasas', value: Math.round((food.food.fat * factor) * 10)/10 },
     ];
+
+    if(data[0].value === 0 && data[1].value === 0 && data[2].value === 0 ){
+
+        data[0].value = 1;
+        data[1].value= 1;
+        data[2].value = 1;
+
+    }
 
     const themes = useThemes();
 
@@ -63,6 +72,12 @@ export default function FoodMacrosChart({food, actualWeight, width, height, inne
                     <Tooltip contentStyle={{borderRadius: 10}} />
                     :
                     null
+                }
+                
+                {legend ?
+                <Legend verticalAlign="bottom" margin={{top :30}} wrapperStyle={{paddingTop: 10}} height={36}/>
+                :
+                null
                 }
 
             </PieChart>
