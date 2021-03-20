@@ -37,7 +37,7 @@ export default function AnotationIcon({obj, modifyMethod} : IProps) {
     return (
 
         <OverlayTrigger trigger="click" placement="right" show={isVisible} overlay={
-          <Popover id="popover-positionet-right" style={{borderRadius: 10, backgroundColor: themes.colors.secondary, outline: 0, border: 0}}
+          <Popover id="popover-positioned-right" style={{borderRadius: 10, backgroundColor: themes.colors.secondary, outline: 0, border: 0}}
         >
                 <div className="p-3" ref={ref}>
                     <Title3><Bolder>Anotacion</Bolder></Title3>

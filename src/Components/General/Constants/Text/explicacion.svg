@@ -1,11 +1,4 @@
-import React from 'react'
-import useThemes from '../../../../CustomHooks/useThemes'
-
-export default function RegisterFlow() {
-
-
-    return (
-<svg width="100%" className="p-4" height="336" viewBox="0 0 1130 336" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="1130" height="336" viewBox="0 0 1130 336" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="95.6272" cy="76.4839" r="74.6627" transform="rotate(1.08567 95.6272 76.4839)" fill="#272B2F"/>
 <circle cx="552.256" cy="76.4839" r="74.6627" transform="rotate(1.08567 552.256 76.4839)" fill="#272B2F"/>
 <circle cx="996.018" cy="76.4839" r="74.6627" transform="rotate(1.08567 996.018 76.4839)" fill="#272B2F"/>
@@ -96,6 +89,3 @@ export default function RegisterFlow() {
 </filter>
 </defs>
 </svg>
-
-    )
-}

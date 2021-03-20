@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { store } from "../Store/store";
 const { create } = require("apisauce");
 
- export const apiUrl = 'https://beyl-api.herokuapp.com/v1'
+ export const apiUrl = 'https://api.beylapp.com/v1'
 
 const apiClient = create({
     baseURL: apiUrl

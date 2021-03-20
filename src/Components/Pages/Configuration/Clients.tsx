@@ -5,6 +5,7 @@ import useThemes from '../../../CustomHooks/useThemes'
 import { athletesReceived, deleteAthlete, loadAthletes } from '../../../Store/athleltes'
 import { logOut, removeLocalToken } from '../../../Store/authentication'
 import { getAllCode, getNewCode } from '../../../Store/trainerCode'
+import InterrogationTooltip from '../../General/Constants/GeneralPropose/InterrogationTooltip'
 import { Icon } from '../../General/Constants/Icons/Icon'
 import ProfilePicIcon from '../../General/Constants/Icons/ProfilePicIcon'
 import RemoveIcon from '../../General/Constants/Icons/RemoveIcon'
@@ -69,7 +70,7 @@ function TrainerCode(){
     return (
         <div className="mt-5 ">
             <Title4>Código para que tus clientes se registren</Title4>
-            <Title5 style={{marginTop: 5}}>Solo tienen un uso</Title5>
+
             <div>
             <div className="mt-3 d-flex align-items-stretch position-relative">
 
@@ -100,6 +101,14 @@ function TrainerCode(){
                     <FaRedoAlt style={{color: "white"}}/>
                 </div>
 
+                <div className="d-flex align-items-center ml-3">
+                    <InterrogationTooltip size="25">
+                        <>
+                            Los códigos de entrenador son solo de un uso.
+                            puedes crear tantos como quieras 🐈. 
+                        </>
+                    </InterrogationTooltip>
+                </div>
             </div>
             </div>
         </div>

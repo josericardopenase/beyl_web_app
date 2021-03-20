@@ -31,6 +31,8 @@ import { Link } from 'react-router-dom'
 import Loading from '../../General/Constants/Loading/Loading'
 import RegisterFlow from '../../General/Constants/SVGS/RegisterFlow'
 import PlaceHolderEmail from '../../General/Constants/SVGS/PlaceholderEmail'
+import FormikImageUpload from '../../General/Constants/Text/Inputs/FormikImageUpload'
+import FormikInput from '../../General/Constants/Text/Inputs/FormikInput'
 
 function RegisterPoint({numero, titulo, menu, first} : any){
 
@@ -153,7 +155,7 @@ export default function Register() {
                 is: (val : any) => (val && val.length > 0 ? true : false),
                 then: Yup.string().oneOf(
                 [Yup.ref("password")],
-                "Both password need to be the same"
+                "Las contraseñas tienen que ser las mismas"
                 )
             })
 
@@ -200,7 +202,7 @@ export default function Register() {
                 <InputBox type="password" name="confirmpassword" onChange={handleChange} placeholder="Repetir contraseña..."></InputBox>
                 <TitleErrorRegister error={errors.confirmpassword}/>
                 <TitleErrorRegister error={emailErrors}/>
-                <ButtonMain onClick={handleSubmit} enabled={false} style={{maxWidth: 500, width: "100%", borderRadius: "100px", textAlign: "center", marginTop: "100px"}}>Siguiente</ButtonMain>
+                <ButtonMain onClick={handleSubmit} enabled={false} style={{maxWidth: 500, width: "100%", borderRadius: "100px", textAlign: "center", marginTop: "70px"}}>Siguiente</ButtonMain>
             </motion.div>
         ,
 
@@ -277,13 +279,13 @@ export default function Register() {
 
                 <>
                     <Title1 style={{textAlign: "center"}}>Genial, <Bolder>{values.name}</Bolder></Title1>
-                    <Title3 style={{textAlign: "center", marginTop: 20, marginBottom: 40}}>Te aceptaremos dentro de poco, cuando lo hagamos te <span style={{fontWeight: 600, color : Themes.beylColor}}> enviaremos un email</span></Title3>
+                    <Title3 style={{textAlign: "center", marginTop: 20, marginBottom: 40}}>Te hemos enviado un email para <span style={{fontWeight: 600, color : Themes.beylColor}}> confirmar tu cuenta</span></Title3>
                     <PlaceHolderEmail></PlaceHolderEmail>
 {/*                     <a target="blank" className="w-100 m-0 p-0 d-flex justify-content-center" href={"http://t.me/joinchat/IJEwQVrG3AVyw8R9"}>
                         <ButtonMain icon={<FaTelegramPlane size={25}/>} style={{maxWidth: 500, width: "100%", borderRadius: "100px", textAlign: "center", marginTop: "100px", backgroundColor: "#0088CC"}}>Unirme al grupo</ButtonMain>
                     </a> */}
                     <Link to="/login" className="w-100 d-flex justify-content-center">
-                        <ButtonMain enabled={false} style={{maxWidth: 500, width: "100%", borderRadius: "100px", textAlign: "center", marginTop: "100px"}}>Terminar</ButtonMain>
+                        <ButtonMain enabled={false} style={{maxWidth: 500, width: "100%", borderRadius: "100px", textAlign: "center", marginTop: "60px"}}>Perfecto</ButtonMain>
                     </Link>
                 </>
             }

@@ -19,9 +19,12 @@ import { Title3 } from '../../../../General/Constants/Text/Title3';
 import Themes from '../../../../General/Styles/Themes';
 import useThemes from '../../../../../CustomHooks/useThemes';
 import { Title4 } from '../../../../General/Constants/Text/Title4';
-import { MetabolismoBasal } from '../../../../General/Constants/functions/DietFunctions';
+import { getAmountExcersise, MetabolismoBasal } from '../../../../General/Constants/functions/DietFunctions';
 import Loading from '../../../../General/Constants/Loading/Loading';
 import FoodMacrosChart from './Components/FoodMacrosChart';
+import InterrogationTooltip from '../../../../General/Constants/GeneralPropose/InterrogationTooltip';
+import { Bolder } from '../../../../General/Constants/Text/Bolder';
+import { FaRuler, FaRunning, FaWeight } from 'react-icons/fa';
 
 export const DietDay = (props : any) => {
 
@@ -33,7 +36,7 @@ export const DietDay = (props : any) => {
     const dispatch = useDispatch();
     const dietGroup = useSelector((state : any) => state.training.diet.DietGroup);
     const dietFoods = useSelector((state : any) => state.training.diet.food.list.filter((x : any) => dietGroup.list.some((e : any) => e.id === x.group)));
-    const athlete = store.getState().athletes.selectedAthlete
+    const athlete = useSelector((state : any) => state.athletes.selectedAthlete);
 
 
 
@@ -74,6 +77,30 @@ export const DietDay = (props : any) => {
                             <div className="d-flex align-items-center" style={{marginTop: 5}}>
                                 <Title3  color={"#F5A623"}>{basalMetabolism} kcal</Title3>
                                 <Title4 style={{marginLeft: 10}} color={basalMetabolism - kcal >= 0 ? "#22A447" : "#FD413C"}>({basalMetabolism - kcal < 0 ? "+" + ((Math.abs(basalMetabolism - kcal)).toFixed(1)) : "-" + (basalMetabolism - kcal).toFixed(1)})</Title4>
+                                <InterrogationTooltip size="25">
+                                    <div>
+                                        <div className="d-flex mt-1 mb-2 pr-4 align-items-center">
+                                            <div style={{color: Themes.beylColor, fontSize: 20, marginRight: 20}}>
+                                                <FaWeight></FaWeight>
+                                            </div>
+                                            <Title4><Bolder>{Math.round(athlete.weight * 100)/100 + " kg"}</Bolder></Title4> 
+                                        </div>
+
+                                        <div className="d-flex mt-1 mb-2 pr-4 align-items-center">
+                                            <div style={{color: Themes.beylColor, fontSize: 20, marginRight: 20}}>
+                                                <FaRuler></FaRuler>
+                                            </div>
+                                            <Title4><Bolder>{athlete.height + " cm"}</Bolder></Title4> 
+                                        </div>
+                                        
+                                        <div className="d-flex mt-1 mb-2 pr-4 align-items-center">
+                                            <div style={{color: Themes.beylColor, fontSize: 20, marginRight: 20}}>
+                                               <FaRunning></FaRunning> 
+                                            </div>
+                                            <Title4><Bolder>{getAmountExcersise(athlete.amount_excersise)}</Bolder></Title4> 
+                                        </div>
+                                    </div>
+                                </InterrogationTooltip>
 
                             </div>
                         </div>

@@ -3,6 +3,7 @@ import React from 'react'
 import { Route, Switch, Redirect, useLocation } from 'react-router-dom'
 import Login from '../Components/Pages/Login/Login'
 import Register from '../Components/Pages/Login/Register'
+import VerifyEmail from '../Components/Pages/Login/VerifyEmail'
 
 export default function LoginRoutes() {
 
@@ -22,6 +23,7 @@ export default function LoginRoutes() {
             <AnimatePresence exitBeforeEnter>
                 <Switch location={location} key={location.pathname}>
 
+                    <Route path="/verify_email/:token" component={VerifyEmail}></Route>
                     <Route path="/login" component={Login}></Route>
                     <Route path="/register" component={Register}></Route>
 

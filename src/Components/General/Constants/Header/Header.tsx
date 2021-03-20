@@ -87,7 +87,7 @@ export const Header = () => {
                     exit={{y: -30, opacity: 0}}
                     key={100}
                     
-                    style={styles.dropdown} className="shadow">
+                    style={styles.dropdown}>
 
                         <Link className="d-flex align-items-center" style={{cursor: "pointer"}} to="/config">
 
