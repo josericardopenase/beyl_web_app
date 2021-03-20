@@ -5,10 +5,12 @@ const useApiCallback = (apiFunc : any, callback : any) => {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
+    const [finish, setFinish] = useState<boolean>(false);
 
     const request = async (...args : any) => {
 
         setLoading(true)
+        setFinish(false);
         
         const data = await apiFunc(...args)
 
@@ -25,10 +27,11 @@ const useApiCallback = (apiFunc : any, callback : any) => {
         
 
         setLoading(false)
+        setFinish(true);
     
       }
     
-    return {data, error, loading, request}
+    return {data, error, loading, request, finish}
 }
 
 export default useApiCallback

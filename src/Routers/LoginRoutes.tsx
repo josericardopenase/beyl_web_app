@@ -2,6 +2,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 import React from 'react'
 import { Route, Switch, Redirect, useLocation } from 'react-router-dom'
 import Login from '../Components/Pages/Login/Login'
+import RecoverPassword from '../Components/Pages/Login/RecoverPassword'
+import PerformRecoverPassword from '../Components/Pages/Login/PerformRecoverPassword'
 import Register from '../Components/Pages/Login/Register'
 import VerifyEmail from '../Components/Pages/Login/VerifyEmail'
 
@@ -26,10 +28,9 @@ export default function LoginRoutes() {
                     <Route path="/verify_email/:token" component={VerifyEmail}></Route>
                     <Route path="/login" component={Login}></Route>
                     <Route path="/register" component={Register}></Route>
+                    <Route path="/recover_password/:token" component={PerformRecoverPassword}></Route>  
+                    <Route path="/recover_password" component={RecoverPassword}></Route>  
 
-{/*                      <Route path="/register" component={RoutesTraining}></Route>
-                    <Route path="/recoverPassword" component={RoutesConfig}></Route>  */}
-   
 
                      <Route path="/">
                         <motion.div exit="undefined">

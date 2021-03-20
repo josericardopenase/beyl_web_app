@@ -20,6 +20,9 @@ import useThemes from '../../../CustomHooks/useThemes'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import FormikInput from '../../General/Constants/Text/Inputs/FormikInput'
+import { Title2 } from '../../General/Constants/Text/Title2'
+import { Title4 } from '../../General/Constants/Text/Title4'
+
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().required().email(),
@@ -100,9 +103,13 @@ export default function Login() {
                                                     </ButtonMain>
 
                                                 </Link>
+
                                                 
                                             </Col>
 
+                                            <Link to="/recover_password" className="ml-3 mt-3">
+                                                <Title4 color="secondary"><Bolder>¿Has olvidado tu contraseña?</Bolder></Title4>
+                                            </Link>
                                         </Row>
                                         { apiErrors ? <TitleError>{apiErrors.non_field_errors}</TitleError> : null}
                                     </>

@@ -1,39 +1,60 @@
+import { Formik } from 'formik'
 import { motion } from 'framer-motion'
-import { List } from 'immutable'
-import React, { useEffect } from 'react'
+import React from 'react'
+import { FaArrowLeft, FaLock, FaMailBulk } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import apiUser from '../../../Api/apiUser'
-import useApi from '../../../CustomHooks/useApi'
-import useApiCallback from '../../../CustomHooks/useApiCallback'
 import useThemes from '../../../CustomHooks/useThemes'
-import ButtonMain from '../../General/Constants/Button/ButtonMain'
-import { BeylIcon } from '../../General/Constants/Icons/BeylIcon'
-import Loading from '../../General/Constants/Loading/Loading'
-import BeylBetaLogo from '../../General/Constants/SVGS/BeylBetaLogo'
 import { Bolder } from '../../General/Constants/Text/Bolder'
 import { Title1 } from '../../General/Constants/Text/Title1'
 import { Title2 } from '../../General/Constants/Text/Title2'
+import { Title3 } from '../../General/Constants/Text/Title3'
 import { Title4 } from '../../General/Constants/Text/Title4'
-import Themes from '../../General/Styles/Themes'
+import * as Yup from 'yup'
+import FormikInput from '../../General/Constants/Text/Inputs/FormikInput'
+import ButtonMain from '../../General/Constants/Button/ButtonMain'
+import apiUser from '../../../Api/apiUser'
+import useApiCallback from '../../../CustomHooks/useApiCallback'
 import logo from '../../../MediaFiles/logobeyl.png'
+import useApi from '../../../CustomHooks/useApi'
+import Loading from '../../General/Constants/Loading/Loading'
 
-export default function VerifyEmail(props : any) {
+const validationSchema = Yup.object().shape({
+    password : Yup.string().required().label("Password").matches(
+                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/,
+                "Tiene que tener una mayúscula, al menos un  \n número y mínimo 8 ca      rácteres"
+        )
+        ,
+    confirm_password: Yup.string().required().when("password", {
+        is: (val : any) => (val && val.length > 0 ? true : false),
+        then: Yup.string().oneOf(
+        [Yup.ref("password")],
+        "Las contraseñas tienen que ser las mismas"
+        )
+    })
+
+})
+
+export default function PerformRecoverPassword(props : any) {
+
+    const theme = useThemes();
 
     const token = props.match.params.token
 
-    const theme = useThemes();
-    const postToken = useApi(apiUser.verifyEmail)
+    const apiChangePassword = useApi(apiUser.recoverPassword)
 
+    const handleRecover = (data : any) => {
 
-    useEffect(() => {
-        postToken.request(token);
-    }, []) 
+        apiChangePassword.request(token, data.password)
 
-    if(postToken.loading){
-        return <Loading></Loading>
     }
 
-    return (
+
+    if(apiChangePassword.loadingRequest)
+        return (<Loading></Loading>)
+
+    if(apiChangePassword.finish)
+        return  (
+
         <motion.div 
             initial= {{y: 160, opacity: 0}}
                     animate={{y : 0, opacity: 1}} 
@@ -43,9 +64,9 @@ export default function VerifyEmail(props : any) {
         
         className="w-100 align-items-center justify-content-center d-flex flex-column" style={{height: "100vh"}} >
             {
-                !postToken.error ?
+                !apiChangePassword.error ?
                     <>
-                        <Title2><Bolder>Email verificado</Bolder></Title2>
+                        <Title2><Bolder>Contraseña cambiada</Bolder></Title2>
                         <Title4 color="secondary" style={{marginTop: 10}}>Todo listo, ya puedes iniciar sesión</Title4>
 
                         <svg className="mt-5" width="100%" height="231" viewBox="0 0 330 331" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,6 +106,52 @@ export default function VerifyEmail(props : any) {
 
             <img className="mt-5" width="90px" src={logo}></img>
 
+        </motion.div>
+        )
+    
+
+    return (
+        <motion.div 
+        
+            initial= {{y: 160, opacity: 0}}
+                    animate={{y : 0, opacity: 1}} 
+                    transition = {{duration: 0.4}}
+                    exit={{y: -200, opacity: 0}}
+                    
+                    key={100}
+        className="w-100 d-flex justify-content-center align-items-center flex-column" style={{height: "100vh"}}>
+            
+        <div>
+            <Link to="/login">
+                <motion.div
+                
+                            whileHover={{ x: -10.05 }}
+
+
+                className="d-flex mb-4 " style={{cursor: "pointer"}}>
+                    <FaArrowLeft color={theme.colors.textPrimary} size={25} style={{marginRight: 20}}/>
+                    <Title3>Volver atrás</Title3>
+                </motion.div>
+            </Link>
+            <Title1><Bolder>Cambia tu contraseña</Bolder></Title1> 
+            <Formik validationSchema={validationSchema} initialValues={{password : '', confirm_password: ''}} onSubmit={(data : any) => handleRecover(data)}>
+                {
+                    ({handleSubmit}) => (
+                        <div className="mt-4">
+
+                            <div className="mb-3">
+                                <FormikInput primary={true} type="password" className="p-2" name = "password" placeholder = "Nueva contraseña" icon={<FaLock></FaLock>}></FormikInput>
+                            </div>
+
+                            <FormikInput primary={true} type="password" className="p-2" name = "confirm_password" placeholder = "Repita la nueva contraseña" icon={<FaLock></FaLock>}></FormikInput>
+                            <ButtonMain className="mt-3" onClick = {handleSubmit}>Cambiar</ButtonMain>
+                        </div>
+                    )
+
+                }
+            </Formik>
+
+        </div>
         </motion.div>
     )
 }
