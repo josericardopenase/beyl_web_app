@@ -80,8 +80,12 @@ export default function AddFood(props: any) {
                                 <div className="d-flex">
                                     <FormikInput autocomplete="off" defaultValue={values.portion_cuantity} type="number" name="portion_cuantity" style={{backgroundColor: theme.colors.secondary, width: "100%"}} 
                                     placeholder = {"Cantidad de ración"}></FormikInput>
-
                                     <Title3 style={{marginRight : 10, marginLeft: 10}}>gr</Title3>
+                                    <select>
+                                        <option value="gr">gr</option>
+                                        <option value="ml">ml</option>
+                                        <option value="unity">uniad</option>
+                                    </select>
                                 </div>
 
                                 <div className="mt-5">

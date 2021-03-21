@@ -32,7 +32,8 @@ export default function VerticallyCenteredModal(props : props) {
       borderRadius: 25,
       backgroundColor: themes.colors.primary,
       color: themes.colors.textPrimary,
-      border: 0
+      border: 0,
+      outline : 0
     },
    } 
 
@@ -45,6 +46,7 @@ export default function VerticallyCenteredModal(props : props) {
         aria-labelledby="contained-modal-title-vcenter"
         centered
         animation= {props.animated ? false : true}
+      
       >
         <div style={styles.body} >
         
