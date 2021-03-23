@@ -119,6 +119,7 @@ export default function AddExcersise(props: any) {
         props.onHide();
         resetForm();
         setSlide(0);
+        setSelectedItems([]);
     }
 
     const onHide = (resetForm: any) => {

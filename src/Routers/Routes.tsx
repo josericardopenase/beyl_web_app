@@ -37,7 +37,7 @@ export const Routes = () => {
         if(user){
             notificationCenter.pushNotification({
                     type: "success",
-                    message: `Bienvenido denuevo ${user.user.first_name}` 
+                    message: `Bienvenido de nuevo ${user.user.first_name}` 
 
             }) 
 
