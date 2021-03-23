@@ -72,12 +72,10 @@ export default function SearchSelector({apiFunction, name, multiple, element, se
             clearTimeout(search)
         }
 
-        console.log(page)
-
         setSearch(setTimeout(() =>{
-            setPage(1);
             apiExcersises.request(text, page)
-        }, 200))
+            setPage(1);
+        }, 100))
 
     }, [text])
 

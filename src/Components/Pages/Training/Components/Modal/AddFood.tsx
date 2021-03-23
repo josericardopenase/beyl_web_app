@@ -81,17 +81,17 @@ export default function AddFood(props: any) {
                                     <FormikInput autocomplete="off" defaultValue={values.portion_cuantity} type="number" name="portion_cuantity" style={{backgroundColor: theme.colors.secondary, width: "100%"}} 
                                     placeholder = {"Cantidad de ración"}></FormikInput>
                                     <Title3 style={{marginRight : 10, marginLeft: 10}}>gr</Title3>
-                                    <select>
+{/*                                     <select>
                                         <option value="gr">gr</option>
                                         <option value="ml">ml</option>
                                         <option value="unity">uniad</option>
-                                    </select>
+                                    </select> */}
                                 </div>
 
                                 <div className="mt-5">
                                     {
                                     selectedItems ?
-                                    <MacroCounter fontSize={16} unity={"gr"} protein={selectedItems.protein} carbos = {selectedItems.carbohydrates} grasas={selectedItems.fat} calories={selectedItems.kcalories} portion_cuantity={values.portion_cuantity} portion_weight={selectedItems.portion_weight} ></MacroCounter>
+                                    <MacroCounter fontSize={16} unity={selectedItems.portion_unity} protein={selectedItems.protein} carbos = {selectedItems.carbohydrates} grasas={selectedItems.fat} calories={selectedItems.kcalories} portion_cuantity={values.portion_cuantity} portion_weight={selectedItems.portion_weight} ></MacroCounter>
                                     :
                                     null
 

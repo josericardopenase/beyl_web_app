@@ -15,7 +15,7 @@ export default function NotFound({message, children, svg} : IProps) {
 
     return (
 
-        <div style={{width: "100%", textAlign: "center", alignItems: "center"}}>
+        <div style={{width: "100%", textAlign: "center", alignItems: "center", height: "100%", display: "flex", flexDirection: "column", justifyContent: "center"}}>
 {/*             <img width="40%" style={{maxWidth: "240px", opacity: "70%"}} src={NotFoundImg}></img> */}
             <div className="p-0 w-100 d-flex justify-content-center">
                 {

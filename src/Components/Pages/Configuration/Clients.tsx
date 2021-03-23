@@ -29,7 +29,7 @@ function TrainerCode(){
     const textAreaRef : any = useRef(null);
     const successColor : string = "#A3DE83";
 
-    const lastCode = useSelector((state : any) => state.trainerCode.list[0] )
+    const lastCode = useSelector((state : any) => state.trainerCode.list[state.trainerCode.list.length - 1] )
 
     const style ={
         input : {

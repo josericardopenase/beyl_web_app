@@ -65,12 +65,14 @@ export default function SportHistory() {
             )
             :
             (
+
                 <NotFound message="Tu cliente aún no han publicado nada."
                     svg={
                         <NotFoundLastPublications></NotFoundLastPublications>
                     } 
                 >
                 </NotFound>
+
             )
         }
         </ContainerGraphs>
