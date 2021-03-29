@@ -11,7 +11,7 @@ export default function Input(props : any) {
 
 
     const style= {
-        borderRadius: 10,
+        borderRadius: 15,
         border: 0,
         padding: "4px 10px 4px 10px",
         outline: 0,
@@ -29,18 +29,18 @@ export default function Input(props : any) {
                 {
 
                     props.icon ?
-                    <Icon>
+                    <Icon color={props.colorIcon}>
                         {props.icon}
                     </Icon>
                     : 
                     null
                 }
-                <input {...props} ref = { props.customref }  style={{...style, ...props.style}}></input> 
+                <input placeholder={props.placeholder} {...props} ref = { props.customref }  style={{...style, ...props.style}}></input> 
             </div>
 
             )
             :
-            <input {...props} ref = { props.customref }  style={{...style, ...props.style}}></input> 
+            <input  placeholder={props.placeholder} {...props} ref = { props.customref }  style={{...style, ...props.style}}></input> 
         
     )
 }

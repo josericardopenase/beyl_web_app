@@ -1,12 +1,15 @@
 import { useField, useFormikContext } from 'formik'
 import React, { useEffect, useState } from 'react'
-import { Button, Col, Row } from 'react-bootstrap'
+import { Button, Col, Row, Container } from 'react-bootstrap'
 import { FaSearch } from 'react-icons/fa'
 import apiTraining from '../../../../../Api/apiTraining'
 import useApiCallback from '../../../../../CustomHooks/useApiCallback'
+import useDidMountEffect from '../../../../../CustomHooks/useDidMountEffect'
 import useThemes from '../../../../../CustomHooks/useThemes'
+import excersise from '../../../../../Store/Rutines/excersise'
 import Bottom1 from '../../../../General/Constants/Button/Button1'
 import LoadingButton from '../../../../General/Constants/Button/LoadingButton'
+import TagList from '../../../../General/Constants/TagLIst'
 import { Bolder } from '../../../../General/Constants/Text/Bolder'
 import Input from '../../../../General/Constants/Text/Inputs/Input'
 import { Title2 } from '../../../../General/Constants/Text/Title2'
@@ -15,7 +18,7 @@ import { Title4 } from '../../../../General/Constants/Text/Title4'
 import ContainerBox from '../../../../General/Containers/ContainerBox'
 import Themes from '../../../../General/Styles/Themes'
 import ExcersisePuntuation from '../../Pages/Rutine/Components/ExcersisePuntuation'
-
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 interface IProps{
     apiFunction : any,
     name : string, 
@@ -23,10 +26,11 @@ interface IProps{
     element : (obj : any) => any,
     selectedItems ?: any,
     setSelectedItems ?: any,
-    maxSelectedItems ?: number
+    maxSelectedItems ?: number,
+    tagsFunction : any
 }
 
-export default function SearchSelector({apiFunction, name, multiple, element, selectedItems, setSelectedItems, maxSelectedItems} : IProps) {
+export default function SearchSelector({apiFunction, name, multiple, element, selectedItems, setSelectedItems, maxSelectedItems, tagsFunction} : IProps) {
 
     const theme = useThemes();
 
@@ -34,9 +38,14 @@ export default function SearchSelector({apiFunction, name, multiple, element, se
     const [excersises, setExcersises] = useState<any[]>([])
     const [field] = useField(name);
     const [page, setPage] = useState(1);
+
     const [state, setState] = useState<any>(multiple ? [] : null)
     const [more, setMore] = useState(true)
+    const [tags, setTags] = useState<number[]>([]);
+
+
     const [search, setSearch] = useState<any>(null);
+
 
     const formik = useFormikContext()
 
@@ -59,21 +68,27 @@ export default function SearchSelector({apiFunction, name, multiple, element, se
 
     useEffect(() => {
 
-        apiExcersises.request(text, page)
+        apiExcersises.request(text, page, tags)
 
     }, [page])
 
-    useEffect(() => {
+    useDidMountEffect(() => {
 
 
+        setPage(1);
+        setExcersises([])
+        apiExcersises.request(text, page, tags)
 
 
+    }, [ tags])
+
+    useDidMountEffect(() => {
         if(search){
             clearTimeout(search)
         }
 
         setSearch(setTimeout(() =>{
-            apiExcersises.request(text, page)
+            apiExcersises.request(text, page, tags)
             setPage(1);
         }, 100))
 
@@ -95,9 +110,6 @@ export default function SearchSelector({apiFunction, name, multiple, element, se
 
             formik.setFieldValue(name, obj.id)
         }
-
-
-        console.log(formik.values)
 
     }
 
@@ -125,6 +137,21 @@ export default function SearchSelector({apiFunction, name, multiple, element, se
 
     }
 
+    function onClickExcersise(obj : any){
+
+        if(multiple){
+            if(field.value.includes(obj.id)){
+                removeFromState(obj) 
+            }else {
+                addToState(obj)
+            }
+        }else{
+            if(field.value !== obj.id){
+                addToState(obj)
+            }
+        }
+
+    }
     
 
     return (
@@ -132,39 +159,58 @@ export default function SearchSelector({apiFunction, name, multiple, element, se
         <div>
             <Input primary={true} onChange={(e : any) => setText(e.target.value)} style={{backgroundColor: theme.colors.secondary, width: "100%"}} 
             icon = {<FaSearch size={15}></FaSearch>}
-            placeholder = {"Busca un ejercicio"}></Input>
-
-            <div className={"w-100 text-center"}>
+            placeholder = {"Buscar..."}></Input>
+            <div className={"w-100 text-center mb-4"}>
                 { multiple ? <Title2 style={{marginTop: 20}}><Bolder>{field.value.length > 1 ? "Superserie" : field.value.length == 1 ? "Serie normal" : ""}</Bolder></Title2> : null}
             </div>
-            <div className={"w-100 text-left d-flex align-items-center justify-content-between mt-3"}>
+
+            <TagList fontSize={"0.9rem"} getTagsFunc={tagsFunction} tags={tags} setTags={setTags}></TagList>
+
+            <div className={"w-100 text-left d-flex align-items-center justify-content-between mt-2"}>
                 <Title3>{multiple ? field.value.length : field.value ? 1 : 0} Items Seleccionados</Title3>
                 <div onClick={() => deselectAll()} style={{backgroundColor: "#e3344c", padding: 5, borderRadius: 5, cursor: "pointer" }}><Bolder>Quitar todos</Bolder></div>
             </div>
-            {
-                excersises.map((obj) => (
-                    <div className="mt-3 p-1" style={{backgroundColor: multiple ? field.value.includes(obj.id) ? Themes.beylColor : "transparent" : field.value===obj.id ? Themes.beylColor :  "transparent", borderRadius: 20, cursor: "pointer"}} onClick = {() => {
-                        if(multiple){
-                            if(field.value.includes(obj.id)){
-                                removeFromState(obj) 
-                            }else {
-                                addToState(obj)
+            <Container fluid>
+                <Row className="mt-3">
+                {
+                    excersises.length < 1 ?
+                    excersises.map((obj) => (
+                        <div className="col-md-6 p-0" style={{
+                            border: `6px ${theme.colors.primary} solid`,
+                            backgroundColor: theme.colors.secondary ,
+                            borderRadius: 20, 
+                            cursor: "pointer"
+                        }} onClick = {() => onClickExcersise(obj)}>
+                            <div style={{
+                                border: multiple ? field.value.includes(obj.id) ? `3px ${Themes.beylColor} solid`: `3px ${theme.colors.secondary} solid` : field.value===obj.id ? `3px ${Themes.beylColor} solid` : `3px ${theme.colors.secondary} solid`, 
+                                borderRadius: 20, 
+                            }}>
+                            {
+                                element(obj)
                             }
-                        }else{
-                            if(field.value !== obj.id){
-                                addToState(obj)
-                            }
-                        }
-                    }
-                    }>
-                        {
-                            element(obj)
-                        }
-                    </div>
+                            </div>
+                        </div>
+                        )
                     )
-                )
-            }
+                    :
+                    
 
+                    <SkeletonTheme color={theme.colors.secondary} highlightColor="#444">
+                        {
+                    [1,2,3,4,5,6,7,8].map(() => 
+                        <div className="col-md-6 p-0 mb-3" style={{
+                        }} >
+                            <p>
+                                <Skeleton count={1} height={105} style={{borderRadius: 20}}/>
+                            </p>
+
+                        </div>
+                    )
+                    }
+                    </SkeletonTheme>
+                }
+                </Row>
+            </Container>
             { more === true ? <LoadingButton onClick={ ()=> { console.log(page); setPage(page + 1);}} /> : null }
         </div>
     )

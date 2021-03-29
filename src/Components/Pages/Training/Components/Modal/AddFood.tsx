@@ -62,7 +62,10 @@ export default function AddFood(props: any) {
 
                     <div>
                     
-                        <SearchSelector multiple={false} name={"food"}  
+                        <SearchSelector 
+                        tagsFunction={apiDiet.getFoodTags}
+                        multiple={false} 
+                        name={"food"}  
                         element={(obj : any) => <DietFoodSearch obj ={obj}></DietFoodSearch>}
                         apiFunction = {apiDiet.getFood}
                         setSelectedItems={setSelectedItems}

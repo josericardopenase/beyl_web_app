@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { TrainingHeaderElement } from './Components/TrainingHeaderElement'
+import { NavigationHeader } from '../../../../General/Constants/Header/NavigationHeader';
 
 export const TrainingHeader = ({actualPath} : any) => {
 
@@ -28,14 +28,6 @@ export const TrainingHeader = ({actualPath} : any) => {
 
     return (
         
-        <div className="mt-4 d-flex align-items-end">
-            
-            {
-
-                routes.map((obj) => <Link to={actualPath + obj.route} key={obj.name}> <TrainingHeaderElement key={obj.name} enable={url.pathname.includes(obj.route)}>{obj.name}</TrainingHeaderElement></Link> )
-
-            }
-
-        </div>
+        <NavigationHeader routes={routes} actualPath={actualPath}></NavigationHeader>
     )
 }

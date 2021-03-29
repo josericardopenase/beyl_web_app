@@ -9,7 +9,7 @@ export const Title4 = ({children, style,  fontWeight, color} : TextInterfaces.IT
     return (
         <ConstantTextBase color={color} style={style}  >
 
-            <h4 style={{fontSize: FontSize,  fontWeight: fontWeight ? fontWeight : "normal",  margin: 0, wordBreak: "break-word"} as React.CSSProperties}>
+            <h4 style={{fontSize: FontSize,  fontWeight: fontWeight ? fontWeight : "normal",  margin: 0, wordBreak: "break-word", lineHeight: 1.4 } as React.CSSProperties}>
                 {
                     children
                 }

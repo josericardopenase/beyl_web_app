@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import React, { Children, useContext } from 'react'
+import { FaCog } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom';
 import ThemeContext from '../../../../Store/Themes/ThemeContext'
 import { BeylIcon } from '../Icons/BeylIcon';
@@ -62,7 +63,11 @@ export const Sidebar = ({construction} : any) => {
                 }
                 </div>
 
-                <span></span>
+                <SidebarIcon margin="10px 0px" key={'/config'} obj={{ 
+                    url: '/config',
+                    icon: <FaCog/>,
+                    name: 'config'
+                }} activate={location.pathname.includes('/config')}></SidebarIcon>
             </div>
 
         </motion.div>

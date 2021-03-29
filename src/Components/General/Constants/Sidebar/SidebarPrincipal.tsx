@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaComment, FaFire, FaHome, FaCog } from 'react-icons/fa'
+import { ImBooks } from 'react-icons/im'
 import { Sidebar } from './Sidebar'
 
 export const SidebarPrincipal = () => {
@@ -19,11 +20,10 @@ export const SidebarPrincipal = () => {
             name: 'fire'
         },
         {
-            url: '/config',
-            icon: <FaCog/>,
+            url: '/library',
+            icon: <ImBooks/>,
             name: 'chats'
         },
-
 
         ]}
 

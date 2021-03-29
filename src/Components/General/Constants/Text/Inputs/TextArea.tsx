@@ -12,8 +12,7 @@ export default function TextArea(props : any) {
         outline: 0,
         backgroundColor: theme.colors.secondary,
         color: theme.colors.textPrimary,
-        width: "100%"
-
+        width: "100%",
     } as React.CSSProperties
 
     return (

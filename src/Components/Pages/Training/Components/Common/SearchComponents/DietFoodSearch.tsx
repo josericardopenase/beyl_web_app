@@ -13,16 +13,17 @@ interface IProps{
 
 export default function DietFoodSearch ({obj} : IProps) {
     return (
-        <ContainerBox>
-            <Row className="align-items-center p-2">
+        
+
+            <Row className="align-items-center pr-2 pl-2 pt-4 pb-4">
                 <Col md={12}>
                     <div className="d-flex flex-column justify-content-center">
                         <Title3 style={{marginBottom: "0.5rem"}}><Bolder>{obj.name}</Bolder></Title3>
                         <Title4>Por {obj.portion_weight} gr:</Title4>
                     </div>
                 </Col>
-                <MacroCounter portion_cuantity={obj.portion_weight} portion_weight={obj.portion_weight} protein={obj.protein} carbos={obj.carbohydrates} calories={obj.kcalories} grasas={obj.fat} unity={"gr"}></MacroCounter>
+                <MacroCounter fontSize={12} portion_cuantity={obj.portion_weight} portion_weight={obj.portion_weight} protein={obj.protein} carbos={obj.carbohydrates} calories={obj.kcalories} grasas={obj.fat} unity={"gr"}></MacroCounter>
             </Row>
-        </ContainerBox>
+
     )
 }

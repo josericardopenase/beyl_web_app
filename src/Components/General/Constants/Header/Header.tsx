@@ -89,16 +89,18 @@ export const Header = () => {
                     
                     style={styles.dropdown}>
 
-                        <Link className="d-flex align-items-center" style={{cursor: "pointer"}} to="/config">
+                        <Link onClick={() => setIsVisible(false)} className="d-flex align-items-center" style={{cursor: "pointer"}} to="/config">
 
                             <Icon>
                                 <FaCog></FaCog>
                             </Icon>
 
                             <Title4 style={{marginLeft: 10}}>Configuracion</Title4> 
-                        </Link>
+                        </Link  >
 
+                        <div>
                             <CloseSession></CloseSession>
+                        </div>
 
 
                     </motion.div>

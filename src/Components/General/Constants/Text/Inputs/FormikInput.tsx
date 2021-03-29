@@ -11,7 +11,7 @@ export default function FormikInput(props : any) {
 
     return (
         <div>
-            <Input onChange={formik.handleChange} onBlur={() => formik.setFieldTouched(name)} name={name}  {...props}></Input>
+            <Input onChange={formik.handleChange} onBlur={() => formik.setFieldTouched(name)} name={name} placeholder={props.placeholder} {...props}></Input>
             { formik.errors[name] && formik.touched[name] ? <TitleError>{formik.errors[name]}</TitleError> : null}
         </div>
     )

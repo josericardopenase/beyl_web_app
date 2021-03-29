@@ -22,6 +22,7 @@ import useNotification from '../CustomHooks/useNotification'
 import RoutesChat from './PageRouters.tsx/RoutesChat'
 import RoutesConfig from './PageRouters.tsx/RoutesConfig'
 import { RoutesHome } from './PageRouters.tsx/RoutesHome'
+import { RoutesLibrary} from './PageRouters.tsx/RoutesLibrary'
 import RoutesTraining from './PageRouters.tsx/RoutesTraining'
 import BeylBetaLogo from '../Components/General/Constants/SVGS/BeylBetaLogo'
 
@@ -88,8 +89,8 @@ export const Routes = () => {
 
                             <Route path="/home"  component={RoutesHome}></Route>
                             <Route path="/training"  component={RoutesTraining}></Route>
-
                             <Route path="/config" component={RoutesConfig}></Route>
+                            <Route path="/library" component={RoutesLibrary}></Route>
 
                             <Route path="/">
                                 <motion.div exit="undefined">

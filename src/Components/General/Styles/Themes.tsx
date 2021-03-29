@@ -9,6 +9,7 @@ export interface ITheme{
 
 
 const beylColor = '#FFC600';
+const transparencyBeylColor = "rgba(255, 198, 0, 0.43)"
 
 const darkTheme : ITheme = {
     primary: '#1E2025',
@@ -28,4 +29,4 @@ const lightTheme : ITheme = {
     tertiary: '#d1d1d1',
 };
 
-export default {lightTheme, darkTheme, beylColor};
+export default {lightTheme, darkTheme, beylColor, transparencyBeylColor};

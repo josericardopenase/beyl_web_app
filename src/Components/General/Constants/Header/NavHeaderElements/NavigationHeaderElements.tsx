@@ -1,16 +1,15 @@
-import React from 'react'
-import { Bolder } from '../../../../../General/Constants/Text/Bolder'
-import { Title2 } from '../../../../../General/Constants/Text/Title2'
-import { Title3 } from '../../../../../General/Constants/Text/Title3'
-import Themes from '../../../../../General/Styles/Themes'
 
+import React from 'react'
+import Themes from '../../../../General/Styles/Themes';
+import {Title3} from '../../Text/Title3'
+import {Bolder} from '../../Text/Bolder'
 
 interface IProps{
     enable : boolean,
     children : any
 }
 
-export const TrainingHeaderElement = ({enable, children} : IProps) => {
+export const NavigationHeaderElement = ({enable, children} : IProps) => {
 
     return (
         <div>
@@ -18,8 +17,8 @@ export const TrainingHeaderElement = ({enable, children} : IProps) => {
 
                 enable ? (
                     <div className="text-center mr-3 position-relative">
-                        <Title3> <Bolder>{children}</Bolder></Title3>
                         <div className="mt-1 position-absolute" style={{ width: "80%", height: "2px", borderRadius: "20px", backgroundColor: Themes.beylColor, bottom : -4}}/>
+                        <Title3> <Bolder>{children}</Bolder></Title3>
                     </div>
                     
                 ) : (

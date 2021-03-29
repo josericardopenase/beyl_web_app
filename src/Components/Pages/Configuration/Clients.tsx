@@ -69,7 +69,7 @@ function TrainerCode(){
 
     return (
         <div className="mt-5 ">
-            <Title4>Código para que tus clientes se registren</Title4>
+            <Title4 color="secondary">Código para que tus clientes se registren</Title4>
 
             <div>
             <div className="mt-3 d-flex align-items-stretch position-relative">
@@ -127,7 +127,7 @@ function Client({obj} : any){
             border : 0,
             color: themes.colors.textPrimary,
             padding: 10,
-            borderRadius: 10,
+            borderRadius: 18,
             width: "100%",
             marginTop: 10,
             display: "flex",
@@ -142,7 +142,7 @@ function Client({obj} : any){
 
                 <div className="ml-4">
                     <Title3 >{obj.user.first_name + " " + obj.user.last_name}</Title3>
-                    <Title5 >{obj.user.email}</Title5>
+                    <Title5 color="secondary">{obj.user.email}</Title5>
                 </div>
 
             </div>
@@ -187,21 +187,26 @@ export default function Clients() {
 
                     <div className="d-flex flex-column align-items-center pr-5 pl-5">
                         <div className="d-flex align-items-end mt-3">
-                            <Title1>{athletes.length}/</Title1>
+                            <Title1 color="secondary">{athletes.length}/</Title1>
                             <Title1 color={Themes.beylColor}>{user_count.plan.user_count}</Title1>
                         </div>
-                        <Title3 style={{marginTop: 10, marginBottom: 10}}>Clientes actuales</Title3>
+                        <Title3 color="secondary" style={{marginTop: 10, marginBottom: 10}}>Clientes actuales</Title3>
                     </div>
 
                 </div>
 
                 <div className="mt-4">
-                    <Title3>Tus clientes:</Title3>
+                    <Title3><Bolder>Tus clientes:</Bolder></Title3>
 
                     {
                         athletes.length > 0 ?
 
-                            athletes.map((x : any) => <Client obj={x}></Client>)
+                            <>
+                            {
+                                athletes.map((x : any) => <Client obj={x}></Client>)
+
+                            }
+                            </>
 
                         :
 

@@ -4,7 +4,7 @@ import { ConstantTextBase } from './ConstantTextBase'
 
 export const Title3 = ({children, style,  fontWeight, color} : TextInterfaces.IText) => {
     
-    const FontSize = "1.1111rem";
+    const FontSize = "1.2211rem";
 
     return (
         

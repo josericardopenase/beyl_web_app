@@ -7,7 +7,7 @@ export const ContainerCard = ({children} : any) => {
 
     const style : React.CSSProperties = {
         padding: "10px",
-        borderRadius: "10px",
+        borderRadius: "15px",
         backgroundColor: theme.colors.secondary
 
     }

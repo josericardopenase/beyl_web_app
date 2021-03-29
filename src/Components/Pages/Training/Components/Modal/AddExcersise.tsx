@@ -142,7 +142,9 @@ export default function AddExcersise(props: any) {
 
                     [
                     <div>
-                        <SearchSelector  multiple={true} name={"excersise"}  
+                        <SearchSelector  
+                        tagsFunction={apiTraining.getExcersiseTags}
+                        multiple={true} name={"excersise"}  
                         element={(obj : any) => <RutineExcersiseSearch obj ={obj}></RutineExcersiseSearch>}
                         apiFunction = {apiTraining.getExcersise}
                         selectedItems={selectedItems}

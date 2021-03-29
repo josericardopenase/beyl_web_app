@@ -3,10 +3,11 @@ import { Button, Modal } from 'react-bootstrap';
 import useThemes from '../../../../CustomHooks/useThemes';
 import Button1 from '../../../../Components/General/Constants/Button/Button1';
 import CloseButton from './Components/CloseButton';
+import { Bolder } from '../Text/Bolder';
 
 
 
-interface props{
+export interface props{
   title : string,
   children : any,
   footer: any,
@@ -52,9 +53,11 @@ export default function VerticallyCenteredModal(props : props) {
         
         <Modal.Header  style={styles.body} >
           <Modal.Title id="contained-modal-title-vcenter" className="w-100 d-flex justify-content-between align-items-center">
-          {
-            props.title
-          }
+            <Bolder>
+            {
+              props.title
+            }
+            </Bolder>
           <div></div>
 
           <CloseButton onClick={() => props.onHide()}></CloseButton>

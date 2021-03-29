@@ -11,6 +11,7 @@ function Thumb(props : any){
 
 
     const theme = useThemes()
+
     const [highLight, setHighLight] = useState(false);
 
     return (
@@ -50,13 +51,15 @@ export default function FormikProfileImageUpload(props : any) {
 
         const file = imageRef.current.files[0]
 
-        const fileReader : FileReader = new FileReader()
+        if(file){
+            const fileReader : FileReader = new FileReader()
 
-        fileReader.onload = (event : any) => {
-            formik.setFieldValue(name, event.target.result)
+            fileReader.onload = (event : any) => {
+                formik.setFieldValue(name, event.target.result)
+            }
+
+            fileReader.readAsDataURL(imageRef.current.files[0])
         }
-
-        fileReader.readAsDataURL(imageRef.current.files[0])
 
         
     }

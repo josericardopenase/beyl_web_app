@@ -32,7 +32,7 @@ export const News = () => {
             <Row className="align-items-stretch">
 
                 { 
-                    articles.map((obj : any) => <NewsSingle key ={obj.id} id={obj.id} date="23-5-2001" author="" title={obj.title} 
+                    articles.map((obj : any) => <NewsSingle key ={obj.id} id={obj.id} date="23-5-2001" author={obj.author} title={obj.title} 
                     excerpt={""} image={obj.image} texto={obj.texto} stars={3}/>)
                 }
 

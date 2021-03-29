@@ -15,9 +15,10 @@ interface IProps{
     popUp ?: boolean,
     color ?: string,
     size ?: number,
+    onHide ?: () => any
 }
 
-export default function RemoveIcon({onClick, popUp, color, size} : IProps) {
+export default function RemoveIcon({onClick, popUp, color, size, onHide} : IProps) {
 
 
     const [open, setOpen] = useState<boolean>(false);
@@ -26,13 +27,13 @@ export default function RemoveIcon({onClick, popUp, color, size} : IProps) {
     return (
         <>
 
-            <div onClick={() => popUp ? setOpen(true) : onClick() } style={{zIndex: 4000, cursor: "pointer"}}>
+            <div onClick={() => { popUp ? setOpen(true) : onClick() }} style={{zIndex: 4000, cursor: "pointer"}}>
                 <Icon color={color }>
                     <FaTrashAlt  size={size}></FaTrashAlt>
                 </Icon>
             </div>
 
-            <VerticallyCenteredModal show={open} onHide={() => setOpen(false)} title=" " footer={
+            <VerticallyCenteredModal show={open} onHide={() => {if(onHide){ onHide(); } setOpen(false);}} title=" " footer={
                 
                     <div className="d-flex justify-content-center w-100">
                         <Button onClick={() => setOpen(false)} style={{color: theme.colors.textPrimary, backgroundColor: "transparent", border: 0}}  className="mr-3">Cancelar</Button>
