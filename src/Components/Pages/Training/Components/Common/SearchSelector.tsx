@@ -173,7 +173,7 @@ export default function SearchSelector({apiFunction, name, multiple, element, se
             <Container fluid>
                 <Row className="mt-3">
                 {
-                    excersises.length > 1 ?
+                    excersises.length >= 1 ?
                     excersises.map((obj) => (
                         <div className="col-md-6 p-0" style={{
                             border: `6px ${theme.colors.primary} solid`,
