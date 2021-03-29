@@ -66,31 +66,39 @@ export default function SearchSelector({apiFunction, name, multiple, element, se
         }
     )
 
+    useDidMountEffect(() => {
+
+
+        const currPage = page
+        setExcersises([])
+        setPage(1);
+
+        if(currPage == 1){
+            apiExcersises.request(text, page, tags)
+        }
+
+    }, [tags])
+
     useEffect(() => {
 
         apiExcersises.request(text, page, tags)
 
     }, [page])
 
-    useDidMountEffect(() => {
-
-
-        setPage(1);
-        setExcersises([])
-        apiExcersises.request(text, page, tags)
-
-
-    }, [ tags])
 
     useDidMountEffect(() => {
+
         if(search){
             clearTimeout(search)
         }
 
         setSearch(setTimeout(() =>{
-            apiExcersises.request(text, page, tags)
-            setPage(1);
-        }, 100))
+            if(page == 1){
+                apiExcersises.request(text, page, tags)
+            }else{
+                setPage(1);
+            }
+        }, 200))
 
     }, [text])
 
@@ -177,13 +185,14 @@ export default function SearchSelector({apiFunction, name, multiple, element, se
                     excersises.map((obj) => (
                         <div className="col-md-6 p-0" style={{
                             border: `6px ${theme.colors.primary} solid`,
-                            backgroundColor: theme.colors.secondary ,
-                            borderRadius: 20, 
+                            backgroundColor: theme.colors.primary ,
+                            borderRadius: 25, 
                             cursor: "pointer"
                         }} onClick = {() => onClickExcersise(obj)}>
                             <div style={{
-                                border: multiple ? field.value.includes(obj.id) ? `3px ${Themes.beylColor} solid`: `3px ${theme.colors.secondary} solid` : field.value===obj.id ? `3px ${Themes.beylColor} solid` : `3px ${theme.colors.secondary} solid`, 
-                                borderRadius: 20, 
+                                border: multiple ? field.value.includes(obj.id) ? `3px ${Themes.beylColor} solid`: `3px ${theme.colors.primary} solid` : field.value===obj.id ? `3px ${Themes.beylColor} solid` : `3px ${theme.colors.primary} solid`, 
+                                borderRadius: 25, 
+                                backgroundColor: theme.colors.secondary
                             }}>
                             {
                                 element(obj)
@@ -194,16 +203,20 @@ export default function SearchSelector({apiFunction, name, multiple, element, se
                     )
                     :
 
-                    [1,2,3,4,5,6,7,8].map(() => 
-                        <div className="col-md-6 p-2 mb-3" style={{
-                        }} >
-                            <SkeletonTheme color={theme.colors.secondary} highlightColor="#444">
+                    apiExcersises.loading ?
 
-                                    <Skeleton count={1} height={105} style={{borderRadius: 20}}/>
+                        [1,2,3,4,5,6,7,8].map(() => 
+                            <div className="col-md-6 p-2 mb-3" style={{
+                            }} >
+                                <SkeletonTheme color={theme.colors.secondary} highlightColor="#444">
 
-                            </SkeletonTheme>
-                        </div>
-                    )
+                                        <Skeleton count={1} height={105} style={{borderRadius: 20}}/>
+
+                                </SkeletonTheme>
+                            </div>
+                        )
+                    :
+                            null
 
                 }
                 </Row>
