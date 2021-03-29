@@ -173,7 +173,7 @@ export default function SearchSelector({apiFunction, name, multiple, element, se
             <Container fluid>
                 <Row className="mt-3">
                 {
-                    excersises.length < 1 ?
+                    excersises.length > 1 ?
                     excersises.map((obj) => (
                         <div className="col-md-6 p-0" style={{
                             border: `6px ${theme.colors.primary} solid`,
@@ -193,21 +193,18 @@ export default function SearchSelector({apiFunction, name, multiple, element, se
                         )
                     )
                     :
-                    
 
-                    <SkeletonTheme color={theme.colors.secondary} highlightColor="#444">
-                        {
                     [1,2,3,4,5,6,7,8].map(() => 
-                        <div className="col-md-6 p-0 mb-3" style={{
+                        <div className="col-md-6 p-2 mb-3" style={{
                         }} >
-                            <p>
-                                <Skeleton count={1} height={105} style={{borderRadius: 20}}/>
-                            </p>
+                            <SkeletonTheme color={theme.colors.secondary} highlightColor="#444">
 
+                                    <Skeleton count={1} height={105} style={{borderRadius: 20}}/>
+
+                            </SkeletonTheme>
                         </div>
                     )
-                    }
-                    </SkeletonTheme>
+
                 }
                 </Row>
             </Container>
