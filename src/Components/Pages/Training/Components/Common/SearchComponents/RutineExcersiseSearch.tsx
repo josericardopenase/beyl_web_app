@@ -43,19 +43,16 @@ export default function RutineExcersiseSearch({obj} : IProps) {
 
             className="position-absolute p-3 d-flex" style={{bottom: 0, left: 0}}>
             {
-                obj.tags_read.map((x : any) => <div className="mr-2" style={{width: 18, height: 18, border: `4px ${x.color_primary} solid`, borderRadius: "50%"}}></div>)
+                obj.tags_read.map((x : any) => <div className="mr-2" style={{width: 12, height: 12, border: `4px ${x.color_primary} solid`, borderRadius: "50%"}}></div>)
             }
 
         </div>
 
-                    <motion.div
-            className="position-absolute p-3 d-flex" style={{bottom: 0, right: 0}}
-                        whileHover={{ scale: 1.3,shadow: "-2px -1px 15px 7px rgba(0,0,0,0.5)" }}
-                        whileTap={{ scale: 0.7 }}
-
-                    >
-                                    <FaStar  color={obj.is_favourite ? Themes.beylColor : theme.colors.textSecondary}></FaStar>
-                    </motion.div>
+            <div
+    className="position-absolute p-3 d-flex" style={{bottom: 0, right: 0}}
+            >
+                            <FaStar  color={obj.is_favourite ? Themes.beylColor : theme.colors.textSecondary}></FaStar>
+            </div>
     </div>
 
     )

@@ -74,7 +74,7 @@ const food = createSlice({
 
 
 export const getBaseFoods = (text : string, tag : number[]) => callBegan({
-    url : `/food/?page_size=10${text ? "&search=" + text : ""}${tag ? tag.map((x : number) => `&tags=${x}`).join('')  : ""}`,
+    url : `/food/?page_size=12${text ? "&search=" + text : ""}${tag ? tag.map((x : number) => `&tags=${x}`).join('')  : ""}`,
     onSuccess : 'baseFood/addMultipleFood',
     onError : callFailed.type,
     onBegin : 'food/foodRequest'

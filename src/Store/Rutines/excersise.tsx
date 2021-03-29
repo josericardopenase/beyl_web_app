@@ -74,7 +74,7 @@ const excersise = createSlice({
 
 
 export const getBaseExcersises = (text : string, tag : number[]) => callBegan({
-    url : `/excersise/?page_size=10${text ? "&search=" + text : ""}${tag ? tag.map((x : number) => `&tags=${x}`).join('')  : ""}`,
+    url : `/excersise/?page_size=12${text ? "&search=" + text : ""}${tag ? tag.map((x : number) => `&tags=${x}`).join('')  : ""}`,
     onSuccess : 'baseExcersise/addMultipleExcersise',
     onError : callFailed.type,
     onBegin : 'excersise/excersiseRequest'

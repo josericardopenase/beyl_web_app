@@ -31,23 +31,22 @@ export default function DietFoodSearch ({obj} : IProps) {
                 </Col>
                 <MacroCounter fontSize={12} portion_cuantity={obj.portion_weight} portion_weight={obj.portion_weight} protein={obj.protein} carbos={obj.carbohydrates} calories={obj.kcalories} grasas={obj.fat} unity={"gr"}></MacroCounter>
 
-                <div className="d-flex justify-content-between pr-3 pl-3 pt-3 pb-3 w-100 ">
+                <div className="d-flex justify-content-between pr-3 pl-3 pt-3 pb-2 w-100 ">
 
 
                         <div
 
                         className="d-flex" style={{bottom: 0, left: 0}}>
                         {
-                            obj.tags_read.map((x : any) => <div className="mr-2" style={{width: 18, height: 18, border: `4px ${x.color_primary} solid`, borderRadius: "50%"}}></div>)
+                            obj.tags_read.map((x : any) => <div className="mr-2" style={{width: 13, height: 13, border: `4px ${x.color_primary} solid`, borderRadius: "50%"}}></div>)
                         }
                         </div>
-                    <motion.div
-                        whileHover={{ scale: 1.3,shadow: "-2px -1px 15px 7px rgba(0,0,0,0.5)" }}
-                        whileTap={{ scale: 0.7 }}
+                    <div
+
 
                     >
                                     <FaStar  color={obj.is_favourite ? Themes.beylColor : theme.colors.textSecondary}></FaStar>
-                    </motion.div>
+                    </div>
 
 
                 </div>
