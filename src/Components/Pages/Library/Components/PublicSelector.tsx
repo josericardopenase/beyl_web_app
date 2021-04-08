@@ -6,17 +6,19 @@ import Themes from '../../../General/Styles/Themes';
 interface IProps{
     isPublic : boolean,
     setIsPublic :  any,
-    name : string
+    name : string,
+    fontSize ?: number
 }
 
 interface IElementProps{
     name : string,
     onClick ?: any,
-    isActive : boolean
+    isActive : boolean,
+    fontSize ?: number
 }
 
 
-function Element({name, onClick, isActive} : IElementProps){
+function Element({name, onClick, isActive, fontSize} : IElementProps){
 
     const theme = useThemes();
 
@@ -27,19 +29,19 @@ function Element({name, onClick, isActive} : IElementProps){
             padding: 10, 
             cursor: "pointer"
             }}>
-            <Title3>{name}</Title3>
+            <h4 style={{color: theme.colors.textPrimary, fontSize: fontSize ? fontSize : "1.22222rem"}} className="m-0 p-0">{name}</h4>
         </div>
     )
 }
 
 
-export default function PublicSelector({isPublic, setIsPublic, name} : IProps) {
+export default function PublicSelector({isPublic, setIsPublic, name, fontSize} : IProps) {
     return (
 
         <div className="mt-4 mb-2 d-flex">
 
-            <Element name="Todos" isActive={!isPublic} onClick={() => setIsPublic(true)}></Element>
-            <Element name={"Tus " + name} isActive={isPublic} onClick={() => setIsPublic(false)}></Element>
+            <Element fontSize ={fontSize} name="Todos" isActive={!isPublic} onClick={() => setIsPublic(true)}></Element>
+            <Element fontSize ={fontSize} name={"Tus " + name} isActive={isPublic} onClick={() => setIsPublic(false)}></Element>
 
         </div>
 

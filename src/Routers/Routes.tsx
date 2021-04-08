@@ -91,6 +91,7 @@ export const Routes = () => {
                             <Route path="/training"  component={RoutesTraining}></Route>
                             <Route path="/config" component={RoutesConfig}></Route>
                             <Route path="/library" component={RoutesLibrary}></Route>
+                            <Route path="/chat" component={RoutesChat}></Route>
 
                             <Route path="/">
                                 <motion.div exit="undefined">

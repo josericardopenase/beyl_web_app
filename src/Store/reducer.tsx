@@ -6,7 +6,9 @@ import weightHistory, {name as weightHistoryName} from './weightHistory'
 import generalHistory, {name as generalHistoryName} from './generalHistory'
 import trainerCode, {name as trainerCodeName} from './trainerCode'
 import authentication, {name as AuthName} from './authentication'
+import chat, {name as ChatName} from './chat'
 import trainings from './trainings'
+
 
 export default combineReducers({
     [articlesName] : articles,
@@ -16,6 +18,7 @@ export default combineReducers({
     [generalHistoryName] : generalHistory,
     [trainerCodeName] : trainerCode,
     [AuthName] : authentication,
+    [ChatName] : chat,
     'training' : trainings,
 
 })

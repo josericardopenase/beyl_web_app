@@ -47,7 +47,7 @@ function App() {
     }
 
 
-  })
+  }, [])
 
   if(size.width){
     if(size.width < 768){

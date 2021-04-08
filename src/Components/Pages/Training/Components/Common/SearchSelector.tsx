@@ -19,6 +19,7 @@ import ContainerBox from '../../../../General/Containers/ContainerBox'
 import Themes from '../../../../General/Styles/Themes'
 import ExcersisePuntuation from '../../Pages/Rutine/Components/ExcersisePuntuation'
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import PublicSelector from '../../../Library/Components/PublicSelector'
 interface IProps{
     apiFunction : any,
     name : string, 
@@ -42,6 +43,7 @@ export default function SearchSelector({apiFunction, name, multiple, element, se
     const [state, setState] = useState<any>(multiple ? [] : null)
     const [more, setMore] = useState(true)
     const [tags, setTags] = useState<number[]>([]);
+    const [isPublic, setIsPublic] = useState<boolean>(true);
 
 
     const [search, setSearch] = useState<any>(null);
@@ -65,6 +67,17 @@ export default function SearchSelector({apiFunction, name, multiple, element, se
             }
         }
     )
+    useDidMountEffect(() => {
+
+        const currPage = page
+        setExcersises([])
+        setPage(1);
+
+        if(currPage == 1){
+            apiExcersises.request(text, page, tags, isPublic)
+        }
+
+    }, [isPublic])
 
     useDidMountEffect(() => {
 
@@ -74,14 +87,14 @@ export default function SearchSelector({apiFunction, name, multiple, element, se
         setPage(1);
 
         if(currPage == 1){
-            apiExcersises.request(text, page, tags)
+            apiExcersises.request(text, page, tags, isPublic)
         }
 
     }, [tags])
 
     useEffect(() => {
 
-        apiExcersises.request(text, page, tags)
+        apiExcersises.request(text, page, tags, isPublic)
 
     }, [page])
 
@@ -94,7 +107,7 @@ export default function SearchSelector({apiFunction, name, multiple, element, se
 
         setSearch(setTimeout(() =>{
             if(page == 1){
-                apiExcersises.request(text, page, tags)
+                apiExcersises.request(text, page, tags, isPublic)
             }else{
                 setPage(1);
             }
@@ -172,6 +185,9 @@ export default function SearchSelector({apiFunction, name, multiple, element, se
                 { multiple ? <Title2 style={{marginTop: 20}}><Bolder>{field.value.length > 1 ? "Superserie" : field.value.length == 1 ? "Serie normal" : ""}</Bolder></Title2> : null}
             </div>
 
+            <div className="mb-3">
+                <PublicSelector fontSize={15} name={name === "excersise" ? "ejercicios" : "comidas"} setIsPublic={setIsPublic} isPublic={isPublic}></PublicSelector>
+            </div>
             <TagList fontSize={"0.9rem"} getTagsFunc={tagsFunction} tags={tags} setTags={setTags}></TagList>
 
             <div className={"w-100 text-left d-flex align-items-center justify-content-between mt-2"}>

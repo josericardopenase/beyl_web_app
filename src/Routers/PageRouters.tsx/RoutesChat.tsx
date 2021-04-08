@@ -7,7 +7,7 @@ import { Athlete } from '../../Components/Pages/Training/Components/Sidebar/Athl
 import Training from '../../Components/Pages/Training/Training';
 import React, { useEffect, useState } from 'react'
 import Switch from 'react-bootstrap/esm/Switch';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, useStore } from 'react-redux';
 import apiAthletes from '../../Api/apiAthletes';
 import { Title1 } from '../../Components/General/Constants/Text/Title1';
 import { ContainerPadding } from '../../Components/General/Containers/ContainerPadding';
@@ -15,6 +15,8 @@ import { ContainerPadding } from '../../Components/General/Containers/ContainerP
 import useApiCallback from '../../CustomHooks/useApiCallback';
 import { loadAthletes } from '../../Store/athleltes';
 import Loading from '../../Components/General/Constants/Loading/Loading';
+import {WebsocketBuilder} from 'websocket-ts';
+import { addMessage } from '../../Store/chat';
 
 export default function RoutesTraining(props : any) {
 
@@ -25,18 +27,28 @@ export default function RoutesTraining(props : any) {
     //===========================
 
     const dispatch = useDispatch()
-    const athletes = useSelector((state : any) => state.athletes);
-
+    const store = useStore()
+    let ws : WebsocketBuilder | null = null;
 
     useEffect(() => {
 
+        const authToken = store.getState().auth.token;
+
+        ws = new WebsocketBuilder(`ws://127.0.0.1:8000/ws/chat/?token=${authToken}`).onOpen(
+            (i, ev) => {
+                console.log("opened");
+            }
+        ).onMessage(
+            (i, ev) => {
+                dispatch(addMessage( JSON.parse(ev.data)))
+            }
+        )
+
+        ws.build()
         dispatch(loadAthletes)
 
     }, [])
 
-
-    if(athletes.loading)
-        return <Loading></Loading>
 
 
     return (
@@ -46,10 +58,6 @@ export default function RoutesTraining(props : any) {
             <SidebarSelector>
 
                 <Title2>Clientes</Title2>
-                {
-                    athletes.list.map((obj : any) =>  <Athlete key={obj.id} obj={obj}></Athlete>)
-                    
-                }   
 
             </SidebarSelector>
 

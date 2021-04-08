@@ -22,7 +22,12 @@ export const SidebarPrincipal = () => {
         {
             url: '/library',
             icon: <ImBooks/>,
-            name: 'chats'
+            name: 'library'
+        },
+        {
+            url: '/chat',
+            icon: <FaComment/>,
+            name: 'chat'
         },
 
         ]}
