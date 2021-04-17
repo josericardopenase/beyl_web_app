@@ -44,7 +44,7 @@ const rutineExcersise = createSlice({
 
 
 export const getExcersiseOfGroup = (id : number ) => callBegan({
-    url : '/rutine_excersise/?group=' + id,
+    url : '/rutine_excersise/?group=' + id ,
     onSuccess : 'excersise/addMultipleExcersise',
     onError : callFailed.type,
     onBegin : 'excersise/startRequest'

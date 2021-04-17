@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import ThemeContext from '../../../../../Store/Themes/ThemeContext'
 
-export default function ChatInput({onChange} : any)  {
+export default function ChatInput({onChange, text} : any)  {
 
     const themes = useContext(ThemeContext)
 
@@ -17,6 +17,6 @@ export default function ChatInput({onChange} : any)  {
     }
 
     return (
-        <input style = {style} onChange ={( e : any) => onChange(e.target.value)} placeholder="Escribe un mensaje aqui"></input>
+        <input style = {style} value={text} onChange ={( e : any) => onChange(e.target.value)} placeholder="Escribe un mensaje aqui"></input>
     )
 }

@@ -85,8 +85,7 @@ export const Routes = () => {
                 {/* Container for the sidebar */}
                 <ContainerSidebar>
                     <AnimatePresence exitBeforeEnter>
-                        <Switch className="m-0 p-0">
-
+                        <Switch className="m-0 p-0" location={location} key="training_routes">
                             <Route path="/home"  component={RoutesHome}></Route>
                             <Route path="/training"  component={RoutesTraining}></Route>
                             <Route path="/config" component={RoutesConfig}></Route>
@@ -101,8 +100,10 @@ export const Routes = () => {
 
                         </Switch>
                     </AnimatePresence>
+
                     <NotificationCenter></NotificationCenter>
                     <PopUpCenter></PopUpCenter>
+
                 </ContainerSidebar>
 
 

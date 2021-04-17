@@ -10,7 +10,7 @@ import { Icon } from './Components/General/Constants/Icons/Icon';
 import { BeylIcon } from './Components/General/Constants/Icons/BeylIcon';
 import { Sidebar } from './Components/General/Constants/Sidebar/Sidebar';
 import { ContainerPadding } from './Components/General/Containers/ContainerPadding';
-
+import 'react-image-lightbox/style.css';
 import { Header } from './Components/General/Constants/Header/Header';
 import {  BrowserRouter, Router } from 'react-router-dom';
 import { Home } from './Components/Pages/Home/Dashboard/Home';

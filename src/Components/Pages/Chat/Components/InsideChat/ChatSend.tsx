@@ -8,7 +8,6 @@ export default function ChatSend() {
     const theme = useContext(ThemeContext)
     
     const styles : React.CSSProperties = {
-        backgroundColor: theme.colors.primary ,
         padding: "0.8rem",
         width: "fit-content",
         borderRadius: "50%",

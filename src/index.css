@@ -127,6 +127,9 @@ input:-webkit-autofill {
   -webkit-animation-fill-mode: both;
 }
 
+.emoji-picker-react{
+  box-shadow: 0 !important;
+}
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus,

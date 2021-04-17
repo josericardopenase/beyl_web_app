@@ -43,7 +43,7 @@ const rutineGroups = createSlice({
 
 
 export const getGroupsOfDay = (id : number ) => callBegan({
-    url : '/rutine_group/?day=' + id,
+    url : '/rutine_group/?day=' + id ,
     onSuccess : 'group/setGroups',
     onError : callFailed.type,
     onBegin : 'group/groupRequest'

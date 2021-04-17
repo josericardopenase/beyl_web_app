@@ -53,7 +53,7 @@ const dietDays = createSlice({
 
 
 export const getDietDay = (id : number ) => callBegan({
-    url : '/diet_day/' + id,
+    url : '/diet_day/' + id + "/",
     onSuccess : 'dietDays/addDay',
     onError : callFailed.type,
     onBegin : 'dietDays/dayReceived'

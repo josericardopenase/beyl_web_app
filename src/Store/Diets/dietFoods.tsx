@@ -45,7 +45,7 @@ const dietFood = createSlice({
 
 
 export const getFoodOfGroup = (id : number ) => callBegan({
-    url : '/diet_food/?group=' + id,
+    url : '/diet_food/?group=' + id + "/",
     onSuccess : 'food/addMultipleFood',
     onError : callFailed.type,
     onBegin : 'food/startRequest'

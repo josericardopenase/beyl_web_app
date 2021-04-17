@@ -13,8 +13,10 @@ export interface notification{
 
 export interface popUp{
     image : any,
-    title : any,
-    body : any
+    title ?: any,
+    body ?: any,
+    size ?: string,
+    upperTitle ?: any
 }
 
 

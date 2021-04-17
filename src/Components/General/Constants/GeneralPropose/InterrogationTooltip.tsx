@@ -11,10 +11,11 @@ import { Title4 } from '../Text/Title4';
 
 interface IProps{
     size: string,
-    children : any
+    children : any,
+    show ?: boolean
 }
 
-export default function InterrogationTooltip({size, children} : IProps) {
+export default function InterrogationTooltip({size, children, show} : IProps) {
 
     const {isVisible, setIsVisible, ref} = useVisible(false);
     const target = useRef(null);
@@ -33,7 +34,7 @@ export default function InterrogationTooltip({size, children} : IProps) {
                 </Popover.Content>
             </Popover>
         }>
-            <div onClick={() => setIsVisible(!isVisible)} ref={ref} style={{borderRadius: "50%", backgroundColor: theme.colors.secondary, marginLeft: 5, marginRight: 5}}>
+            <div onClick={() => setIsVisible(!show)} ref={ref} style={{borderRadius: "50%", backgroundColor: theme.colors.secondary, marginLeft: 5, marginRight: 5}}>
                 <Icon size={size}>
                     <BsQuestion></BsQuestion>
                 </Icon>    

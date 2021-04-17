@@ -22,7 +22,7 @@ const rutines = createSlice({
 });
 
 export const getRutine = (id : number) => callBegan( {
-    url : '/rutine/' + id,
+    url : '/rutine/' + id + "/",
     onSuccess : 'rutines/addRutine',
     onError : callFailed.type,
     onBegin : 'rutines/rutineRequest'

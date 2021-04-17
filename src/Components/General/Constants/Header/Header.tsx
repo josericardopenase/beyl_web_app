@@ -27,7 +27,7 @@ export const Header = () => {
             position: "fixed",
             top: 0,
             right: 0,
-            zIndex: 100000,
+            zIndex: 5,
 
         } as React.CSSProperties,
         dropdown: {

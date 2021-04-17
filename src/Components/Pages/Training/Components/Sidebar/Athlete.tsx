@@ -11,15 +11,17 @@ import { Active } from './Active'
 
 interface IProps {
     obj: any,
+    userId ?: boolean
 }
 
-export const Athlete = ({obj} : IProps) => {
+export const Athlete = ({obj, userId} : IProps) => {
 
-    const path = `${useRouteMatch().url}/${obj.id}`
+    const id = userId ? obj.user.id : obj.id;
+    const path = `${useRouteMatch().url}/${id}`
     const url =  useRouteMatch(path)
 
     const handleClick = (e : any) => {
-        if("/training/" + obj.id === url?.path) e.preventDefault()
+        if("/training/" + id === url?.path) e.preventDefault()
     }
 
     return (

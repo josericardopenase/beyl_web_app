@@ -53,14 +53,14 @@ const rutineDays = createSlice({
 
 
 export const getDay = (id : number ) => callBegan({
-    url : '/rutine_day/' + id,
+    url : '/rutine_day/' + id + "/",
     onSuccess : 'days/addDay',
     onError : callFailed.type,
     onBegin : 'days/dayReceived'
 })
 
 export const getDaysOfRutine = (id : number ) => callBegan({
-    url : '/rutine_day/?rutine=' + id,
+    url : '/rutine_day/?rutine=' + id ,
     onSuccess : 'days/addMultipleDays',
     onError : callFailed.type,
     onBegin : 'days/dayReceived'

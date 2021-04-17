@@ -22,7 +22,7 @@ const diets = createSlice({
 });
 
 export const getDiet = (id : number) => callBegan( {
-    url : '/diet/' + id,
+    url : '/diet/' + id + "/",
     onSuccess : 'diets/addDiet',
     onError : callFailed.type,
     onBegin : 'diets/dietRequest'

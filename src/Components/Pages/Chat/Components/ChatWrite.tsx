@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import ThemeContext from '../../../../Store/Themes/ThemeContext'
 import ChatClip from './InsideChat/ChatClip'
@@ -21,21 +21,33 @@ export default function ChatWrite({sendMessage} : any) {
         alignItems: "center"
     }; 
 
+    const PressEnter = (event : any) => {
+            if(event.key === "Enter"){
+                sendMessage(text);
+                setText("");
+            }
+        }
+
+
+
+
+
+
     return (
-        <div style={{width: "100%", display: "flex", justifyContent: "center", zIndex: 900}}>
+        <div style={{width: "100%", display: "flex", justifyContent: "center", zIndex: 900}} onKeyDown={PressEnter}>
 
             <div style={styles}>
 
 
-                    <div className="d-flex align-items-center">
+                    <div className="d-flex align-items-center" id="send_message">
                         <div className="d-flex">
-                            <ChatEmojis></ChatEmojis>
-                            <ChatClip></ChatClip>
+                            <ChatEmojis addEmoji={(emojiOject : any) => setText(text + emojiOject.emoji)}></ChatEmojis>
+                            <ChatClip sendMessage = {sendMessage}></ChatClip>
                         </div>
 
-                        <ChatInput onChange={setText}></ChatInput>
+                        <ChatInput text={text} onChange={setText}></ChatInput>
 
-                        <div onClick={() => sendMessage(text)}>
+                        <div onClick={() => {sendMessage(text); setText("")}}>
                             <ChatSend></ChatSend>
                         </div>
                     </div>

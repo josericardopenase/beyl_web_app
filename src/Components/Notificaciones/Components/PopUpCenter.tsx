@@ -20,9 +20,15 @@ export default function PopUpCenter() {
                 footer = {<></>}
                 show={popUp ? true : false}
                 onHide = {notificationHook.closePopUp}
+                size = {popUp.size ? popUp.size : "md"}
+
+
 
                 >
                     <div style={{textAlign: "center"}} className=" p-4">
+                    {
+                        popUp.upperTitle
+                    }
                     
                     {
                         popUp.image

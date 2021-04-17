@@ -41,6 +41,7 @@ export default function VerticallyCenteredModal(props : props) {
   
     return (
       <Modal
+        
         show   = { props.show   }
         onHide = { props.onHide }
         size   = { props.size   }

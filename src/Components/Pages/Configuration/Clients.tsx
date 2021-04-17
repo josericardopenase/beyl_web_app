@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FaCopy, FaSync, FaTrash, FaRedoAlt } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
+import useNotification from '../../../CustomHooks/useNotification'
 import useThemes from '../../../CustomHooks/useThemes'
 import { athletesReceived, deleteAthlete, loadAthletes } from '../../../Store/athleltes'
 import { logOut, removeLocalToken } from '../../../Store/authentication'
@@ -164,9 +165,27 @@ export default function Clients() {
 
     const athletes = useSelector((state : any) => state.athletes.list)
     const user_count = useSelector((state : any) => state.auth.user)
+    const notificationCenter = useNotification();
+
+    const showPopUp = () => {
+        notificationCenter.addPopUp({
+            upperTitle : <Title2 style={{textAlign: "center", marginBottom: 100}}><Bolder>Gestiona tus clientes <span style={{color: Themes.beylColor}}>con Beyl</span></Bolder></Title2>,
+            image : <SvgJoinClient></SvgJoinClient>,
+            size: "xl"
+        })
+
+    }
 
     useEffect(() => {
         dispatch(loadAthletes)
+
+        const firstTimeClients = localStorage.getItem('firstTimeClients') || 'true';
+
+        if(firstTimeClients === "true"){
+            showPopUp();
+            localStorage.setItem('firstTimeClients', 'false');
+        }
+
     }, [])
 
     if(!user_count){
@@ -178,8 +197,14 @@ export default function Clients() {
         <ContainerMarginTop>
             <div className="p-4 pt-5">
 
+                <div className="d-flex align-items-center">
                 <Title1><Bolder>Gestiona tus clientes</Bolder></Title1>   
 
+                    <div className="ml-3" onClick={showPopUp}>
+                        <InterrogationTooltip size="35" show>
+                        </InterrogationTooltip>
+                    </div>
+                </div>
                 <div className="d-flex align-items-end justify-content-between">
                     <div>
                         <TrainerCode></TrainerCode>
