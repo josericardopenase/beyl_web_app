@@ -1,3 +1,4 @@
+import hexToRgba from 'hex-to-rgba'
 import React, { useEffect, useRef, useState } from 'react'
 import { FaCopy, FaSync, FaTrash, FaRedoAlt } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
@@ -21,6 +22,8 @@ import ContainerBox from '../../General/Containers/ContainerBox'
 import ContainerMarginTop from '../../General/Containers/ContainerMarginTop'
 import Themes from '../../General/Styles/Themes'
 import { Athlete } from '../Training/Components/Sidebar/Athlete'
+import user from '../../../Api/apiUser'
+import { motion } from 'framer-motion'
 
 function TrainerCode(){
 
@@ -166,8 +169,10 @@ export default function Clients() {
     const athletes = useSelector((state : any) => state.athletes.list)
     const user_count = useSelector((state : any) => state.auth.user)
     const notificationCenter = useNotification();
+    const lastCode = useSelector((state : any) => state.trainerCode.list[state.trainerCode.list.length - 1] )
 
     const showPopUp = () => {
+
         notificationCenter.addPopUp({
             upperTitle : <Title2 style={{textAlign: "center", marginBottom: 100}}><Bolder>Gestiona tus clientes <span style={{color: Themes.beylColor}}>con Beyl</span></Bolder></Title2>,
             image : <SvgJoinClient></SvgJoinClient>,
@@ -176,8 +181,48 @@ export default function Clients() {
 
     }
 
+    const showAddAthletePopUp = async () => {
+
+
+        const code = await user.getNewTrainerCode()
+        console.log(code)
+        if(code.ok){
+            notificationCenter.addPopUp({
+                upperTitle : <Title2 style={{textAlign: "center", marginBottom: 100}}><Bolder>Agrega un nuevo <span style={{color: Themes.beylColor}}>cliente</span></Bolder></Title2>,
+                body : 
+                        <div>
+                            <Title3>
+                                Ojo! Enviale este código a tu cliente para registrarse en la aplicación
+                                móvil.
+                            </Title3>
+
+                            <Title1 style={{marginTop: 30}} color={Themes.beylColor}>
+                                <Bolder>
+                                    {
+                                        lastCode ?
+                                        code.data.code
+                                        :
+                                        null
+
+                                    }
+                                </Bolder>
+                            </Title1>
+
+                            <Title3 style={{marginTop: 40}}>
+                                    O bien, enviale el código junto a instrucciones de uso a su email
+                            </Title3>
+                        </div>
+                    ,
+                size: "lg"
+            })
+        }
+
+    }
+
+
     useEffect(() => {
         dispatch(loadAthletes)
+        dispatch(getAllCode());
 
         const firstTimeClients = localStorage.getItem('firstTimeClients') || 'true';
 
@@ -200,14 +245,34 @@ export default function Clients() {
                 <div className="d-flex align-items-center">
                 <Title1><Bolder>Gestiona tus clientes</Bolder></Title1>   
 
-                    <div className="ml-3" onClick={showPopUp}>
+                    <div className="ml-3" onClick={() => {
+                            showPopUp()
+                        }}>
                         <InterrogationTooltip size="35" show>
                         </InterrogationTooltip>
                     </div>
                 </div>
                 <div className="d-flex align-items-end justify-content-between">
                     <div>
-                        <TrainerCode></TrainerCode>
+                        <motion.div style={{
+                            padding: "10px 30px",
+                            color: "white",
+                            fontSize: 18,
+                            backgroundColor: Themes.beylColor,
+                            borderRadius: "50rem",
+                            cursor: "pointer",
+                            boxShadow: `-4px -3px 45px 21px ${hexToRgba(Themes.beylColor, 0.05)}`
+                        }}
+
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.9 }}
+                        
+                        onClick={showAddAthletePopUp}
+                        >
+                            <Bolder>
+                            Nuevo cliente
+                            </Bolder>
+                        </motion.div>
                     </div>
 
                     <div className="d-flex flex-column align-items-center pr-5 pl-5">

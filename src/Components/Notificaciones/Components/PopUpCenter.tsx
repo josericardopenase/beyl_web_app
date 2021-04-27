@@ -25,13 +25,16 @@ export default function PopUpCenter() {
 
 
                 >
-                    <div style={{textAlign: "center"}} className=" p-4">
+                    <div style={{textAlign: "center"}} className="p-4">
                     {
                         popUp.upperTitle
                     }
                     
                     {
+                        popUp.image ?  
                         popUp.image
+                        :
+                        null
                     }
                     {
                         popUp.title
