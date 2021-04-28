@@ -31,11 +31,11 @@ function ImageExcersise({obj} : any){
 
         <>
             <Col md={4} style={{cursor: "pointer"}} onClick={() => setShow(true)} className="justify-content-stretch d-flex position-relative justify-content-center align-items-center" onMouseEnter={() => setSelected(true)} onMouseLeave={() => setSelected(false)}>
-                <img  style={{borderRadius: "20px", objectFit: "cover", width: "100%", minHeight: "80px", filter: select ? "brightness(30%)" : "brightness(100%)", transition: "0.21s all ease"}} src={obj.image} />
+                <img  style={{borderRadius: "50%", objectFit: "cover", width: "80px", minHeight: "80px", filter: select ? "brightness(30%)" : "brightness(100%)", transition: "0.21s all ease"}} src={obj.image} />
                 {
                     select ?
 
-                    <FaPlay size={30} color="white" style={{zIndex: 700, position: "absolute"}}></FaPlay>
+                    <FaPlay size={20} color="white" style={{zIndex: 700, position: "absolute"}}></FaPlay>
                     :
                     null
                 }

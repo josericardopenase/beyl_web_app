@@ -1,6 +1,6 @@
 import hexToRgba from 'hex-to-rgba'
 import React, { useEffect, useRef, useState } from 'react'
-import { FaCopy, FaSync, FaTrash, FaRedoAlt } from 'react-icons/fa'
+import { FaCopy, FaSync, FaTrash, FaRedoAlt, FaAndroid, FaAppStore, FaGooglePlay } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import useNotification from '../../../CustomHooks/useNotification'
 import useThemes from '../../../CustomHooks/useThemes'
@@ -70,6 +70,7 @@ function TrainerCode(){
         }
 
       };
+
 
     return (
         <div className="mt-5 ">
@@ -184,36 +185,56 @@ export default function Clients() {
     const showAddAthletePopUp = async () => {
 
 
+      //
+      //
+
         const code = await user.getNewTrainerCode()
+
         console.log(code)
         if(code.ok){
             notificationCenter.addPopUp({
                 upperTitle : <Title2 style={{textAlign: "center", marginBottom: 100}}><Bolder>Agrega un nuevo <span style={{color: Themes.beylColor}}>cliente</span></Bolder></Title2>,
+                image : <SvgJoinClient></SvgJoinClient>,
                 body : 
-                        <div>
+                        <div style={{marginTop: 50}}>
                             <Title3>
-                                Ojo! Enviale este código a tu cliente para registrarse en la aplicación
-                                móvil.
+                                <Bolder>
+                                    Este es tu código
+                                </Bolder>
                             </Title3>
+                            <Title4 style={{marginTop: 10}}>
+                                Cada código que generes solo tiene un uso, a si que no tienes porque preocuparte por la seguridad :)
+                            </Title4>
 
                             <Title1 style={{marginTop: 30}} color={Themes.beylColor}>
                                 <Bolder>
                                     {
-                                        lastCode ?
                                         code.data.code
-                                        :
-                                        null
-
                                     }
                                 </Bolder>
                             </Title1>
 
-                            <Title3 style={{marginTop: 40}}>
-                                    O bien, enviale el código junto a instrucciones de uso a su email
-                            </Title3>
+                            <div className="mt-5 d-flex flex-column align-items-center">
+                                <a target="blank" href="https://play.google.com/store/apps/details?id=com.beyl.beyl&gl=ES">
+                                    <div className="d-flex align-items-center">
+                                        <Icon size="30" color={Themes.beylColor}>
+                                            <FaGooglePlay></FaGooglePlay>
+                                        </Icon> 
+                                        <Title3 style={{marginLeft: 20}}><Bolder>Disponible en android</Bolder></Title3>
+                                    </div>
+                                </a>
+                                <a target="blank" href="https://apps.apple.com/es/app/beyl/id1560630065">
+                                    <div className="d-flex align-items-center mt-3">
+                                        <Icon size="30"color={Themes.beylColor}>
+                                            <FaAppStore></FaAppStore>
+                                        </Icon>
+                                        <Title3 style={{marginLeft: 30}}><Bolder>Disponible en ios</Bolder></Title3>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     ,
-                size: "lg"
+                size: "xl"
             })
         }
 
@@ -223,14 +244,6 @@ export default function Clients() {
     useEffect(() => {
         dispatch(loadAthletes)
         dispatch(getAllCode());
-
-        const firstTimeClients = localStorage.getItem('firstTimeClients') || 'true';
-
-        if(firstTimeClients === "true"){
-            showPopUp();
-            localStorage.setItem('firstTimeClients', 'false');
-        }
-
     }, [])
 
     if(!user_count){

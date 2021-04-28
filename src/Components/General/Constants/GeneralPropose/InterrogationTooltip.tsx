@@ -12,10 +12,11 @@ import { Title4 } from '../Text/Title4';
 interface IProps{
     size: string,
     children : any,
-    show ?: boolean
+    show ?: boolean,
+    primaryColor ?: boolean
 }
 
-export default function InterrogationTooltip({size, children, show} : IProps) {
+export default function InterrogationTooltip({size, children, show, primaryColor} : IProps) {
 
     const {isVisible, setIsVisible, ref} = useVisible(false);
     const target = useRef(null);
@@ -24,7 +25,7 @@ export default function InterrogationTooltip({size, children, show} : IProps) {
     return (
 
         <OverlayTrigger trigger="click" placement="right" show={isVisible} overlay={
-            <Popover  className="shadow" id="popover-positionet-right" style={{borderRadius: 10, backgroundColor: theme.colors.secondary, outline: 0, border: 0}}>
+            <Popover  className="shadow" id="popover-positionet-right" style={{borderRadius: 10, backgroundColor:  primaryColor ? theme.colors.primary : theme.colors.secondary, outline: 0, border: 0}}>
                 <Popover.Content style={{fontFamily: "Poppins"}}>
                     <Title4>
                         {

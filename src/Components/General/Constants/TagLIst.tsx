@@ -71,7 +71,7 @@ export default function TagList({getTagsFunc, setTags, tags, fontSize} : IProps)
 
                     [1,2,3,2,3, 2, 3].map(() => (
 
-                            <div  className="mr-3" style={{backgroundColor: theme.colors.secondary, paddingRight: 20, paddingLeft: 20, paddingTop: 10, paddingBottom: 10, borderRadius: "40rem", width: "fit-content", border: `4px transparent solid`, cursor: "pointer"}}>
+                            <div  className="mr-3" style={{backgroundColor: theme.colors.secondary, paddingRight: 20, paddingLeft: 20,  borderRadius: "40rem", width: "fit-content", border: `4px transparent solid`, cursor: "pointer"}}>
                                     <h4 className="m-0 p-0" style={{color: theme.colors.secondary, fontSize: fontSize ? fontSize : "1.222rem"}}><Bolder>hello world</Bolder></h4>
                             </div>
                     ))

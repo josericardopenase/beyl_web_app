@@ -35,7 +35,7 @@ export default function WeightGraph() {
 
       
     return (
-        <ContainerGraphs col={7} title={"Evolución de peso"}>
+        <ContainerGraphs col={7} title={"Evolución de peso"} aclaration="En esta gráfica se mostrara la evolución en el peso de tu cliente desde que empezo a entrenar contigo!">
             <div className="w-100 d-flex justify-content-center">
             <ResponsiveContainer width="100%" height={450}>
                 <LineChart

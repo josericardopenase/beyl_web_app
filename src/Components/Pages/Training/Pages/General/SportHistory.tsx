@@ -39,7 +39,7 @@ export default function SportHistory() {
     }
 
     return (
-        <ContainerGraphs col={5} title={"Historial"} >
+        <ContainerGraphs col={5} title={"Historial"} aclaration="Aquí se mostrara las últimas actividades físicas realizadas por tu cliente (entrenamiento, natación, correr, cardio...)" >
         {
 
             generalHistory.length != 0  ? 

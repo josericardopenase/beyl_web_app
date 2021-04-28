@@ -7,7 +7,7 @@ export default function PlaceHolderEmail() {
 
     return (
 <svg width="227" height="227" viewBox="0 0 297 297" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="148.63" cy="148.672" r="145.596" transform="rotate(1.08567 148.63 148.672)" fill="#272B2F"/>
+<circle cx="148.63" cy="148.672" r="145.596" transform="rotate(1.08567 148.63 148.672)" fill={themes.colors.secondary}/>
 <path d="M213.483 135.241V202.185H92.2248L135.473 168.451L92.1982 135.241L152.841 82.8525L213.483 135.241Z" fill="#DDAC00"/>
 <path d="M103.896 95.2266H201.124V174.677H103.896V95.2266Z" fill="#EEEFEE"/>
 <path d="M170.21 168.452L213.458 202.186H213.485V135.242L170.21 168.452Z" fill="#FFD237"/>

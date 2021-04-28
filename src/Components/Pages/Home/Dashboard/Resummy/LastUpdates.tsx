@@ -38,7 +38,7 @@ export default function LastUpdates() {
     }
 
     return (
-        <ContainerGraphs col={4} title={"Últimas publicaciones"} >
+        <ContainerGraphs col={4} title={"Últimas publicaciones"}  aclaration="Desde la aplicación móvil tus atletas pueden agregar publicaciones, que son las actividades físicas realizadas por ellos últimamente (gimnasio, correr, caminar, nadar...)">
         {
 
             generalHistory.length  ? 
@@ -70,7 +70,7 @@ export default function LastUpdates() {
             )
             :
             (
-                <NotFound message="Tus clientes aún no han publicado nada."
+                <NotFound message="Las "
                 
                 svg={
                     <NotFoundLastPublications></NotFoundLastPublications>

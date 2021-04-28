@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useVisible from '../../../../../CustomHooks/useVisible';
+import { Bolder } from '../Bolder';
 import Input from '../Inputs/Input';
 import { Title3 } from '../Title3';
 
@@ -45,12 +46,12 @@ export default function TitleInput({children, primary, className, onChange} : IP
     }
 
     return (
-        <div>
+        <div className="align-items-center d-flex">
             {
 
                 isVisible == false ? 
                 <div onClick = {() => { setIsVisible(true); }}>
-                    <Title3 style={{marginBottom: "0.5rem", wordBreak: "break-word", whiteSpace: "break-spaces"}}>{children}</Title3> 
+                    <Title3 style={{marginBottom: "0.5rem", wordBreak: "break-word", whiteSpace: "break-spaces"}}><Bolder>{children}</Bolder></Title3> 
                 </div>
                 :
                 <Input onChange = {(data : any) => setText(data.target.value)} customref = {ref} value={text} primary={primary} onKeyDown = {pressEnter} className={className}></Input>

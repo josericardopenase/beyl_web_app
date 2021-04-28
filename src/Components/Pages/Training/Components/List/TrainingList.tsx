@@ -44,7 +44,7 @@ export const TrainingList = ({name, children, id, order, popUp, nameAdd, onDragE
     const style = {
         container : {
             backgroundColor: theme.colors.secondary,
-            borderRadius: "20px",
+            borderRadius: "30px",
             width: 400,
             height: "auto",
             transition: "0.3s all ease",
@@ -72,7 +72,7 @@ export const TrainingList = ({name, children, id, order, popUp, nameAdd, onDragE
                         <div style={{...style.container, border: hover || snapshot.isDragging ? `2px ${theme.colors.tertiary} solid` : `2px ${theme.colors.secondary} solid`}}  className="p-3 mr-3 mb-3">
             
 
-                            <div className="w-100 d-flex justify-content-between p-2 mouse-cursor" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} style={{cursor: "pointer"}} {...provided.dragHandleProps}>
+                            <div className="w-100 d-flex justify-content-between mouse-cursor align-items-center d-flex p-2" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} style={{cursor: "pointer"}} {...provided.dragHandleProps}>
 
                                 <Bolder><TitleInput onChange={modifyName}>{name}</TitleInput></Bolder>
                                 <RemoveIcon popUp={true} onClick={() => rutine ? dispatch(deleteRutineGroup(id)) : dispatch(deleteDietGroup(id))}></RemoveIcon>
