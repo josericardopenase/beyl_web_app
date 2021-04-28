@@ -70,7 +70,7 @@ export default function LastUpdates() {
             )
             :
             (
-                <NotFound message="Las "
+                <NotFound message="No hay publicaciones recientes de tus atletas"
                 
                 svg={
                     <NotFoundLastPublications></NotFoundLastPublications>
