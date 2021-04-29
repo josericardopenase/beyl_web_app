@@ -17,7 +17,7 @@ function getStyle(style : any, snapshot : any) {
 
         return {
         ...style,
-        transform: `rotate(0deg)`,
+        transform: `rotate(0deg) scale(1)`,
         // slowing down the drop because we can
 
         };
@@ -30,8 +30,9 @@ function getStyle(style : any, snapshot : any) {
 
         return {
         ...style,
-        transform: `rotate(5deg)`,
+        transform: `rotate(5deg) scale(1.05)`,
         transition: `all 0.1s ease`,
+        borderColor: "white",
         };
 
     }

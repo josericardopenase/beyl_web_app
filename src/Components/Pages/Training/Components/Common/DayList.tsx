@@ -6,6 +6,7 @@ import DraggingSurface from '../../../../General/Constants/DragAndDrop/DraggingS
 import Loading from '../../../../General/Constants/Loading/Loading'
 import { Title2 } from '../../../../General/Constants/Text/Title2'
 import { Title4 } from '../../../../General/Constants/Text/Title4'
+import { AddInputList } from './AddInputLIst'
 import { AddList } from './AddList'
 import { Day } from './Day'
 
@@ -34,8 +35,8 @@ export const DayList = ({rutine} : any) => {
         return <Loading></Loading>
  
     return (
-        <DraggingSurface className="d-flex mt-3 mb-3 align-items-center text-nowrap overflow-auto pb-3" direction={"horizontal"} style={{whiteSpace : "no-wrap", overflow: "auto"}} 
-        final={ <AddList text={"Añadir día"} onClick={() => rutine ? dispatch(postDay({name : "Dia nuevo", rutine : store.getState().athletes.selectedAthlete.trainer_rutine})) : dispatch(postDietDay({name : "Dia nuevo", diet : store.getState().athletes.selectedAthlete.trainer_diet}))}></AddList>}
+        <DraggingSurface className="d-flex mt-3 mb-2 align-items-center text-nowrap overflow-auto pb-2" direction={"horizontal"} style={{whiteSpace : "no-wrap", overflow: "auto"}} 
+        final={ <AddInputList text={"Añadir día"} onClick={() => rutine ? dispatch(postDay({name : "Dia nuevo", rutine : store.getState().athletes.selectedAthlete.trainer_rutine})) : dispatch(postDietDay({name : "Dia nuevo", diet : store.getState().athletes.selectedAthlete.trainer_diet}))}></AddInputList>}
         
         
                 onDragEnd = {(action: any) => {

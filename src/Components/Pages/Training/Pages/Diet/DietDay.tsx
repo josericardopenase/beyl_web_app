@@ -65,7 +65,12 @@ export const DietDay = (props : any) => {
 
     return (
     
-        <div  className="flex-nowrap p-0" style={{overflowX: 'auto', whiteSpace : "nowrap",  marginBottom: "50px"}}>
+        <div  className="flex-nowrap p-0" style={{
+            whiteSpace : "nowrap",  
+            height: "calc(100vh - 210px)",
+            overflow : "auto"
+
+            }}>
 
 
             
@@ -143,7 +148,7 @@ export const DietDay = (props : any) => {
                             <Title4 style={{marginTop: 5}}>Kcal</Title4>
                         </div>
                     </div>
-                <DraggingSurface direction="horizontal" className="row flex-nowrap m-0 p-0" style={{overflowX: 'auto', whiteSpace : "nowrap", width: "100%"}} 
+                <DraggingSurface direction="horizontal" className="row flex-nowrap m-0 p-0" style={{ whiteSpace : "nowrap", width: "100%"}} 
                 final={ 
                     <AddList onClick={() => dispatch(postDietGroup({name : "Comida nueva" , day : dietDay}))} styleText = {{padding: "0px 10px 0px 10px"}} text={"Añade nueva comida"}></AddList>
                 }

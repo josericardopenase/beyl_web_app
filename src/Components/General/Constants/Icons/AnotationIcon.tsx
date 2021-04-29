@@ -53,7 +53,7 @@ export default function AnotationIcon({obj, modifyMethod} : IProps) {
         }>
             <Button style={{backgroundColor: "transparent", border : 0, padding: 0, margin : 0, outline: 0 }} onClick={() => setIsVisible(true)}>
                 <Icon>
-                    <FaStickyNote></FaStickyNote>
+                    <FaStickyNote size={15}></FaStickyNote>
                 </Icon>
             </Button>
         </OverlayTrigger>

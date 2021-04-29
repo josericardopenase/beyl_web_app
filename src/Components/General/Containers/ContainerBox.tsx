@@ -13,7 +13,7 @@ export default function ContainerBox({children, color, style, className} : IProp
     const themes = useContext(ThemeContext);
 
     const inStyle : React.CSSProperties = {
-        backgroundColor: color === "primary" || color === "secondary" || color === undefined ?  color === "primary" ? themes.colors.primary : themes.colors.secondary : color,
+        backgroundColor: color === "primary" || color === "secondary" || color === undefined  || color=="tertiary" ?  color === "primary" ? themes.colors.primary : themes.colors.secondary : color,
         padding: 10,
         borderRadius: "1.3111em",
         wordBreak: "break-word",

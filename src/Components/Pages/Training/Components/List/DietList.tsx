@@ -43,7 +43,7 @@ export default function DietList({obj , index} : props) {
         <TrainingList rutine={false} onDragEnd={(action : any) => {
 /*                 console.log(action.draggableId, store.getState().training.rutine.excersise.list[action.destination.index].order) */
                 dispatch(reorderFood(parseInt(action.draggableId), action.destination.index))
-        }} nameAdd = {"Agrega nuevo alimento"} id={obj.id} order={obj.order} name={obj.name} popUp = 
+        }} nameAdd = {"Agrega nuevo alimento"} id={obj.id} order={obj.order} index={index} name={obj.name} popUp = 
         {(modalShow, setModalShow, id) => <AddFood show={modalShow} id = {id} onHide={() => setModalShow()} ></AddFood>}
         >
             <MacroCounter fontSize={14} portion_cuantity={100} portion_weight={100} protein={protein} carbos={carbs} calories={kcal} grasas={lips} unity={"gr"}></MacroCounter>

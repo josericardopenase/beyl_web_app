@@ -78,9 +78,9 @@ export const Day = ({ day, index, rutine} : IProps) => {
 
     return (
         <DraggingComponent id = {day.id} index = {day.order}>
-                <div className="mr-3" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}  >
+                <div className="mr-3" style={{cursor: "pointer"}} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}  >
                     <ContainerBox color={active ? "rgba(255, 198, 0, 0.20)" : themes.colors.secondary}>
-                        <div className="pl-2 pr-2 d-flex align-items-center"> 
+                        <div className="pl-2 pr-2 d-flex align-items-center" style={{transform: !hover ? "translateX(15px)" : "translateX(0px)", transition: "0.5s all ease"}}> 
 
                             <div onClick ={() => {
                                 timer = setTimeout(() => {
@@ -99,7 +99,7 @@ export const Day = ({ day, index, rutine} : IProps) => {
                                 }
                             </div>
 
-                            <div className="ml-3">
+                            <div className="ml-3" style={{opacity : hover ? 1 : 0, transition: "0.5s all ease"}} onClick={() => setHover(false)}>
                                 <RemoveIcon onClick={deleteCurrentDay} popUp={true} color={active ? Themes.beylColor : undefined}></RemoveIcon>
                             </div>
 

@@ -32,7 +32,11 @@ code {
   background: #888;
   border-radius: 20px;
 }
-
+  ::-webkit-scrollbar-thumb:horizontal{
+      width: 2px !important;
+      background: #888;
+      border-radius: 10px;
+  }
 
 input{
   outline: none;

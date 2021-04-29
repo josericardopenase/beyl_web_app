@@ -31,7 +31,7 @@ export default function DraggingInsideSurface({children, onDragEnd, style, class
                         {
                             children
                         }
-                        {provided.placeholder}
+                        <div style={{display: 'none', border: "3px red solid"}}>{provided.placeholder}</div>
                         {final}
                     </div>
 

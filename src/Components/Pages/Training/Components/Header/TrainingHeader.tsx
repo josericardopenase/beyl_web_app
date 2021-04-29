@@ -27,7 +27,8 @@ export const TrainingHeader = ({actualPath} : any) => {
 
 
     return (
-        
-        <NavigationHeader routes={routes} actualPath={actualPath}></NavigationHeader>
+        <div style={{marginTop: -10}}>
+            <NavigationHeader routes={routes} actualPath={actualPath}></NavigationHeader>
+        </div> 
     )
 }

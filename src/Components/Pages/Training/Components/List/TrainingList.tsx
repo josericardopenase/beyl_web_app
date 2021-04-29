@@ -27,10 +27,11 @@ interface props {
     changeName ?: any,
     popUp : (showModal : any, toggleModal : any, id : number) => any,
     onDragEnd ?: any,
-    rutine: boolean
+    rutine: boolean,
+    index : number
 }
 
-export const TrainingList = ({name, children, id, order, popUp, nameAdd, onDragEnd, rutine} : props) => {
+export const TrainingList = ({name, children, id, order, popUp, nameAdd, onDragEnd, rutine, index} : props) => {
 
 
     const theme = useContext(ThemeContext);
@@ -45,7 +46,7 @@ export const TrainingList = ({name, children, id, order, popUp, nameAdd, onDragE
         container : {
             backgroundColor: theme.colors.secondary,
             borderRadius: "30px",
-            width: 400,
+            width: 350,
             height: "auto",
             transition: "0.3s all ease",
         } as React.CSSProperties
@@ -61,6 +62,38 @@ export const TrainingList = ({name, children, id, order, popUp, nameAdd, onDragE
     }
 
 
+function getStyle(style : any, snapshot : any) {
+
+
+    if(snapshot.isDropAnimating){
+        const { moveTo, curve, duration } = snapshot.dropAnimation;
+        // move to the right spot
+
+        return {
+        ...style,
+        transform: `rotate(0deg)`,
+        // slowing down the drop because we can
+
+        };
+    }
+
+    console.log(snapshot.isDragging)
+
+    if(snapshot.isDragging){
+
+
+        return {
+        ...style,
+        transform: `scale(1.04)`,
+        transition: `all 0.1s ease`,
+        };
+
+    }
+
+    return style
+  
+    // patching the existing style
+  }
     return (
         
         
@@ -69,12 +102,16 @@ export const TrainingList = ({name, children, id, order, popUp, nameAdd, onDragE
             {(provided, snapshot) =>  (
                 <div   {...provided.draggableProps} ref={provided.innerRef}>
                     
-                        <div style={{...style.container, border: hover || snapshot.isDragging ? `2px ${theme.colors.tertiary} solid` : `2px ${theme.colors.secondary} solid`}}  className="p-3 mr-3 mb-3">
+                        <div style={{...style.container, border: hover || snapshot.isDragging ? `2px ${theme.colors.tertiary} solid` : `2px ${theme.colors.secondary} solid`, transform: snapshot.isDropAnimating ? "scale(1)" : snapshot.isDragging ?  "scale(1.10)" : ""}}  className="p-3 mr-3 mb-3">
             
 
                             <div className="w-100 d-flex justify-content-between mouse-cursor align-items-center d-flex p-2" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} style={{cursor: "pointer"}} {...provided.dragHandleProps}>
 
-                                <Bolder><TitleInput onChange={modifyName}>{name}</TitleInput></Bolder>
+                                <div className="d-flex">
+
+                                    <Title3 style={{marginRight: 10}} color={Themes.beylColor}><Bolder>{index + 1}</Bolder></Title3>
+                                    <Bolder><TitleInput onChange={modifyName} className="w-100 mr-2">{name}</TitleInput></Bolder>
+                                </div>
                                 <RemoveIcon popUp={true} onClick={() => rutine ? dispatch(deleteRutineGroup(id)) : dispatch(deleteDietGroup(id))}></RemoveIcon>
 
                             </div>
@@ -85,7 +122,7 @@ export const TrainingList = ({name, children, id, order, popUp, nameAdd, onDragE
                             }} final={
                                 <AddList styleContainer = {{marginTop: 10}}  text={nameAdd} onClick = {() => setModalShow(true)}></AddList>
                             }>
-                                <Row className="mt-2">
+                                <Row className="mt-1">
                                     {
                                     children
                                     }

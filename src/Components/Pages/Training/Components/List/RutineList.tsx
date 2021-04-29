@@ -34,7 +34,7 @@ export default function RutineList({obj , index} : props) {
 /*                 console.log(action.draggableId, store.getState().training.rutine.excersise.list[action.destination.index].order) */
                 dispatch(reorderExcersise(parseInt(action.draggableId), action.destination.index))
 
-        }} nameAdd = {"Agrega ejercicio"} id={obj.id} order={index} name={obj.name} popUp = {(modalShow, setModalShow, id) => <AddExcersise show={modalShow} id = {id} onHide={() => setModalShow()} ></AddExcersise>}>
+        }} nameAdd = {"Agrega ejercicio"} id={obj.id} order={index} index={index} name={obj.name} popUp = {(modalShow, setModalShow, id) => <AddExcersise show={modalShow} id = {id} onHide={() => setModalShow()} ></AddExcersise>}>
             {
 
                 rutineGroup.map((x : any, index : number) => <RutineExcercise obj = {x} index={x.order} key={x.id} ></RutineExcercise>)

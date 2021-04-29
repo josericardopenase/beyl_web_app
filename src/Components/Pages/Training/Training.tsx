@@ -16,6 +16,7 @@ import { url } from 'inspector'
 import { setSelectedAthlete } from '../../../Store/athleltes'
 import Loading from '../../General/Constants/Loading/Loading'
 import { AnimatePresence } from 'framer-motion'
+import { Title2 } from '../../General/Constants/Text/Title2'
 
 
 export default function Training(props : any) {

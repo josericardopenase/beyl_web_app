@@ -1,5 +1,6 @@
 import { current } from '@reduxjs/toolkit'
 import React, { useEffect, useState } from 'react'
+import Confetti from 'react-confetti/dist/types/Confetti'
 import { useDispatch, useSelector, useStore } from 'react-redux'
 import { Redirect, Route, useRouteMatch } from 'react-router-dom'
 import apiDiet from '../../../../Api/apiDiet'
@@ -17,6 +18,7 @@ import { DayList } from '../Components/Common/DayList'
 import { DietDay } from './Diet/DietDay'
 import SaveChanges from './General/SaveChanges'
 import { RutineDay } from './Rutine/RutineDay'
+import useWindowSize from '../../../../CustomHooks/useWindowSize'
 
 export const Diet = (props: any) => {
 
@@ -52,7 +54,7 @@ export const Diet = (props: any) => {
                 null
             }
 
-            <SaveChanges key={"save_diet"} notificationText="Cambios publicados correctamente" text="Guardar cambios realizados en la dieta" buttonText="Publicar" apiSave={apiDiet.saveDiet} ></SaveChanges> 
+            <SaveChanges key={"save_diet"} notificationText="Cambios publicados correctamente" text="Guardar cambios realizados en la dieta" buttonText="Guardar" apiSave={apiDiet.saveDiet} ></SaveChanges> 
         </div>
     )
 }

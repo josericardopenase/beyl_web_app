@@ -27,9 +27,13 @@ export const RutineDay = (props : any) => {
 
     return (
     
-        <div  className="flex-nowrap  p-0" style={{overflowX: 'auto', whiteSpace : "nowrap", marginBottom: "50px"}}>
+        <div  className="flex-nowrap  p-0" style={{
+            whiteSpace : "nowrap", 
+            height: "calc(100vh - 210px)",
+            overflow : "auto"
+            }}>
 
-                <DraggingSurface direction="horizontal" className="row flex-nowrap mb-5 ml-0 mr-0 mt-0 p-0" style={{overflow: 'auto', whiteSpace : "nowrap", width: "100%", maxHeight: "100%"}} 
+                <DraggingSurface className="row flex-nowrap mb-5 ml-0 mr-0 mt-0 p-0" 
                 final={ 
                     <AddList onClick={() => dispatch(postRutineGroup({day : rutineDay}))} styleText = {{padding: "0px 10px 0px 10px"}} text={"Añade lista de ejercicios"}></AddList>
                 }

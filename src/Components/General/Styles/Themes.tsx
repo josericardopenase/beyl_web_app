@@ -12,12 +12,12 @@ const beylColor = '#FFC600';
 const transparencyBeylColor = "rgba(255, 198, 0, 0.43)"
 
 const darkTheme : ITheme = {
-    primary: '#1E2025',
-    secondary: '#272B2F',
+    primary: '#1E1D2B',
+    secondary: '#272938',
     textPrimary: "white",
     textSecondary: '#BBBBBB',
     primaryTransparent: 'rgb(39, 43, 47, 0.7)',
-    tertiary: '#59575F',
+    tertiary: '#404357',
 };
 
 const lightTheme : ITheme = {

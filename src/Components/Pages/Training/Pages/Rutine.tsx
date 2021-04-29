@@ -37,7 +37,7 @@ export const Rutine = (props: any) => {
     console.log(`${urlParams.url}/${rutine.rutine_days[0]}`)
 
     return (
-        <div className="position-relative">
+        <div className="position-relative" style={{overflow: "hidden"}}>
             <DayList rutine = {true} days={rutine.rutine_days}></DayList> 
             <Route  path={`${urlParams.url}/:rutineDay`} component={RutineDay}></Route>
             
